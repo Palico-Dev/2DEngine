@@ -23,13 +23,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NextLevel.cpp" />
     <ClCompile Include="PlayerController.cpp" />
-    <ClCompile Include="SceneTestComponent1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="NextLevel.h" />
     <ClInclude Include="PlayerController.h" />
-    <ClInclude Include="SceneTestComponent1.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
