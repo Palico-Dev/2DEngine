@@ -1,17 +1,19 @@
 #include "EngineCore.h"
 #include <iostream>
 #include <filesystem>
+#undef main
 
 namespace fs = std::filesystem;
 
 std::string GetAssetType(fs::path assetPath)
 {
 	static const std::unordered_map<std::string, std::string> extensionToType = {
-		{".png", "Texture"},
-		{".jpg", "Texture"},
+		{".png", "TextureAsset"},
+		{".jpg", "TextureAsset"},
 		{".json", "Json"},
-		{".wav", "Sound"},
-		{".ttf","Font"}
+		{".wav", "SoundAsset"},
+		{".ttf","FontAsset"},
+		{".prefab","PrefabAsset"},
 	};
 
 	auto it = extensionToType.find(assetPath.extension().string());
@@ -31,7 +33,10 @@ void CreateMetaFile_(fs::path assetPath)
 
 	j["Type"] = GetAssetType(assetPath);
 
-	j["Guid"] = std::to_string(std::hash<std::string>{}(assetPath.string()));
+	UUID _uid;
+	CreateUUID(&_uid);
+
+	j["Guid"] = GUIDTostring(_uid);
 
 	fs::path relativePath = fs::relative(assetPath, ASSET_DIR);
 
