@@ -59,6 +59,8 @@
 #include "TypeClass.h"
 #include "EngineTime.h"
 
+#include "Debug.h"
+
 
 #define M_ASSERT(cond, cstr)                                                  \
     do {                                                                      \

@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Scenes/Scene02.json",
-  "Guid" : "e29310d5-01ee-4c9e-bb80-f38c23d02289",
+  "Asset" : "Scenes/Scene02.json",
+  "FileName" : "Scene02",
+  "Guid" : "21d811ba-b065-49a6-95d0-bd8f775de0db",
+  "Location" : "Project",
   "Type" : "Json"
 }

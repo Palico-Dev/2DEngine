@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Fonts/courbd.ttf",
-  "Guid" : "804c1c75-143e-4215-9bee-00bc08f2da36",
+  "Asset" : "Fonts/courbd.ttf",
+  "FileName" : "courbd",
+  "Guid" : "ebc97e45-4f6a-4e7d-b3fe-93fefdd2cc8d",
+  "Location" : "Project",
   "Type" : "FontAsset"
 }

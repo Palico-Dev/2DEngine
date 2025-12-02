@@ -4,6 +4,7 @@
 #define _ASSET_H_
 
 #include "Object.h"
+#include "FileManager.h"
 
 class Asset : public Object
 {
@@ -11,12 +12,12 @@ class Asset : public Object
 
 private:
 	friend class AssetManager;
-	virtual void Load() = 0;
+	virtual void Load(json::JSON j) = 0;
 	virtual void Destroy() = 0;
 
 protected:
-	std::string type = "";
-	std::string path = "";
+	//std::string type = "";
+	//std::string path = "";
 	int refCount = 0;
 };
 

@@ -16,12 +16,8 @@ public:
 
 class SceneManager final
 {
-public:
-	void Initialize();
-	void Update();
-	void Destroy();
-
 	DECLARE_SINGLETON(SceneManager)
+
 public:
 	void RegisterScene(const std::string& name, const std::string& filePath);
 	void SetStartupScene(const std::string& name) { startupSceneName = name; }
@@ -29,6 +25,13 @@ public:
 	Scene* GetActiveScene() { return activeScene; }	
 	
 	void QueueActiveScene(const std::string& name);
+
+
+private:
+	void Initialize();
+	void Update();
+	void Destroy();
+	void Start();
 
 private:
 	friend class Engine;

@@ -9,27 +9,29 @@ class AssetManager final
 {
 	DECLARE_SINGLETON(AssetManager)
 
-private:
-	std::map<STRCODE, Asset*> assets;
-	std::map<std::string, std::vector<STRCODE>> assetMeta;
-	friend class Engine;
-
-	void Initialize();
-	void Destroy();
 public:
 	void Load(json::JSON& _json, std::string& _scene);
 	void Unload(std::string& _scene);
-	template<typename T> T* GetAsset(const char* _guid)
-	{
-		try {
-			// get loaded asset from map and cast pointer type to T*
-			return (T*)assets.at(GetHashCode(_guid));
-		}
-		catch (const std::out_of_range& e)
-		{
-			std::cerr << "Error: " << e.what() << std::endl;
-		}
-	}
+	Asset* GetAsset(const char* _guid);
+
+
+private:
+	void Initialize();
+	void Destroy();
+
+	void GenerateMetaDB();
+	void LoadEngineAsset();
+
+private:
+	std::map<STRCODE, Asset*> assets;
+	std::map<std::string, std::vector<STRCODE>> assetMeta;
+	std::map<STRCODE, std::string> metaDatabase;
+
+	std::map<std::string, Asset*> engineAssets;
+	friend class Engine;
+
+
+
 };
 
 #endif

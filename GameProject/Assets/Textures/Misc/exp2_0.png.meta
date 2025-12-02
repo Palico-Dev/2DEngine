@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Textures/Misc/exp2_0.png",
-  "Guid" : "3de26da7-4999-40a0-bf2f-db6c71212623",
+  "Asset" : "Textures/Misc/exp2_0.png",
+  "FileName" : "exp2_0",
+  "Guid" : "5f542dfb-2ccf-4fe4-aa86-a7c9bb7e3fe6",
+  "Location" : "Project",
   "Type" : "TextureAsset"
 }

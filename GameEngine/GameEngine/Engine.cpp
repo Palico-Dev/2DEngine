@@ -32,6 +32,8 @@ void Engine::Destroy()
 
 void Engine::GameLoop()
 {
+    SceneManager::Instance().Start();
+
 	while (!quit)
 	{
         // PreUpdate TBD

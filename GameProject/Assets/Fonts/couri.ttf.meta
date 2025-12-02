@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Fonts/couri.ttf",
-  "Guid" : "2169f9c1-ada5-492b-81e1-4497f01f7cd2",
+  "Asset" : "Fonts/couri.ttf",
+  "FileName" : "couri",
+  "Guid" : "ed7e351e-21e4-4535-96bb-9317ec43ff4a",
+  "Location" : "Project",
   "Type" : "FontAsset"
 }

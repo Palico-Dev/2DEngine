@@ -4,8 +4,9 @@
 
 IMPLEMENT_DYNAMIC_CLASS(PrefabAsset)
 
-void PrefabAsset::Load()
+void PrefabAsset::Load(json::JSON j)
 {
+    std::string path = FileManager::JsonReadString(j, "Asset");
     json::JSON entityItem = LoadJson(path);
     m_Entity = static_cast<Entity*>(CreateObject("Entity"));
 

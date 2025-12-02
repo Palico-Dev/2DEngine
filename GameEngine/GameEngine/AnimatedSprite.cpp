@@ -41,7 +41,7 @@ void AnimatedSprite::Load(json::JSON& _document)
 		Component::Load(_document);
 		if (_document.hasKey("name")) spriteName = _document["spriteName"].ToString();
 
-		if (_document.hasKey("asset")) texture = AssetManager::Instance().GetAsset<TextureAsset>(_document["asset"].ToString().c_str());
+		//if (_document.hasKey("asset")) texture = AssetManager::Instance().GetAsset<TextureAsset>(_document["asset"].ToString().c_str());
 
 		if (_document.hasKey("animationSpeed")) speed = _document["animationSpeed"].ToFloat();
 

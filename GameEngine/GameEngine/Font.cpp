@@ -33,7 +33,7 @@ void Font::Load(json::JSON& _document)
 	Component::Load(_document);
 	if (_document.hasKey("name")) fontName = _document["fontName"].ToString();
 
-	if (_document.hasKey("asset")) font = AssetManager::Instance().GetAsset<FontAsset>(_document["asset"].ToString().c_str());
+	//if (_document.hasKey("asset")) font = AssetManager::Instance().GetAsset<FontAsset>(_document["asset"].ToString().c_str());
 	size = font->GetFontSize();
 
 	if (_document.hasKey("text")) text = _document["text"].ToString();

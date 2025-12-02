@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Fonts/courbi.ttf",
-  "Guid" : "142a7895-1075-4e2a-96a1-46f39d6244cc",
+  "Asset" : "Fonts/courbi.ttf",
+  "FileName" : "courbi",
+  "Guid" : "a259ef34-ba55-4584-a8ad-2e415a5b6816",
+  "Location" : "Project",
   "Type" : "FontAsset"
 }

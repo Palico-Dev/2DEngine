@@ -14,7 +14,7 @@ public:
 
 private:
     Entity* m_Entity;
-    void Load() override;
+    void Load(json::JSON j) override;
     void Destroy() override;
 };
 

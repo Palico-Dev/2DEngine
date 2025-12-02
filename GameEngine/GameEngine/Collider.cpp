@@ -62,13 +62,13 @@ void Collider::OnComponentInitialized()
 		{
 		case ColliderType::Box:
 
-			debugTexture = AssetManager::Instance().GetAsset<TextureAsset>("qwdi1256876doih-98asdabufa")->GetTexture();
+			//debugTexture = AssetManager::Instance().GetAsset<TextureAsset>("qwdi1256876doih-98asdabufa")->GetTexture();
 			if (!debugTexture)
 				std::cout << "Failed to load Box.png: " << SDL_GetError() << "\n";
 			break;
 
 		case ColliderType::Circle:
-			debugTexture = AssetManager::Instance().GetAsset<TextureAsset>("qwdi12d1h21doih-98asawereufa")->GetTexture();
+			//debugTexture = AssetManager::Instance().GetAsset<TextureAsset>("qwdi12d1h21doih-98asawereufa")->GetTexture();
 			if (!debugTexture)
 				std::cout << "Failed to load Circle.png: " << SDL_GetError() << "\n";
 			break;

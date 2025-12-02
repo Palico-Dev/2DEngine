@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Textures/Misc/boom3_0.png",
-  "Guid" : "552bc37b-e7ba-4be1-97ca-dc885b9f2eef",
+  "Asset" : "Textures/Misc/boom3_0.png",
+  "FileName" : "boom3_0",
+  "Guid" : "6809380b-f100-4f8c-a1ef-bc4eed78c600",
+  "Location" : "Project",
   "Type" : "TextureAsset"
 }

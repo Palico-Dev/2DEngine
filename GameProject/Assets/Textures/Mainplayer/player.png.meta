@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Textures/Mainplayer/player.png",
-  "Guid" : "89ecbb36-8443-4c32-8a12-f87ee7492dad",
+  "Asset" : "Textures/Mainplayer/player.png",
+  "FileName" : "player",
+  "Guid" : "a1d518a7-9d26-491c-9dcf-640b01e868f0",
+  "Location" : "Project",
   "Type" : "TextureAsset"
 }

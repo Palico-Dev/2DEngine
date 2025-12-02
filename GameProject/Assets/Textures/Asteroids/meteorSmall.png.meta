@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Textures/Asteroids/meteorSmall.png",
-  "Guid" : "4879aaf8-db42-42b4-8d13-6d6210f7afc0",
+  "Asset" : "Textures/Asteroids/meteorSmall.png",
+  "FileName" : "meteorSmall",
+  "Guid" : "eae9af66-1715-4188-944d-cca509226000",
+  "Location" : "Project",
   "Type" : "TextureAsset"
 }

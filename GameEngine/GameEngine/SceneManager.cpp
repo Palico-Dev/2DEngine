@@ -72,6 +72,11 @@ void SceneManager::Destroy()
 	isInitialized = false;
 }
 
+void SceneManager::Start()
+{
+
+}
+
 void SceneManager::RegisterScene(const std::string& name, const std::string& filePath)
 {
 	SceneRecord record;

@@ -16,10 +16,10 @@ void SoundAsset::Init()
     }
 }
 
-void SoundAsset::Load()
+void SoundAsset::Load(json::JSON j)
 {
     Init();
-
+    std::string path = FileManager::JsonReadString(j, "Asset");
     sound = Mix_LoadWAV(path.c_str());
     if (!sound) {
         std::cerr << "Cannot load the .wav file! Mixer_Error: " << Mix_GetError() << std::endl;

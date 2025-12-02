@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Fonts/cour.ttf",
-  "Guid" : "a5ec1254-aec4-49c9-bbfb-f3ee0a328b5e",
+  "Asset" : "Fonts/cour.ttf",
+  "FileName" : "cour",
+  "Guid" : "d73ab2a5-04f4-411f-8a2b-28fda03992ff",
+  "Location" : "Project",
   "Type" : "FontAsset"
 }

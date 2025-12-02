@@ -91,7 +91,7 @@
     <TargetName>$(ProjectName)-$(Configuration)-$(PlatformTarget)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)Build\bin\</OutDir>
+    <OutDir>$(SolutionDir)Release\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\$(PlatformTarget)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-$(Configuration)-$(PlatformTarget)</TargetName>
   </PropertyGroup>
@@ -101,7 +101,7 @@
     <TargetName>$(ProjectName)-$(Configuration)-$(PlatformTarget)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)Build\bin\</OutDir>
+    <OutDir>$(SolutionDir)Release\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\$(PlatformTarget)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-$(Configuration)-$(PlatformTarget)</TargetName>
   </PropertyGroup>
@@ -114,6 +114,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\GameEngine\GameEngine\;$(SolutionDir)..\GameEngine\External-Libs\SDL\include\;$(SolutionDir)..\GameEngine\External-Libs\glm</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>GameCore.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,9 +123,7 @@
       <AdditionalDependencies>SDL2.lib;SDL2_ttf.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y "$(SolutionDir)..\GameEngine\External-Libs\SDL\lib\$(PlatformTarget)\*.dll" "$(TargetDir)*.dll"
-if not exist "$(TargetDir)Scenes" mkdir "$(TargetDir)Scenes"
-xcopy /Y /E /I "$(ProjectDir)Scenes" "$(TargetDir)Scenes\"</Command>
+      <Command>xcopy /Y "$(SolutionDir)..\GameEngine\External-Libs\SDL\lib\$(PlatformTarget)\*.dll" "$(TargetDir)*.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,6 +137,7 @@ xcopy /Y /E /I "$(ProjectDir)Scenes" "$(TargetDir)Scenes\"</Command>
       <AdditionalIncludeDirectories>$(SolutionDir)..\GameEngine\GameEngine\;$(SolutionDir)..\GameEngine\External-Libs\SDL\include\;$(SolutionDir)..\GameEngine\External-Libs\glm</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>GameCore.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,8 +147,8 @@ xcopy /Y /E /I "$(ProjectDir)Scenes" "$(TargetDir)Scenes\"</Command>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y "$(SolutionDir)..\GameEngine\External-Libs\SDL\lib\$(PlatformTarget)\*.dll" "$(TargetDir)*.dll"
-if not exist "$(TargetDir)Scenes" mkdir "$(TargetDir)Scenes"
-xcopy /Y /E /I "$(ProjectDir)Scenes" "$(TargetDir)Scenes\"</Command>
+xcopy "$(SolutionDir)Assets" "$(OutDir)ProjectAssets\" /Y /S /I
+xcopy "$(SolutionDir)..\GameEngine\Assets" "$(OutDir)EngineAssets\" /Y /S /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -160,6 +160,7 @@ xcopy /Y /E /I "$(ProjectDir)Scenes" "$(TargetDir)Scenes\"</Command>
       <AdditionalIncludeDirectories>$(SolutionDir)..\GameEngine\GameEngine\;$(SolutionDir)..\GameEngine\External-Libs\SDL\include\;$(SolutionDir)..\GameEngine\External-Libs\glm</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>GameCore.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -168,9 +169,7 @@ xcopy /Y /E /I "$(ProjectDir)Scenes" "$(TargetDir)Scenes\"</Command>
       <AdditionalDependencies>SDL2.lib;SDL2_ttf.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y "$(SolutionDir)..\GameEngine\External-Libs\SDL\lib\$(PlatformTarget)\*.dll" "$(TargetDir)*.dll"
-if not exist "$(TargetDir)Scenes" mkdir "$(TargetDir)Scenes"
-xcopy /Y /E /I "$(ProjectDir)Scenes" "$(TargetDir)Scenes\"</Command>
+      <Command>xcopy /Y "$(SolutionDir)..\GameEngine\External-Libs\SDL\lib\$(PlatformTarget)\*.dll" "$(TargetDir)*.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -184,6 +183,7 @@ xcopy /Y /E /I "$(ProjectDir)Scenes" "$(TargetDir)Scenes\"</Command>
       <AdditionalIncludeDirectories>$(SolutionDir)..\GameEngine\GameEngine\;$(SolutionDir)..\GameEngine\External-Libs\SDL\include\;$(SolutionDir)..\GameEngine\External-Libs\glm</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>GameCore.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -193,8 +193,8 @@ xcopy /Y /E /I "$(ProjectDir)Scenes" "$(TargetDir)Scenes\"</Command>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y "$(SolutionDir)..\GameEngine\External-Libs\SDL\lib\$(PlatformTarget)\*.dll" "$(TargetDir)*.dll"
-if not exist "$(TargetDir)Scenes" mkdir "$(TargetDir)Scenes"
-xcopy /Y /E /I "$(ProjectDir)Scenes" "$(TargetDir)Scenes\"</Command>
+xcopy "$(SolutionDir)Assets" "$(OutDir)ProjectAssets\" /Y /S /I
+xcopy "$(SolutionDir)..\GameEngine\Assets" "$(OutDir)EngineAssets\" /Y /S /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

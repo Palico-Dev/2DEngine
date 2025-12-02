@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Textures/Mainplayer/laserGreen.png",
-  "Guid" : "6dd30e55-4158-465e-a503-d6e9e67f676a",
+  "Asset" : "Textures/Mainplayer/laserGreen.png",
+  "FileName" : "laserGreen",
+  "Guid" : "90789835-cb78-4376-b076-689862f07e95",
+  "Location" : "Project",
   "Type" : "TextureAsset"
 }

@@ -1,0 +1,124 @@
+#include "EngineCore.h"
+#include "FileManager.h"
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
+json::JSON FileManager::LoadJson(const char* path)
+{
+	std::ifstream file(path);
+	if (!file.is_open())
+	{
+		Debug::Error(std::string("CANNOT load json file:") + path);
+	}
+
+	std::stringstream buffer;
+	buffer << file.rdbuf();
+	std::string content = buffer.str();
+	json::JSON j = json::JSON::Load(content);
+	return j;
+}
+
+int FileManager::JsonReadInt(json::JSON& j, const char* key)
+{
+	if (j.hasKey(key))
+	{
+		return j[key].ToInt();
+	}
+
+	Debug::Warning(std::string("CANNOT read key: ") + key);
+	return -1;
+}
+
+float FileManager::JsonReadFloat(json::JSON& j, const char* key)
+{
+	if (j.hasKey(key))
+	{
+		return j[key].ToFloat();
+	}
+
+	Debug::Warning(std::string("CANNOT read key: ") + key);
+	return -1.0f;
+}
+
+std::string FileManager::JsonReadString(json::JSON& j, const char* key)
+{
+	if (j.hasKey(key))
+	{
+		return j[key].ToString();
+	}
+
+	Debug::Warning(std::string("CANNOT read key: ") + key);
+	return "";
+}
+
+glm::vec2 FileManager::JsonReadVec2(json::JSON& j, const char* key)
+{
+	if (j.hasKey(key))
+	{
+		json::JSON& vecObj = j[key];
+
+		float x = JsonReadFloat(vecObj, "x");
+		float y = JsonReadFloat(vecObj, "y");
+
+		return glm::vec2(x, y);
+	}
+
+	Debug::Warning(std::string("CANNOT read Vec2 key: ") + key);
+	return glm::vec2(0.0f);
+}
+
+std::vector<std::string> FileManager::GetALLMetaFiles(fs::path path)
+{
+	std::vector<std::string> res;
+	fs::path assetsDir = path;
+
+	if (!fs::exists(assetsDir))
+	{
+		Debug::Error("Assets folder not find!");
+		return res;
+	}
+	for (const auto& entry : fs::recursive_directory_iterator(assetsDir))
+	{
+		if (entry.is_regular_file())
+		{
+			fs::path filePath = entry.path();
+
+			if (filePath.extension() == ".meta")
+			{
+				res.push_back(filePath.string());
+			}
+		}
+	}
+	return res;
+}
+
+fs::path FileManager::GetExecutableDir()
+{
+#ifdef _WIN32
+	char buffer[MAX_PATH];
+	GetModuleFileNameA(NULL, buffer, MAX_PATH);
+	return fs::path(buffer).parent_path();
+#else
+	return fs::current_path();
+#endif
+}
+
+fs::path FileManager::GetAssetPath()
+{
+#ifdef _DEBUG
+	return fs::path(ASSET_DIR);
+#else
+	return GetExecutableDir() / "ProjectAssets";
+#endif
+}
+
+fs::path FileManager::GetEngineAssetPath()
+{
+#ifdef _DEBUG 
+	return fs::path(ENGINEASSET_DIR);
+#else
+	return GetExecutableDir() / "EngineAssets";
+#endif
+}

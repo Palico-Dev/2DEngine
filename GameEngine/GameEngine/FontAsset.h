@@ -15,9 +15,9 @@ private:
 	TTF_Font* font{};
 	int fontSize = 24;
 	void Init();
-	void Load() override;
+	void Load(json::JSON j) override;
 	void Destroy() override;
-	void LoadFont(int _size);
+	void LoadFont(json::JSON j, int _size);
 };
 
 #endif

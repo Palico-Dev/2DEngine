@@ -1,11 +1,14 @@
 #include "EngineCore.h"
 #include "AssetManager.h"
 #include "Asset.h"
+#include "FileManager.h"
+#
 
 void AssetManager::Load(json::JSON& _json, std::string& _scene)
 {
-	if (!_json.hasKey("assets")) {
-		std::cout << "No asset meta file detected for this scene.\n";
+	if (!_json.hasKey("assets"))
+	{
+		Debug::Warning("No Assets Loaded!");
 		return;
 	}
 
@@ -41,10 +44,10 @@ void AssetManager::Load(json::JSON& _json, std::string& _scene)
 		{
 			newAsset = (Asset*)TypeClass::ConstructObject(metaJSON["Type"].ToString().c_str());
 			newAsset->SetId(newUid);
-			newAsset->type = metaJSON["Type"].ToString();
-			newAsset->path = metaJSON["Asset"].ToString();
-			newAsset->refCount++;
-			newAsset->Load();
+			//newAsset->type = metaJSON["Type"].ToString();
+			//newAsset->path = metaJSON["Asset"].ToString();
+			//newAsset->refCount++;
+			//newAsset->Load();
 
 			assets.emplace(newUid, newAsset);
 		}
@@ -56,18 +59,19 @@ void AssetManager::Load(json::JSON& _json, std::string& _scene)
 
 void AssetManager::Unload(std::string& _scene)
 {
-	try {
+	try
+	{
 		if (!assetMeta.count(_scene))
 		{
 			std::cout << "No asset detected for scene: " + _scene + ". Asset unload process is skipped.\n";
 			return;
 		}
 
-		for (auto& _strcode: assetMeta.at(_scene))
+		for (auto& _strcode : assetMeta.at(_scene))
 		{
 			Asset* asset_to_unload = assets.at(_strcode);
 			int& count = asset_to_unload->refCount;
-		
+
 			if (!count) std::cout << "WARNING! Attempting to unload an asset with no instance.\n";
 			else count--;
 
@@ -77,7 +81,7 @@ void AssetManager::Unload(std::string& _scene)
 				delete asset_to_unload;
 				assets.erase(_strcode);
 			}
-		} 
+		}
 		assetMeta.at(_scene).clear();
 		assetMeta.erase(_scene);
 	}
@@ -87,15 +91,47 @@ void AssetManager::Unload(std::string& _scene)
 	}
 }
 
+Asset* AssetManager::GetAsset(const char* _guid)
+{
+	return assets.at(GetHashCode(_guid));
+}
+
 void AssetManager::Initialize()
-{}
+{
+	GenerateMetaDB();
+}
 
 void AssetManager::Destroy()
 {
-	for (auto& asset: assets)
+	for (auto& asset : assets)
 	{
 		asset.second->Destroy();
 		delete asset.second;
 		assets.erase(asset.first);
+	}
+}
+
+void AssetManager::GenerateMetaDB()
+{
+	auto filePath = FileManager::GetALLMetaFiles(FileManager::GetAssetPath());
+	for (auto& p : filePath)
+	{
+		auto j = FileManager::LoadJson(p.c_str());
+		std::string guid = FileManager::JsonReadString(j, "Guid");
+		metaDatabase.emplace(GetHashCode(guid.c_str()), p);
+	}
+}
+
+void AssetManager::LoadEngineAsset()
+{
+	auto filePath = FileManager::GetALLMetaFiles(FileManager::GetEngineAssetPath());
+	for (auto& p : filePath)
+	{
+		auto j = FileManager::LoadJson(p.c_str());
+		std::string type = FileManager::JsonReadString(j, "Type");
+		std::string fileName = FileManager::JsonReadString(j, "FileName");
+
+		Asset* asset = (Asset*)CreateObject(type.c_str());
+		engineAssets.emplace(fileName, asset);
 	}
 }

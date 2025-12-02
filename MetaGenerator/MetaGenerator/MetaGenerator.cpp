@@ -4,6 +4,7 @@
 #undef main
 
 namespace fs = std::filesystem;
+enum class AssetLocation { Engine, Project };
 
 std::string GetAssetType(fs::path assetPath)
 {
@@ -24,29 +25,34 @@ std::string GetAssetType(fs::path assetPath)
 }
 
 
-void CreateMetaFile_(fs::path assetPath)
+void CreateMetaFile_(fs::path assetPath,fs::path folderPath,AssetLocation location)
 {
 	fs::path metaPath = assetPath;
 	metaPath += ".meta";
 
 	json::JSON j;
 
+	j["FileName"] = assetPath.stem().string();
+
 	j["Type"] = GetAssetType(assetPath);
+
+	if (location == AssetLocation::Engine)
+		j["Location"] = "Engine";
+	else
+		j["Location"] = "Project";
 
 	UUID _uid;
 	CreateUUID(&_uid);
 
 	j["Guid"] = GUIDTostring(_uid);
 
-	fs::path relativePath = fs::relative(assetPath, ASSET_DIR);
+	fs::path relativePath = fs::relative(assetPath, folderPath);
 
 	std::string pathStr = relativePath.string();
 	std::replace(pathStr.begin(), pathStr.end(), '\\', '/'); 
 
-	std::string finalPath = "../Assets/" + pathStr;
 
-
-	j["Asset"] = finalPath;
+	j["Asset"] = pathStr;
 
 	std::ofstream metaFile(metaPath);
 	if (!metaFile)
@@ -60,10 +66,10 @@ void CreateMetaFile_(fs::path assetPath)
 	std::cout << "Generated: " << metaPath << "\n";
 }
 
-void Generate()
+void Generate(fs::path path,AssetLocation loc)
 {
 
-	fs::path assetsDir = ASSET_DIR;
+	fs::path assetsDir = path;
 
 	if (!fs::exists(assetsDir))
 	{
@@ -98,7 +104,7 @@ void Generate()
 					continue;
 				}
 
-				CreateMetaFile_(filePath);
+				CreateMetaFile_(filePath,path, loc);
 			}
 
 
@@ -107,9 +113,9 @@ void Generate()
 	}
 }
 
-void Clean()
+void Clean(fs::path path)
 {
-	fs::path assetsDir = ASSET_DIR;
+	fs::path assetsDir = path;
 
 	if (!fs::exists(assetsDir))
 	{
@@ -132,8 +138,10 @@ void Clean()
 
 int main()
 {
-	//Clean();
-	Generate();
+	//Clean(ASSET_DIR);
+	//Clean(ENGINEASSET_DIR);
+	Generate(ASSET_DIR,AssetLocation::Project);
+	Generate(ENGINEASSET_DIR,AssetLocation::Engine);
 
 }
 

@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Textures/Background/starBig.png",
-  "Guid" : "7f1dd0b2-a1d1-4046-b20e-045aafb176ba",
+  "Asset" : "Textures/Background/starBig.png",
+  "FileName" : "starBig",
+  "Guid" : "fa50ba1f-977a-4045-9928-5b6e0f65a43d",
+  "Location" : "Project",
   "Type" : "TextureAsset"
 }

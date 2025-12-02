@@ -5,7 +5,7 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <ClCompile>
-      <PreprocessorDefinitions>ASSET_DIR=R"($(SolutionDir)Assets)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ASSET_DIR=R"($(SolutionDir)Assets)";ENGINEASSET_DIR=R"($(SolutionDir)..\GameEngine\Assets)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup />

@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Prefabs/test.json",
-  "Guid" : "5f6c4f5c-a2c3-40f7-b3d0-9de9bcddcb2e",
+  "Asset" : "Prefabs/test.json",
+  "FileName" : "test",
+  "Guid" : "668a1e7b-fa9e-4e49-8a25-4c8bccb0e01a",
+  "Location" : "Project",
   "Type" : "Json"
 }

@@ -1,5 +1,7 @@
 {
-  "Asset" : "../Assets/Textures/Mainplayer/playerDamaged.png",
-  "Guid" : "fb54947e-4db1-410c-bb19-70f5bffb49e2",
+  "Asset" : "Textures/Mainplayer/playerDamaged.png",
+  "FileName" : "playerDamaged",
+  "Guid" : "f2ed6f40-b5ea-488a-9b8d-a2762eb7214d",
+  "Location" : "Project",
   "Type" : "TextureAsset"
 }
