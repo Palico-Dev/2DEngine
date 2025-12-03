@@ -65,8 +65,8 @@
 							"y": 0.0
 						},
 						"layer": 0,
-						"isTrigger": true,
-						"isStatic": true,
+						"isTrigger": false,
+						"isStatic": false,
 						"size": {
 							"x": 50.0,
 							"y": 50.0

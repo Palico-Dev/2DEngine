@@ -4,12 +4,12 @@
 #define _SPRITE_H_
 
 #include "Component.h"
-#include "Renderable.h"
+#include "IRenderable.h"
 #include "TextureAsset.h"
 
-class Sprite : public Renderable
+class Sprite : public Component,public IRenderable
 {
-	DECLARE_DYNAMIC_DERIVED_CLASS(Sprite, Renderable);
+	DECLARE_DYNAMIC_DERIVED_CLASS(Sprite, Component);
 
 private:
 	std::string spriteName = "";

@@ -7,7 +7,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 
-class Renderable;
+class IRenderable;
 
 class RenderSystem final
 {
@@ -23,8 +23,8 @@ public:
 	int GetWidth() { return width; }
 	int GetHeight() { return height; }
 
-	void AddRenderable(Renderable* _renderable);
-	void RemoveRenderable(Renderable* _renderable);
+	void AddRenderable(IRenderable* _renderable);
+	void RemoveRenderable(IRenderable* _renderable);
 
 private:
 	void Initialize();
@@ -33,7 +33,7 @@ private:
 
 private:
 	static RenderSystem* instance;
-	std::list<Renderable*> renderables;
+	std::list<IRenderable*> renderables;
 
 	DECLARE_SINGLETON(RenderSystem)
 

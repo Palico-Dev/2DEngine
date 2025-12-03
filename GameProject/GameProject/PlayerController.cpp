@@ -31,6 +31,6 @@ void PlayerController::Update()
 	
 	direction.x = InputManager::Instance().GetAxis("walk_left", "walk_right");
 	direction.y = InputManager::Instance().GetAxis("walk_up", "walk_down");
-	
+	//Debug::Log(glm::to_string(direction));
 	owner->transform->SetPosition(owner->transform->GetPosition()+direction*speed* Time::Instance().DeltaTime());
 }

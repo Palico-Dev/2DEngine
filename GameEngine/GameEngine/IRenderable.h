@@ -3,14 +3,11 @@
 #ifndef _RENDERABLE_H_
 #define _RENDERABLE_H_
 
-#include "Component.h"
-
-class Renderable: public Component
-{
+class IRenderable{
 protected:
 	int layer = -1;
-	Renderable();
-	virtual ~Renderable();
+	IRenderable();
+	virtual ~IRenderable();
 
 	virtual void Render() = 0;
 

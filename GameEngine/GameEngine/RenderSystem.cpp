@@ -1,6 +1,6 @@
 #include "EngineCore.h"
 #include "RenderSystem.h"
-#include "Renderable.h"
+#include "IRenderable.h"
 #include "Engine.h"
 #include "FileManager.h"
 
@@ -64,12 +64,12 @@ void RenderSystem::Destroy()
 	SDL_Quit();
 }
 
-void RenderSystem::AddRenderable(Renderable* _renderable)
+void RenderSystem::AddRenderable(IRenderable* _renderable)
 {
 	renderables.push_back(_renderable);
 }
 
-void RenderSystem::RemoveRenderable(Renderable* _renderable)
+void RenderSystem::RemoveRenderable(IRenderable* _renderable)
 {
 	renderables.remove(_renderable);
 }

@@ -4,14 +4,14 @@
 #define _FONT_H_
 
 #include "Component.h"
-#include "Renderable.h"
+#include "IRenderable.h"
 #include <string>
 #include "json.hpp"
 #include "FontAsset.h"
 
-class Font : public Renderable
+class Font : public Component,public IRenderable
 {
-	DECLARE_DYNAMIC_DERIVED_CLASS(Font, Renderable);
+	DECLARE_DYNAMIC_DERIVED_CLASS(Font, Component);
 
 private:
 	std::string fontName = "";

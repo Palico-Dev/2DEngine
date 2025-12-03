@@ -200,10 +200,9 @@
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FontAsset.cpp" />
-    <ClCompile Include="Gizmo.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PrefabAsset.cpp" />
-    <ClCompile Include="Renderable.cpp" />
+    <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="json.cpp" />
     <ClCompile Include="mersenne.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -241,10 +240,9 @@
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FontAsset.h" />
-    <ClInclude Include="Gizmo.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="PrefabAsset.h" />
-    <ClInclude Include="Renderable.h" />
+    <ClInclude Include="IRenderable.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Phase_BruteForce.h" />

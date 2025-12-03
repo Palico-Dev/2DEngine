@@ -5,10 +5,10 @@
 #include "Component.h"
 #include "CollisionSystem.h"
 #include "CollisionMath.h"
-#include "Renderable.h"
+#include "IRenderable.h"
 #include "Transform.h"
 
-class Collider : public Renderable
+class Collider : public Component,public IRenderable
 {
 	DECLARE_ABSTRACT_DERIVED_CLASS(Collider,Component);
 

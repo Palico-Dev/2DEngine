@@ -69,6 +69,8 @@ void SceneManager::LoadScene(const char* path)
 		Scene* scene = (Scene*)CreateObject("Scene");
 		scene->Load(j);
 		scene->Initialize();
+
+		scenes.push_back(scene);
 	}
 }
 
