@@ -94,8 +94,14 @@ void AssetManager::Destroy()
 	{
 		asset.second->Destroy();
 		delete asset.second;
-		assets.erase(asset.first);
 	}
+	for (auto& asset : engineAssets)
+	{
+		asset.second->Destroy();
+		delete asset.second;
+	}
+	assets.clear();
+	engineAssets.clear();
 }
 
 void AssetManager::GenerateMetaDB()

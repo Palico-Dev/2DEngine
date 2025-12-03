@@ -11,6 +11,8 @@
 #include "SoundAsset.h"
 #include "FontAsset.h"
 #include "PrefabAsset.h"
+#include "Sprite.h"
+#include "AnimatedSprite.h"
 
 void Engine_Register()
 {
@@ -26,4 +28,7 @@ void Engine_Register()
 	REGISTER_TYPECLASS(TextureAsset);
 	REGISTER_TYPECLASS(FontAsset);
 	REGISTER_TYPECLASS(PrefabAsset);
+	REGISTER_TYPECLASS(Sprite);
+	REGISTER_TYPECLASS(AnimatedSprite);
+
 }

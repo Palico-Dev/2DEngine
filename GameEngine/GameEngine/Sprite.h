@@ -7,21 +7,9 @@
 #include "IRenderable.h"
 #include "TextureAsset.h"
 
-class Sprite : public Component,public IRenderable
+class Sprite : public Component, public IRenderable
 {
 	DECLARE_DYNAMIC_DERIVED_CLASS(Sprite, Component);
-
-private:
-	std::string spriteName = "";
-
-	TextureAsset* texture;
-	SDL_Point size; // from transform
-
-	// these are extra variables for being able to rotate and flip the sprite
-	float angle = 0.0f; // get from transform
-	SDL_FPoint* center = NULL;
-	SDL_Rect* clip = NULL;
-	SDL_RendererFlip flip = SDL_FLIP_NONE;
 
 protected:
 	void Initialize() final;
@@ -32,6 +20,15 @@ protected:
 
 	int GetLayer() { return layer; }
 	void SetLayer(int _layer) { layer = _layer; }
+
+private:
+	std::string spriteName = "";
+
+	TextureAsset* textureAsset;
+	glm::vec2 size = { 100,100 };
+	glm::vec2 offset = { 0,0 };
+	float rotation = 0.0f;
+	SDL_RendererFlip flip = SDL_FLIP_NONE;
 };
 
 #endif
