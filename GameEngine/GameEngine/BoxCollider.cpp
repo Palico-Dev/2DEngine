@@ -27,19 +27,19 @@ std::vector<glm::vec2> BoxCollider::GetVertices(bool force)
 	return vertices;
 #endif
 	//compares last frame transform with current
-	if (force||(GetOwner()->GetTransform()->GetPosition() != lastPosition ||
-		GetOwner()->GetTransform()->GetRotation() != lastRotation ||
-		GetOwner()->GetTransform()->GetScale() != lastScale))
+	if (force||(owner->transform->GetPosition() != lastPosition ||
+		owner->transform->GetRotation() != lastRotation ||
+		owner->transform->GetScale() != lastScale))
 	{
 		//updates if transforms are different
-		lastPosition = GetOwner()->GetTransform()->GetPosition();
-		lastRotation = GetOwner()->GetTransform()->GetRotation();
-		lastScale = GetOwner()->GetTransform()->GetScale();
+		lastPosition = owner->transform->GetPosition();
+		lastRotation = owner->transform->GetRotation();
+		lastScale = owner->transform->GetScale();
 
 		//gather transformation info
-		glm::vec2 pos = GetOwner()->GetTransform()->GetPosition();
-		float rot = GetOwner()->GetTransform()->GetRotation();
-		glm::vec2 scale = GetOwner()->GetTransform()->GetScale();
+		glm::vec2 pos = owner->transform->GetPosition();
+		float rot = owner->transform->GetRotation();
+		glm::vec2 scale = owner->transform->GetScale();
 
 		//get the half-size
 		glm::vec2 hs = (size * scale) * 0.5f;

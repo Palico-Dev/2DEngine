@@ -8,7 +8,7 @@ float CircleCollider::GetRadiusWorld() const
 #if COLLISIONTEST
 	return radius;
 #endif
-	glm::vec2 s = GetOwner()->GetTransform()->GetScale();
+	glm::vec2 s = owner->transform->GetScale();
 	float uniformScale = std::max(s.x, s.y);
 	return radius * uniformScale;
 }

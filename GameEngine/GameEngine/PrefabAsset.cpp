@@ -17,7 +17,7 @@ void PrefabAsset::Load(json::JSON j)
     }
     m_Entity->Load(entityItem);
 
-    if (m_Entity->GetTransform() == nullptr)
+    if (m_Entity->transform == nullptr)
     {
         // Ensure every Entity has a Transform
         m_Entity->CreateComponent("Transform");

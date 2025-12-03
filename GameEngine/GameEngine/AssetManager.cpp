@@ -74,7 +74,7 @@ Asset* AssetManager::GetAsset(const char* fileName)
 
 Asset* AssetManager::GetEngineAsset(const char* fileName)
 {
-	return assets.at(GetHashCode(fileName));
+	return engineAssets.at(fileName);
 }
 
 std::string& AssetManager::GetAssetPath(const char* fileName)

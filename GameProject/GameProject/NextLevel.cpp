@@ -7,18 +7,11 @@ IMPLEMENT_DYNAMIC_CLASS(NextLevel)
 
 void NextLevel::Initialize()
 {
+	if (initialized)
+		return;
 	Component::Initialize();
-}
 
-void NextLevel::OnTriggerEnter(Collider* other)
-{
-	std::cout << "Enter" << std::endl;
-	//SceneManager::Instance().QueueActiveScene("Level2");
-}
-
-void NextLevel::OnComponentInitialized()
-{
-	Collider* collider = (Collider*)GetOwner()->FindFirstComponentByType("CircleCollider");
+	Collider* collider = owner->GetComponent<Collider>();
 	if (collider == nullptr)
 	{
 		std::cout << "Cannot find Collider" << std::endl;
@@ -27,4 +20,10 @@ void NextLevel::OnComponentInitialized()
 	collider->onEnter = [this](Collider* other) {
 		this->OnTriggerEnter(other);
 		};
+}
+
+void NextLevel::OnTriggerEnter(Collider* other)
+{
+	std::cout << "Enter" << std::endl;
+	//SceneManager::Instance().QueueActiveScene("Level2");
 }

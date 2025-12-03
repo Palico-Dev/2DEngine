@@ -32,5 +32,5 @@ void PlayerController::Update()
 	direction.x = InputManager::Instance().GetAxis("walk_left", "walk_right");
 	direction.y = InputManager::Instance().GetAxis("walk_up", "walk_down");
 	
-	GetOwner()->GetTransform()->SetPosition(GetOwner()->GetTransform()->GetPosition()+direction*speed* Time::Instance().DeltaTime());
+	owner->transform->SetPosition(owner->transform->GetPosition()+direction*speed* Time::Instance().DeltaTime());
 }

@@ -15,6 +15,7 @@ public:
 	Asset* GetAsset(const char* fileName);
 	Asset* GetEngineAsset(const char* fileName);
 
+
 	std::string& GetAssetPath(const char* fileName);
 
 

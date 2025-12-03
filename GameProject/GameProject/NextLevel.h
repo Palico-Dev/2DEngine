@@ -17,7 +17,6 @@ private:
 	void OnTriggerStay(Collider* other);
 	void OnTriggerExit(Collider* other);
 
-	void OnComponentInitialized() override;
 };
 
 #endif

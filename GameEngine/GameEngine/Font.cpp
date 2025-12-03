@@ -51,9 +51,9 @@ void Font::Load(json::JSON& _document)
 
 void Font::Render()
 {
-	if (GetOwner())
+	if (owner)
 	{
-		SDL_FRect dstrect = { GetOwner()->GetTransform()->GetPosition().x, GetOwner()->GetTransform()->GetPosition().y, size, size };
+		SDL_FRect dstrect = { owner->transform->GetPosition().x, owner->transform->GetPosition().y, size, size };
 		SDL_RenderCopyF(RenderSystem::Instance().GetRenderer(), message, NULL, &dstrect);
 	}
 }

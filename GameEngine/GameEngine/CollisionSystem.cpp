@@ -26,7 +26,7 @@ bool CollisionSystem::CheckPoint(SDL_Point pos, Entity* outEntity)
 	{
 		if (CheckPointInShapes({ pos.x,pos.y }, colliders[i]))
 		{
-			outEntity = colliders[i]->GetOwner();
+			outEntity = colliders[i]->owner;
 			return true;
 		}
 	}
@@ -36,11 +36,11 @@ bool CollisionSystem::CheckPoint(SDL_Point pos, Entity* outEntity)
 
 bool CollisionSystem::CheckCollision(Entity* e)
 {
-	std::vector<Component*> entityColliders = e->FindComponentsByType("Collider");
+	std::vector<Collider*> entityColliders = e->GetAllComponents<Collider>();
 
 	for (int i = 0; i < entityColliders.size(); i++)
 	{
-		if (CheckCollision((Collider*)entityColliders[i]))
+		if (CheckCollision(entityColliders[i]))
 		{
 			return true;
 		}
@@ -64,10 +64,10 @@ bool CollisionSystem::CheckCollision(Collider* c)
 
 bool CollisionSystem::CheckCollision(Entity* a, Entity* b)
 {
-	std::vector<Component*> entityColliders = a->FindComponentsByType("Collider");
+	std::vector<Collider*> entityColliders = a->GetAllComponents<Collider>();
 	for (int i = 0; i < entityColliders.size(); i++)
 	{
-		if (CheckCollision((Collider*)entityColliders[i], b))
+		if (CheckCollision(entityColliders[i], b))
 		{
 			return true;
 		}
@@ -79,10 +79,10 @@ bool CollisionSystem::CheckCollision(Entity* a, Entity* b)
 
 bool CollisionSystem::CheckCollision(Collider* c, Entity* e)
 {
-	std::vector<Component*> entityColliders = e->FindComponentsByType("Collider");
+	std::vector<Collider*> entityColliders = e->GetAllComponents<Collider>();
 	for (int i = 0; i < entityColliders.size(); i++)
 	{
-		CollisionInfo info = CheckCollision(c, (Collider*)entityColliders[i]);
+		CollisionInfo info = CheckCollision(c, entityColliders[i]);
 
 		if (info.isOverlapping == true)
 		{
@@ -258,19 +258,19 @@ void CollisionSystem::Resolve()
 
 		if (a->isStatic)
 		{
-			b->GetOwner()->GetTransform()->SetPosition(b->GetOwner()->GetTransform()->GetPosition() + info.normal * info.penetration);
+			b->owner->transform->SetPosition(b->owner->transform->GetPosition() + info.normal * info.penetration);
 
 		}
 		else if (b->isStatic)
 		{
-			a->GetOwner()->GetTransform()->SetPosition(a->GetOwner()->GetTransform()->GetPosition() + (-info.normal) * info.penetration);
+			a->owner->transform->SetPosition(a->owner->transform->GetPosition() + (-info.normal) * info.penetration);
 		}
 		else
 		{
 			float totalMass = a->mass + b->mass;
 
-			a->GetOwner()->GetTransform()->SetPosition(a->GetOwner()->GetTransform()->GetPosition() + (-info.normal) * info.penetration * b->mass / totalMass);
-			b->GetOwner()->GetTransform()->SetPosition(b->GetOwner()->GetTransform()->GetPosition() + info.normal * info.penetration * a->mass / totalMass);
+			a->owner->transform->SetPosition(a->owner->transform->GetPosition() + (-info.normal) * info.penetration * b->mass / totalMass);
+			b->owner->transform->SetPosition(b->owner->transform->GetPosition() + info.normal * info.penetration * a->mass / totalMass);
 		}
 
 	}

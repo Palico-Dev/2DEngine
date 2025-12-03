@@ -2,11 +2,14 @@
 #include "Entity.h"
 #include "Component.h"
 #include "Transform.h"
+#include "FileManager.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Entity)
 
 void Entity::Initialize()
 {
+	if (initialized)
+		return;
 	Object::Initialize();
 
 	for (auto& component : components)
@@ -19,25 +22,7 @@ void Entity::Update()
 {
 	for (auto& component : components)
 	{
-		if (component->GetLifeState() != ComponentLifeState::Alive) continue;
 		component->Update();
-	}
-
-	// Deal with removals
-	for(auto it = components.begin(); it != components.end(); )
-	{
-		Component* component = *it;
-		if (component->GetLifeState() == ComponentLifeState::PendingDestroy ||
-			component->GetLifeState() == ComponentLifeState::Destroyed)
-		{
-			component->Destroy();
-			delete component;
-			it = components.erase(it);
-		}
-		else
-		{
-			++it;
-		}
 	}
 }
 
@@ -45,7 +30,6 @@ Component* Entity::CreateComponent(const std::string& componentType)
 {
 	if(componentType == "Transform" && transform != nullptr)
 	{
-		// Only one Transform allowed per Entity
 		return nullptr;
 	}
 
@@ -56,7 +40,7 @@ Component* Entity::CreateComponent(const std::string& componentType)
 		components.push_back(component);
 		if (componentType == "Transform")
 		{
-			transform = static_cast<Transform*>(component);
+			transform = (Transform*)component;
 		}
 		
 		return component;
@@ -66,13 +50,13 @@ Component* Entity::CreateComponent(const std::string& componentType)
 
 bool Entity::RemoveComponent(Component* component)
 {
-	if(component == nullptr || component == transform)
-	{
+	//if(component == nullptr || component == transform)
+	//{
 		return false;
-	}
+	//}
 
-	component->MarkForDestroy();
-	return true;
+	//component->MarkForDestroy();
+	//return true;
 }
 
 void Entity::Destroy()
@@ -87,7 +71,7 @@ void Entity::Destroy()
 	components.clear();
 }
 
-Component* const Entity::FindFirstComponentByType(const std::string& comp_type)
+Component* const Entity::GetComponentByType(const std::string& comp_type)
 {
 	for(auto component: components)
 	{
@@ -99,7 +83,7 @@ Component* const Entity::FindFirstComponentByType(const std::string& comp_type)
 	return nullptr;
 }
 
-std::vector<Component*> Entity::FindComponentsByType(const std::string& comp_type)
+std::vector<Component*> Entity::GetAllComponentsByType(const std::string& comp_type)
 {
 	std::vector<Component*> result;
 	result.reserve(components.size());
@@ -120,13 +104,8 @@ void Entity::Load(json::JSON& jsonData)
 
 	json::JSON componentsJson = jsonData.at("components");
 	for (auto& comp : componentsJson.ArrayRange()) {
-
-		std::string compType = comp.at("type").ToString();
-		Component* component = (Component*)CreateObject(compType.c_str());
-
-		component->owner = this;
+		std::string compType = FileManager::JsonReadString(comp,"type");
+		Component* component = CreateComponent(compType);
 		component->Load(comp);
-		components.push_back(component);
-
 	}
 }

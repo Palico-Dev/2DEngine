@@ -53,7 +53,7 @@ void AnimatedSprite::Load(json::JSON& _document)
 
 void AnimatedSprite::Render()
 {
-	if (GetOwner())
+	if (owner)
 	{
 		//TODO: add being able to change what frame we're on at a given speed
 		SDL_QueryTexture(texture->GetTexture(), NULL, NULL, &width, &height); // query the texture to retrieve the width and height
@@ -61,7 +61,7 @@ void AnimatedSprite::Render()
 		*clip = { width * curFrame, height * (row - 1), width, height }; // need to get the width and height from TextureAsset
 
 		//Set rendering space and render to screen
-		SDL_FRect renderQuad = { GetTransform()->GetPosition().x, GetTransform()->GetPosition().y, size.x, size.y };
+		SDL_FRect renderQuad = { owner->transform->GetPosition().x, owner->transform->GetPosition().y, size.x, size.y };
 
 		//Set clip rendering dimensions
 		if (clip != NULL)

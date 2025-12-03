@@ -24,7 +24,6 @@ public:
 	void SetCenter(glm::vec2 newCenter) { center = newCenter; }
 
 	virtual AABB GetAABB() = 0;
-	void OnComponentInitialized() override;
 
 public:
 	bool isTrigger = false;

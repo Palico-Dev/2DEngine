@@ -42,10 +42,10 @@ void Sprite::Load(json::JSON& _document)
 
 void Sprite::Render()
 {
-	if (GetOwner())
+	if (owner)
 	{
 		//Set rendering space and render to screen
-		SDL_FRect renderQuad = { GetTransform()->GetPosition().x, GetTransform()->GetPosition().y, size.x, size.y};
+		SDL_FRect renderQuad = { owner->transform->GetPosition().x, owner->transform->GetPosition().y, size.x, size.y};
 
 		//Set clip rendering dimensions
 		if (clip != NULL)

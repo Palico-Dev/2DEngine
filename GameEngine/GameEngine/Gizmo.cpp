@@ -23,7 +23,7 @@ void Gizmo::Update()
 
 void Gizmo::Render()
 {
-	if (GetOwner())
+	if (owner)
 	{
 		SDL_Rect outlineRect = { RenderSystem::Instance().GetWidth() / 6, RenderSystem::Instance().GetHeight() / 6,
 			RenderSystem::Instance().GetWidth() * 2 / 3, RenderSystem::Instance().GetHeight() * 2 / 3 };

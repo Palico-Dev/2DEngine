@@ -11,6 +11,7 @@ void SceneManager::Initialize()
 	json::JSON gameSettings = Engine::Instance().GetGameSettings();
 
 	std::string startupScene = FileManager::JsonReadString(gameSettings, "StartupScene");
+
 	LoadScene(AssetManager::Instance().GetAssetPath(startupScene.c_str()).c_str());
 
 }

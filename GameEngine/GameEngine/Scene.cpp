@@ -26,7 +26,6 @@ void Scene::Load(json::JSON& jsonData)
 		for (auto& entityItem : entitiesJson.ArrayRange()) {
 			Entity* newEntity = (Entity*)(CreateObject("Entity"));
 			newEntity->Load(entityItem);
-			newEntity->Initialize();
 			entities.push_back(newEntity);
 		}
 	}
@@ -36,24 +35,21 @@ void Scene::Update()
 {
 	for (auto& entity : entities)
 	{
-		if (entity->GetLifeState() != EntityLifeState::Alive) continue;
 		entity->Update();
 	}
 
-	// Deal with removals
-	for (auto it = entities.begin(); it != entities.end(); ) {
-		Entity* entity = *it;
-		if (entity->GetLifeState() == EntityLifeState::PendingDestroy ||
-			entity->GetLifeState() == EntityLifeState::Destroyed) {
+	//// Deal with removals
+	//for (auto it = entities.begin(); it != entities.end(); ) {
+	//	Entity* entity = *it;
 
-			entity->Destroy();
-			delete entity;
-			it = entities.erase(it);
-		}
-		else {
-			++it;
-		}
-	}
+	//		entity->Destroy();
+	//		delete entity;
+	//		it = entities.erase(it);
+	//	}
+	//	else {
+	//		++it;
+	//	}
+	//}
 }
 
 void Scene::Destroy()
