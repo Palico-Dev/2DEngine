@@ -128,9 +128,5 @@ void Entity::Load(json::JSON& jsonData)
 		component->Load(comp);
 		components.push_back(component);
 
-		if (compType == "Transform")
-		{
-			transform = static_cast<Transform*>(component);
-		}
 	}
 }

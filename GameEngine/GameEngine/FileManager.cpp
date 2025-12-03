@@ -69,6 +69,26 @@ glm::vec2 FileManager::JsonReadVec2(json::JSON& j, const char* key)
 	return glm::vec2(0.0f);
 }
 
+json::JSON FileManager::JsonReadJson(json::JSON& j, const char* key)
+{
+	if (j.hasKey(key))
+	{
+		return j[key];
+	}
+	Debug::Warning(std::string("CANNOT read key: ") + key);
+	return json::JSON();
+}
+
+bool FileManager::JsonReadBool(json::JSON& j, const char* key)
+{
+	if (j.hasKey(key))
+	{
+		return j[key].ToBool();
+	}
+	Debug::Warning(std::string("CANNOT read key: ") + key);
+	return false;
+}
+
 std::vector<std::string> FileManager::GetALLMetaFiles(fs::path path)
 {
 	std::vector<std::string> res;
@@ -121,4 +141,9 @@ fs::path FileManager::GetEngineAssetPath()
 #else
 	return GetExecutableDir() / "EngineAssets";
 #endif
+}
+
+fs::path FileManager::GetGameSettingPath()
+{
+	return GetAssetPath() / "Config" / "GameSettings.json";
 }

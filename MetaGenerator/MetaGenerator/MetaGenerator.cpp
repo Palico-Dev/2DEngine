@@ -11,10 +11,10 @@ std::string GetAssetType(fs::path assetPath)
 	static const std::unordered_map<std::string, std::string> extensionToType = {
 		{".png", "TextureAsset"},
 		{".jpg", "TextureAsset"},
-		{".json", "Json"},
 		{".wav", "SoundAsset"},
 		{".ttf","FontAsset"},
 		{".prefab","PrefabAsset"},
+		{".scene","Scene"},
 	};
 
 	auto it = extensionToType.find(assetPath.extension().string());
@@ -94,7 +94,7 @@ void Generate(fs::path path,AssetLocation loc)
 					}
 				}
 			}
-			else
+			else if(filePath.extension() != ".json")
 			{
 				fs::path metaPath = filePath;
 				metaPath += ".meta";

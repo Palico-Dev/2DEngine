@@ -10,7 +10,6 @@ public:
 #ifdef _DEBUG
 		std::cout << "Log: " << msg << std::endl;
 #endif
-		std::cout << "Log: " << msg << std::endl;
 	}
 	static void Warning(const std::string& msg)
 	{

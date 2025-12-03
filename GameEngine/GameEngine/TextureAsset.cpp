@@ -6,11 +6,20 @@ IMPLEMENT_DYNAMIC_CLASS(TextureAsset)
 
 void TextureAsset::Load(json::JSON j)
 {
-	std::string path = FileManager::JsonReadString(j, "Asset");
-	SDL_Surface* surface = IMG_Load(path.c_str());
+	fs::path path;
+	if (FileManager::JsonReadString(j, "Location")=="Engine")
+	{
+		path = FileManager::GetEngineAssetPath();
+	}
+	else
+	{
+		path = FileManager::GetAssetPath();
+	}
+	path = path / FileManager::JsonReadString(j, "Asset");
+	SDL_Surface* surface = IMG_Load(path.generic_string().c_str());
 	if (surface == nullptr)
 	{
-		Debug::Warning("Cannot find Texture!" + path);
+		Debug::Warning("Cannot find Texture!" + path.generic_string());
 	}
 
 	SDL_Renderer* renderer = RenderSystem::Instance().GetRenderer();
@@ -19,7 +28,7 @@ void TextureAsset::Load(json::JSON j)
     SDL_FreeSurface(surface);
 
     if (!texture) {
-		Debug::Warning("Cannot Create Texture!" + path);
+		Debug::Warning("Cannot Create Texture!" + path.generic_string());
     }
 }
 

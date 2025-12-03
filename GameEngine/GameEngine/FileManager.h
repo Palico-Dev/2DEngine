@@ -13,12 +13,15 @@ public:
 	static float JsonReadFloat(json::JSON& j, const char* key);
 	static std::string JsonReadString(json::JSON& j, const char* key);
 	static glm::vec2 JsonReadVec2(json::JSON& j, const char* key);
+	static json::JSON JsonReadJson(json::JSON& j, const char* key);
+	static bool JsonReadBool(json::JSON& j, const char* key);
 
 	static std::vector<std::string> GetALLMetaFiles(fs::path path);
 
 	static fs::path GetExecutableDir();
 	static fs::path GetAssetPath();
 	static fs::path GetEngineAssetPath();
+	static fs::path GetGameSettingPath();
 };
 
 #endif

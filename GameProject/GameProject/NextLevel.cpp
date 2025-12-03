@@ -13,7 +13,7 @@ void NextLevel::Initialize()
 void NextLevel::OnTriggerEnter(Collider* other)
 {
 	std::cout << "Enter" << std::endl;
-	SceneManager::Instance().QueueActiveScene("Level2");
+	//SceneManager::Instance().QueueActiveScene("Level2");
 }
 
 void NextLevel::OnComponentInitialized()

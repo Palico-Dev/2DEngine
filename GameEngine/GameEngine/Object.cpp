@@ -26,4 +26,5 @@ void Object::Destroy()
 
 void Object::Load(json::JSON& jsonData)
 {
+	
 }

@@ -5,6 +5,7 @@
 #include "CollisionSystem.h"
 #include "AssetManager.h"
 #include "SceneManager.h"
+#include "FileManager.h"
 
 extern void Engine_Register();
 
@@ -12,14 +13,17 @@ void Engine::Initialize()
 {
     Engine_Register();
 
-	LoadGameSettings("GameSettings.json");
+	LoadGameSettings();
 
+	RenderSystem::Instance().Initialize();
+	AssetManager::Instance().Initialize();
 	Time::Instance().Initialize();
-    RenderSystem::Instance().Initialize();
+
+    SceneManager::Instance().Initialize();
     InputManager::Instance().Initialize();
     CollisionSystem::Instance().Initialize();
-    AssetManager::Instance().Initialize();
-    SceneManager::Instance().Initialize();
+
+
 }
 
 void Engine::Destroy()
@@ -48,28 +52,20 @@ void Engine::GameLoop()
 	}
 }
 
-void Engine::LoadGameSettings(const std::string& filePath)
+void Engine::LoadGameSettings()
 {
-	std::ifstream file(filePath);
-	M_ASSERT(file.is_open(), ("Failed to open game settings file: " + filePath).c_str());
+	gameSettings = FileManager::LoadJson(FileManager::GetGameSettingPath().string().c_str());
 
-	std::stringstream buffer;
-	buffer << file.rdbuf();
-	std::string content = buffer.str();
-	json::JSON root = json::JSON::Load(content);
-
-    if (root.hasKey("Scenes")) {
-		json::JSON scenesJson = root.at("Scenes");
-		SceneManager& sceneManager = SceneManager::Instance();
-        for (auto& sceneEntry : scenesJson.ArrayRange()) {
-			sceneManager.RegisterScene(
-                sceneEntry.at("SceneName").ToString(), 
-                sceneEntry.at("FilePath").ToString()
-            );
-        }
-    }
-
-    if(root.hasKey("StartupScene")) {
-        SceneManager::Instance().SetStartupScene(root.at("StartupScene").ToString());
-	}
+	//if (gameSettings.hasKey("Scenes")) {
+	//	json::JSON scenesJson = root.at("Scenes");
+	//	SceneManager& sceneManager = SceneManager::Instance();
+	//	for (auto& sceneEntry : scenesJson.ArrayRange()) {
+	//		sceneManager.RegisterScene(
+	//			sceneEntry.at("SceneName").ToString(),
+	//			sceneEntry.at("FilePath").ToString()
+	//		);
+	//	}
+	//}
+	//std::string startupScene = FileManager::JsonReadString(gameSettings, "StartupScene");
+	//SceneManager::Instance().LoadScene(AssetManager::Instance().GetAssetPath(startupScene.c_str()).c_str());
 }

@@ -10,9 +10,12 @@ class AssetManager final
 	DECLARE_SINGLETON(AssetManager)
 
 public:
-	void Load(json::JSON& _json, std::string& _scene);
+	void Load(json::JSON& _json);
 	void Unload(std::string& _scene);
-	Asset* GetAsset(const char* _guid);
+	Asset* GetAsset(const char* fileName);
+	Asset* GetEngineAsset(const char* fileName);
+
+	std::string& GetAssetPath(const char* fileName);
 
 
 private:
@@ -24,7 +27,6 @@ private:
 
 private:
 	std::map<STRCODE, Asset*> assets;
-	std::map<std::string, std::vector<STRCODE>> assetMeta;
 	std::map<STRCODE, std::string> metaDatabase;
 
 	std::map<std::string, Asset*> engineAssets;

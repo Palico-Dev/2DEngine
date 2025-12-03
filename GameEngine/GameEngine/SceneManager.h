@@ -1,8 +1,6 @@
 #pragma once
-
 #ifndef _SCENEMANAGER_H_
 #define _SCENEMANAGER_H_
-
 
 class Scene;
 class Engine;
@@ -19,13 +17,7 @@ class SceneManager final
 	DECLARE_SINGLETON(SceneManager)
 
 public:
-	void RegisterScene(const std::string& name, const std::string& filePath);
-	void SetStartupScene(const std::string& name) { startupSceneName = name; }
-
-	Scene* GetActiveScene() { return activeScene; }	
-	
-	void QueueActiveScene(const std::string& name);
-
+	void LoadScene(const char* path);
 
 private:
 	void Initialize();
@@ -35,18 +27,9 @@ private:
 
 private:
 	friend class Engine;
-	Scene* activeScene = nullptr;
-	Scene* queuedActiveScene = nullptr;
-	bool isInitialized = false;
 
-	 
-	std::vector<SceneRecord> sceneRecords;
-	std::string startupSceneName;
+	std::list<Scene*> scenes;
 
-	
-	SceneRecord* FindSceneRecordByName(const std::string& name);
-	Scene* LoadSceneFromRecord(SceneRecord& record);
-	void SetActiveScene(const std::string& name);
 };
 
 #endif //_SCENEMANAGER_H_

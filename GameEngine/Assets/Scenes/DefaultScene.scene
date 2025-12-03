@@ -1,9 +1,5 @@
 {
 	"assets": [
-		"../Build/Assets/Tacos.jpg.meta",
-		"../Build/Assets/Emoji.png.meta",
-		"../Build/Assets/ColliderBox.png.meta",
-		"../Build/Assets/ColliderCircle.png.meta"
 	],
 	"scene": {
 		"name": "Level1",

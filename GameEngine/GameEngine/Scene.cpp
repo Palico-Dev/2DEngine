@@ -24,13 +24,8 @@ void Scene::Load(json::JSON& jsonData)
 	{
 		json::JSON entitiesJson = jsonData.at("entities");
 		for (auto& entityItem : entitiesJson.ArrayRange()) {
-			Entity* newEntity = static_cast<Entity*>(CreateObject("Entity"));
+			Entity* newEntity = (Entity*)(CreateObject("Entity"));
 			newEntity->Load(entityItem);
-			if(newEntity->GetTransform() == nullptr)
-			{
-				// Ensure every Entity has a Transform
-				newEntity->CreateComponent("Transform");
-			}
 			newEntity->Initialize();
 			entities.push_back(newEntity);
 		}

@@ -1,0 +1,23 @@
+{
+	"RenderSystem" : {
+	  "Name" : "Main Window",
+	  "Width" : 1600,
+	  "Height" : 1200,
+	  "FullScreen" : false
+	},	
+	"Scenes":[
+	 { "SceneName": "DefaultScene",
+	 	"Type" : "Engine",
+	    "FilePath": "Scenes/Scene01.json" 
+	},
+	{ "SceneName": "Scene01",   
+		"Type" : "Project",
+		"FilePath": "Scenes/Scene01.json"
+	},
+ 	 { "SceneName": "Scene02",   
+		"Type" : "Project",
+	 "FilePath": "Scenes/Scene02.json" 
+	}
+	],
+	"StartupScene" : "DefaultScene"
+}

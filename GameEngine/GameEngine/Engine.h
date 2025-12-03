@@ -5,21 +5,23 @@
 
 class Engine final
 {
-	friend class InputManager;
 
+	DECLARE_SINGLETON(Engine)
 public:
 	void Initialize();
 	void Destroy();
 	void GameLoop();
 
+	json::JSON GetGameSettings() { return gameSettings; }
+
 private:
-	void GetInput();
+	void LoadGameSettings();
 
 	bool quit = false;
+	friend class InputManager;
 
-	void LoadGameSettings(const std::string& filePath);
-
-	DECLARE_SINGLETON(Engine)
+private:
+	json::JSON gameSettings;
 };
 
 #endif
