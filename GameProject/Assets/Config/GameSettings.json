@@ -13,11 +13,7 @@
 	{ "SceneName": "Scene01",   
 		"Type" : "Project",
 		"FilePath": "Scenes/Scene01.json"
-	},
- 	 { "SceneName": "Scene02",   
-		"Type" : "Project",
-	 "FilePath": "Scenes/Scene02.json" 
 	}
 	],
-	"StartupScene" : "DefaultScene"
+	"StartupScene" : "Scene01"
 }

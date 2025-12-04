@@ -20,6 +20,7 @@ void TextureAsset::Load(json::JSON j)
 	if (surface == nullptr)
 	{
 		Debug::Warning("Cannot find Texture!" + path.generic_string());
+		return;
 	}
 
 	SDL_Renderer* renderer = RenderSystem::Instance().GetRenderer();
@@ -29,7 +30,10 @@ void TextureAsset::Load(json::JSON j)
 
     if (!texture) {
 		Debug::Warning("Cannot Create Texture!" + path.generic_string());
+		return;
     }
+
+	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
 }
 
 void TextureAsset::Destroy()

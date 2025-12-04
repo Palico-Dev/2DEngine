@@ -16,8 +16,6 @@ private:
 	virtual void Destroy() = 0;
 
 protected:
-	//std::string type = "";
-	//std::string path = "";
 	int refCount = 0;
 };
 

@@ -1,9 +1,6 @@
 {
 	"assets": [
-		"Tacos",
-		"Emoji",
-		"ColliderBox",
-		"ColliderCircle"
+		"player"
 	],
 	"scene": {
 		"name": "Level1",
@@ -43,6 +40,17 @@
 					},
 					{
 						"type": "PlayerController"
+					},
+					{
+						"type": "Sprite",
+						"name": "Sprite01",
+						"asset": "player",
+						"layer" : 10,
+						"size" : {"x":100.0,"y":100.0},
+						"offset" : {"x":0.0,"y":50.0},
+						"rotation" : 0.0,
+						"flip" : "SDL_FLIP_NONE",
+						"color" :{"r":1.0,"g":1.0,"b":1.0,"a":1.0}
 					}
 				]
 			},
@@ -69,8 +77,8 @@
 							"y": 0.0
 						},
 						"layer": 0,
-						"isTrigger": true,
-						"isStatic": true,
+						"isTrigger": false,
+						"isStatic": false,
 						"size": {
 							"x": 50.0,
 							"y": 50.0

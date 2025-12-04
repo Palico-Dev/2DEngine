@@ -1,6 +1,5 @@
 {
 	"assets": [
-		"player"
 	],
 	"scene": {
 		"name": "Level1",
@@ -40,16 +39,6 @@
 					},
 					{
 						"type": "PlayerController"
-					},
-					{
-						"type": "Sprite",
-						"name": "Sprite01",
-						"asset": "player",
-						"layer" : 0,
-						"size" : {"x":100.0,"y":100.0},
-						"offset" : {"x":0.0,"y":50.0},
-						"rotation" : 0.0,
-						"flip" : "SDL_FLIP_NONE"
 					}
 				]
 			},
@@ -70,14 +59,14 @@
 					},
 					{
 						"type": "CircleCollider",
-						"isRendered": false,
+						"isRendered": true,
 						"center": {
 							"x": 0.0,
 							"y": 0.0
 						},
 						"layer": 0,
-						"isTrigger": false,
-						"isStatic": false,
+						"isTrigger": true,
+						"isStatic": true,
 						"size": {
 							"x": 50.0,
 							"y": 50.0

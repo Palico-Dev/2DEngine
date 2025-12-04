@@ -89,6 +89,24 @@ bool FileManager::JsonReadBool(json::JSON& j, const char* key)
 	return false;
 }
 
+glm::vec4 FileManager::JsonReadColor(json::JSON& j, const char* key)
+{
+	if (j.hasKey(key))
+	{
+		json::JSON& c = j[key];
+
+		float r = std::clamp(JsonReadFloat(c, "r"), 0.0f, 1.0f);
+		float g = std::clamp(JsonReadFloat(c, "g"), 0.0f, 1.0f);
+		float b = std::clamp(JsonReadFloat(c, "b"), 0.0f, 1.0f);
+		float a = std::clamp(JsonReadFloat(c, "a"), 0.0f, 1.0f);
+
+		return glm::vec4(r, g, b, a);
+	}
+
+	Debug::Warning(std::string("CANNOT read Color: ") + key);
+	return glm::vec4(0.0f);
+}
+
 std::vector<std::string> FileManager::GetALLMetaFiles(fs::path path)
 {
 	std::vector<std::string> res;

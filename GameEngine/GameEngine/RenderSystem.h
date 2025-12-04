@@ -23,8 +23,9 @@ public:
 	int GetWidth() { return width; }
 	int GetHeight() { return height; }
 
-	void AddRenderable(IRenderable* _renderable);
-	void RemoveRenderable(IRenderable* _renderable);
+	void AddRenderable(IRenderable* _renderable, int layer = 0);
+	void RemoveRenderable(IRenderable* _renderable, int layer = 0);
+	void UpdateLayer(IRenderable* _renderable, int oldLayer, int newLayer);
 
 private:
 	void Initialize();
@@ -33,7 +34,7 @@ private:
 
 private:
 	static RenderSystem* instance;
-	std::list<IRenderable*> renderables;
+	std::map<int,std::list<IRenderable*>> renderableMap;
 
 	DECLARE_SINGLETON(RenderSystem)
 

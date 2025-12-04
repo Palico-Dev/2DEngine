@@ -40,9 +40,12 @@ void RenderSystem::Update()
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
 
-	for (auto& renderable : renderables)
+	for (auto& layerRenderables : renderableMap)
 	{
-		renderable->Render();
+		for (auto& r : layerRenderables.second)
+		{
+			r->Render();
+		}
 	}
 
 	SDL_RenderPresent(renderer);
@@ -50,17 +53,29 @@ void RenderSystem::Update()
 
 void RenderSystem::Destroy()
 {
-	renderables.clear();
+	renderableMap.clear();
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 }
 
-void RenderSystem::AddRenderable(IRenderable* _renderable)
+void RenderSystem::AddRenderable(IRenderable* _renderable, int layer)
 {
-	renderables.push_back(_renderable);
+	renderableMap[layer].push_back(_renderable);
 }
 
-void RenderSystem::RemoveRenderable(IRenderable* _renderable)
+void RenderSystem::RemoveRenderable(IRenderable* _renderable, int layer)
 {
-	renderables.remove(_renderable);
+	auto mapIterator = renderableMap.find(layer);
+
+	if (mapIterator != renderableMap.end())
+	{
+		mapIterator->second.remove(_renderable);
+	}
+}
+
+void RenderSystem::UpdateLayer(IRenderable* _renderable, int oldLayer, int newLayer)
+{
+	if (oldLayer == newLayer) return;
+	RemoveRenderable(_renderable, oldLayer);
+	AddRenderable(_renderable, newLayer);
 }

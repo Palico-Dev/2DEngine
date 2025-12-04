@@ -45,6 +45,10 @@ void Collider::Initialize()
 				Debug::Warning("Fail to load ColliderBox Texture!");
 			break;
 		}
+		SDL_SetTextureColorMod(debugTexture, 0, 255, 0);
+		SDL_SetTextureAlphaMod(debugTexture, 50);
+
+		OnEnable();
 	}
 }
 

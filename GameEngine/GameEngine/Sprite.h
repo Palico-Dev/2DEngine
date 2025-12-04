@@ -10,6 +10,8 @@
 class Sprite : public Component, public IRenderable
 {
 	DECLARE_DYNAMIC_DERIVED_CLASS(Sprite, Component);
+public:
+	void SetColor(glm::vec4 c);
 
 protected:
 	void Initialize() final;
@@ -29,6 +31,7 @@ private:
 	glm::vec2 offset = { 0,0 };
 	float rotation = 0.0f;
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
+	glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 };
 
 #endif

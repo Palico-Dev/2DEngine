@@ -15,6 +15,7 @@ public:
 	static glm::vec2 JsonReadVec2(json::JSON& j, const char* key);
 	static json::JSON JsonReadJson(json::JSON& j, const char* key);
 	static bool JsonReadBool(json::JSON& j, const char* key);
+	static glm::vec4 JsonReadColor(json::JSON& j, const char* key);
 
 	static std::vector<std::string> GetALLMetaFiles(fs::path path);
 

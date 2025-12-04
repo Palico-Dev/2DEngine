@@ -8,9 +8,23 @@
 
 IMPLEMENT_DYNAMIC_CLASS(Sprite);
 
+void Sprite::SetColor(glm::vec4 c)
+{
+	float r = std::clamp(c.r, 0.0f, 1.0f);
+	float g = std::clamp(c.g, 0.0f, 1.0f);
+	float b = std::clamp(c.b, 0.0f, 1.0f);
+	float a = std::clamp(c.a, 0.0f, 1.0f);
+
+	color = { r,g,b,a };
+}
+
 void Sprite::Initialize()
 {
+	if (initialized)
+		return;
 	Component::Initialize();
+
+	OnEnable();
 }
 
 void Sprite::Destroy()
@@ -52,10 +66,15 @@ void Sprite::Load(json::JSON& _document)
 		flip = SDL_FLIP_HORIZONTAL;
 
 	rotation = FileManager::JsonReadFloat(_document, "rotation");
+
+	color = FileManager::JsonReadColor(_document, "color");
+
+	
 }
 
 void Sprite::Render()
 {
+
 	float renderW = size.x;
 	float renderH = size.y;
 
@@ -79,13 +98,26 @@ void Sprite::Render()
 
 	float finalRenderAngle = ownerAngleDeg + rotation;
 
+	SDL_Texture* tex = textureAsset->GetTexture();
+
+	Uint8 r = static_cast<Uint8>(color.r * 255.0f);
+	Uint8 g = static_cast<Uint8>(color.g * 255.0f);
+	Uint8 b = static_cast<Uint8>(color.b * 255.0f);
+	Uint8 a = static_cast<Uint8>(color.a * 255.0f);
+
+	SDL_SetTextureColorMod(tex, r, g, b);
+	SDL_SetTextureAlphaMod(tex, a);
+
 	SDL_RenderCopyExF(
 		RenderSystem::Instance().GetRenderer(),
-		textureAsset->GetTexture(),
+		tex,
 		NULL,               // clip
 		&renderQuad,        // The calculated world position
 		finalRenderAngle,   // Total Angle
 		NULL,               // NULL center = Rotate around Sprite's OWN center
 		flip
 	);
+
+	SDL_SetTextureColorMod(tex, 255, 255, 255);
+	SDL_SetTextureAlphaMod(tex, 255);
 }
