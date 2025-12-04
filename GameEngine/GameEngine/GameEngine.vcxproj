@@ -198,7 +198,6 @@
     <ClCompile Include="Engine_Register.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="FileManager.cpp" />
-    <ClCompile Include="Font.cpp" />
     <ClCompile Include="FontAsset.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PrefabAsset.cpp" />
@@ -219,6 +218,10 @@
     <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TypeClass.cpp" />
+    <ClCompile Include="UIButton.cpp" />
+    <ClCompile Include="UIImage.cpp" />
+    <ClCompile Include="UILabel.cpp" />
+    <ClCompile Include="Widget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.h" />
@@ -238,7 +241,6 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="FileManager.h" />
-    <ClInclude Include="Font.h" />
     <ClInclude Include="FontAsset.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="PrefabAsset.h" />
@@ -260,6 +262,10 @@
     <ClInclude Include="TextureAsset.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TypeClass.h" />
+    <ClInclude Include="UIButton.h" />
+    <ClInclude Include="UIImage.h" />
+    <ClInclude Include="UILabel.h" />
+    <ClInclude Include="Widget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

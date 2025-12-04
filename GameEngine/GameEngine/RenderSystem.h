@@ -8,6 +8,7 @@
 #include "SDL_image.h"
 
 class IRenderable;
+class Widget;
 
 class RenderSystem final
 {
@@ -35,6 +36,8 @@ private:
 private:
 	static RenderSystem* instance;
 	std::map<int,std::list<IRenderable*>> renderableMap;
+
+	Widget* root = nullptr;
 
 	DECLARE_SINGLETON(RenderSystem)
 

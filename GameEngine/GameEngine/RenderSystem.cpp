@@ -3,6 +3,7 @@
 #include "IRenderable.h"
 #include "Engine.h"
 #include "FileManager.h"
+#include "Widget.h"
 
 void RenderSystem::Initialize()
 {
@@ -46,6 +47,10 @@ void RenderSystem::Update()
 		{
 			r->Render();
 		}
+	}
+	if (root != nullptr)
+	{
+		root->Render();
 	}
 
 	SDL_RenderPresent(renderer);
