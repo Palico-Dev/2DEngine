@@ -47,7 +47,7 @@ void Collider::Initialize()
 		}
 		SDL_SetTextureColorMod(debugTexture, 0, 255, 0);
 		SDL_SetTextureAlphaMod(debugTexture, 50);
-
+		layer = 10;
 		OnEnable();
 	}
 }

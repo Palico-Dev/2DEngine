@@ -230,11 +230,11 @@ void CollisionSystem::FireEvents()
 	}
 
 	//FireExit
-	//for (auto& res : lastFrameResult)
-	//{
-	//	CallEvent(res.first.first->onExit, res.first.second);
-	//	CallEvent(res.first.second->onExit, res.first.first);
-	//}
+	for (auto& res : lastFrameResult)
+	{
+		CallEvent(res.first.first->onExit, res.first.second);
+		CallEvent(res.first.second->onExit, res.first.first);
+	}
 }
 
 void CollisionSystem::Resolve()

@@ -45,7 +45,7 @@
 						"type": "Sprite",
 						"name": "Sprite01",
 						"asset": "player",
-						"layer" : 10,
+						"layer" : 0,
 						"size" : {"x":100.0,"y":100.0},
 						"offset" : {"x":0.0,"y":50.0},
 						"rotation" : 0.0,
