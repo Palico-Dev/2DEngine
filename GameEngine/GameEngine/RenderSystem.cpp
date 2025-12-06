@@ -4,6 +4,7 @@
 #include "Engine.h"
 #include "FileManager.h"
 #include "Widget.h"
+#include "UISystem.h"
 
 void RenderSystem::Initialize()
 {
@@ -48,10 +49,8 @@ void RenderSystem::Update()
 			r->Render();
 		}
 	}
-	if (root != nullptr)
-	{
-		root->Render();
-	}
+
+	UISystem::Instance().Render();
 
 	SDL_RenderPresent(renderer);
 }

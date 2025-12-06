@@ -6,6 +6,7 @@
 #include "AssetManager.h"
 #include "SceneManager.h"
 #include "FileManager.h"
+#include "UISystem.h"
 
 extern void Engine_Register();
 
@@ -22,16 +23,20 @@ void Engine::Initialize()
     SceneManager::Instance().Initialize();
     InputManager::Instance().Initialize();
     CollisionSystem::Instance().Initialize();
+	UISystem::Instance().Initialize();
+	
 
 
 }
 
 void Engine::Destroy()
 {
+	UISystem::Instance().Destroy();
     RenderSystem::Instance().Destroy();
     CollisionSystem::Instance().Destroy();
     SceneManager::Instance().Destroy();
     AssetManager::Instance().Destroy();
+	
 }
 
 void Engine::GameLoop()
@@ -48,6 +53,7 @@ void Engine::GameLoop()
         CollisionSystem::Instance().Update();
         RenderSystem::Instance().Update();
 
+		SceneManager::Instance().LateUpdate();
         // PostUpdate TBD
 	}
 }

@@ -20,9 +20,11 @@ public:
 	static std::vector<std::string> GetALLMetaFiles(fs::path path);
 
 	static fs::path GetExecutableDir();
-	static fs::path GetAssetPath();
-	static fs::path GetEngineAssetPath();
+	static fs::path GetAssetFolderPath();
+	static fs::path GetEngineAssetFolderPath();
 	static fs::path GetGameSettingPath();
+	static fs::path GetAssetPath(json::JSON j);
+
 };
 
 #endif

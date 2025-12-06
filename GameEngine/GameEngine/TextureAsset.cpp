@@ -6,16 +6,8 @@ IMPLEMENT_DYNAMIC_CLASS(TextureAsset)
 
 void TextureAsset::Load(json::JSON j)
 {
-	fs::path path;
-	if (FileManager::JsonReadString(j, "Location")=="Engine")
-	{
-		path = FileManager::GetEngineAssetPath();
-	}
-	else
-	{
-		path = FileManager::GetAssetPath();
-	}
-	path = path / FileManager::JsonReadString(j, "Asset");
+	fs::path path = FileManager::GetAssetPath(j);
+
 	SDL_Surface* surface = IMG_Load(path.generic_string().c_str());
 	if (surface == nullptr)
 	{

@@ -1,6 +1,9 @@
 {
 	"assets": [
-		"player"
+		"player",
+		"life",
+		"enemyShip",
+		"cour"
 	],
 	"scene": {
 		"name": "Level1",
@@ -90,6 +93,52 @@
 						"type": "NextLevel"
 					}
 				]
+			}
+		]
+	},
+	"ui":{
+		"type":"Widget",
+		"name":"root",
+		"localPosition" : {"x":0.0,"y":0.0},
+		"layer" : 0,
+		"rotation" : 0.0,
+		"visibility" : "Visible",
+		"children":[
+			{
+				"type": "UIImage",
+				"name": "Image01",
+				"localPosition" : {"x":1000.0,"y":50.0},
+				"layer" : 0,
+				"rotation" : 0.0,
+				"visibility" : "Visible",
+				"asset": "enemyShip",
+				"size" : {"x":50.0,"y":50.0},
+				"flip" : "SDL_FLIP_NONE",
+				"color" :{"r":1.0,"g":1.0,"b":1.0,"a":1.0}
+			},
+			{
+				"type": "UIImage",
+				"name": "Image02",
+				"localPosition" : {"x":500.0,"y":50.0},
+				"layer" : 0,
+				"rotation" : 0.0,
+				"visibility" : "Visible",
+				"asset": "life",
+				"size" : {"x":100.0,"y":100.0},
+				"flip" : "SDL_FLIP_NONE",
+				"color" :{"r":1.0,"g":1.0,"b":1.0,"a":1.0}
+			},
+			{
+				"type": "UILabel",
+				"name": "Label01",
+				"localPosition" : {"x":50.0,"y":50.0},
+				"layer" : 0,
+				"rotation" : 0.0,
+				"visibility" : "Visible",
+				"font": "cour",
+				"size":24,
+				"text": "Test",
+				"color" :{"r":1.0,"g":1.0,"b":1.0,"a":1.0}
 			}
 		]
 	}

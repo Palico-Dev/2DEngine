@@ -13,6 +13,10 @@
 #include "PrefabAsset.h"
 #include "Sprite.h"
 #include "AnimatedSprite.h"
+#include "Widget.h"
+#include "UIButton.h"
+#include "UIImage.h"
+#include "UILabel.h"
 
 void Engine_Register()
 {
@@ -30,5 +34,10 @@ void Engine_Register()
 	REGISTER_TYPECLASS(PrefabAsset);
 	REGISTER_TYPECLASS(Sprite);
 	REGISTER_TYPECLASS(AnimatedSprite);
+	REGISTER_TYPECLASS(Widget);
+	REGISTER_TYPECLASS(UILabel);
+	REGISTER_TYPECLASS(UIButton);
+	REGISTER_TYPECLASS(UIImage);
+
 
 }

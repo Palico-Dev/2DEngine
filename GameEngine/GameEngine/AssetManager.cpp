@@ -106,7 +106,7 @@ void AssetManager::Destroy()
 
 void AssetManager::GenerateMetaDB()
 {
-	auto filePath = FileManager::GetALLMetaFiles(FileManager::GetAssetPath());
+	auto filePath = FileManager::GetALLMetaFiles(FileManager::GetAssetFolderPath());
 	for (auto& p : filePath)
 	{
 		auto j = FileManager::LoadJson(p.c_str());
@@ -118,7 +118,7 @@ void AssetManager::GenerateMetaDB()
 
 void AssetManager::LoadEngineAsset()
 {
-	auto filePath = FileManager::GetALLMetaFiles(FileManager::GetEngineAssetPath());
+	auto filePath = FileManager::GetALLMetaFiles(FileManager::GetEngineAssetFolderPath());
 	for (auto& p : filePath)
 	{
 		auto j = FileManager::LoadJson(p.c_str());

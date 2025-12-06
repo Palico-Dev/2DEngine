@@ -37,8 +37,6 @@ private:
 	static RenderSystem* instance;
 	std::map<int,std::list<IRenderable*>> renderableMap;
 
-	Widget* root = nullptr;
-
 	DECLARE_SINGLETON(RenderSystem)
 
 	friend class Engine;

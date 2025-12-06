@@ -18,20 +18,36 @@ class Widget : public Object
 public:
 	void Initialize() override;
 	void Destroy() override;
+	virtual void Update();
+	virtual void Load(json::JSON j);
 
-	virtual void Render();
+	void Render();
 
-private:
-	std::list<Widget*> children;
+	glm::vec2 GetPosition();
+	float GetRotation();
+
+public:
 	Widget* parent = nullptr;
 
+protected:
+	virtual void OnRender();
+
+protected:
+	std::list<Widget*> children;
+
+
+	std::string name = "";
 	glm::vec2 localPosition = {0,0};
-	glm::vec2 size = {50,50};
+	int layer = 0;
+	float rotation = 0.0f;
 
 	WidgetVisibility visibility = WidgetVisibility::Visable;
 
 	friend class RenderSystem;
 
+
+private:
+	WidgetVisibility StringToVisibility(const std::string& str);
 };
 
 #endif

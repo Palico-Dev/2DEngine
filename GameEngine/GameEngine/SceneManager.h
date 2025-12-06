@@ -24,6 +24,7 @@ private:
 	void Update();
 	void Destroy();
 	void Start();
+	void LateUpdate();
 
 private:
 	friend class Engine;

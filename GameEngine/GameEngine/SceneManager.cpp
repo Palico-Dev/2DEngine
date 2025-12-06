@@ -5,6 +5,7 @@
 #include "AssetManager.h"
 #include "Engine.h"
 #include "FileManager.h"
+#include "UISystem.h"
 
 void SceneManager::Initialize()
 {
@@ -42,26 +43,21 @@ void SceneManager::Start()
 
 
 
+void SceneManager::LateUpdate()
+{
+
+}
+
 void SceneManager::LoadScene(const char* path)
 {
 	Debug::Log(std::string("Load Scene :") + path);
 
 	json::JSON sceneMetaJson = FileManager::LoadJson(path);
 
-	fs::path scenePath;
-	if (FileManager::JsonReadString(sceneMetaJson, "Location") == "Engine")
-	{
-		scenePath = FileManager::GetEngineAssetPath();
-	}
-	else
-	{
-		scenePath = FileManager::GetAssetPath();
-	}
-	scenePath = scenePath / FileManager::JsonReadString(sceneMetaJson, "Asset");
+	fs::path scenePath = FileManager::GetAssetPath(sceneMetaJson);
 
 	json::JSON sceneJson = FileManager::LoadJson(scenePath.generic_string().c_str());
 	AssetManager::Instance().Load(sceneJson);
-
 
 	if (sceneJson.hasKey("scene"))
 	{
@@ -72,6 +68,8 @@ void SceneManager::LoadScene(const char* path)
 
 		scenes.push_back(scene);
 	}
+
+	UISystem::Instance().Load(sceneJson);
 }
 
 

@@ -143,7 +143,7 @@ fs::path FileManager::GetExecutableDir()
 #endif
 }
 
-fs::path FileManager::GetAssetPath()
+fs::path FileManager::GetAssetFolderPath()
 {
 #ifdef _DEBUG
 	return fs::path(ASSET_DIR);
@@ -152,7 +152,7 @@ fs::path FileManager::GetAssetPath()
 #endif
 }
 
-fs::path FileManager::GetEngineAssetPath()
+fs::path FileManager::GetEngineAssetFolderPath()
 {
 #ifdef _DEBUG 
 	return fs::path(ENGINEASSET_DIR);
@@ -163,5 +163,21 @@ fs::path FileManager::GetEngineAssetPath()
 
 fs::path FileManager::GetGameSettingPath()
 {
-	return GetAssetPath() / "Config" / "GameSettings.json";
+	return GetAssetFolderPath() / "Config" / "GameSettings.json";
+}
+
+fs::path FileManager::GetAssetPath(json::JSON j)
+{
+	fs::path path;
+	if (FileManager::JsonReadString(j, "Location") == "Engine")
+	{
+		path = GetEngineAssetFolderPath();
+	}
+	else
+	{
+		path = FileManager::GetAssetFolderPath();
+	}
+	path = path / FileManager::JsonReadString(j, "Asset");
+
+	return path;
 }

@@ -14,19 +14,19 @@ void FontAsset::Init()
 {
     if (TTF_Init() == -1) {
         std::cerr << "SDL_ttf could not initialize! TTF_Error: " << TTF_GetError() << std::endl;
-        SDL_Quit();
     }
 }
 
 void FontAsset::LoadFont(json::JSON j, int _size)
 {
-    std::string path = FileManager::JsonReadString(j, "Asset");
-    font = TTF_OpenFont(path.c_str(), _size);
-    if (font == NULL) {
-        std::cerr << "Failed to load font! TTF_Error: " << TTF_GetError() << std::endl;
-        TTF_Quit();
-        SDL_Quit();
-    }
+    fs::path path = FileManager::GetAssetPath(j);
+
+	font = TTF_OpenFont(path.generic_string().c_str(), _size);
+	if (font == NULL)
+	{
+		std::cerr << "Failed to load font! TTF_Error: " << TTF_GetError() << std::endl;
+		TTF_Quit();
+	}
 }
 
 void FontAsset::Load(json::JSON j)
