@@ -19,11 +19,14 @@ public:
 	void SetName(const std::string& _name) { name = _name; }
 	Entity* FindEntityByName(const std::string& entityName);
 	std::vector<Entity*> FindAllEntitiesByTag(const std::string& tag);
+	void RemoveEntity(Entity* e);
 
 private:
 	void Initialize();
 	void Load(json::JSON& jsonData) override;
+	void Start();
 	void Update();
+	void LateUpdate();
 	void Destroy();
 	
 	std::string GetUniqueName(const std::string& candidateName);

@@ -119,6 +119,24 @@ CollisionInfo CollisionSystem::CheckCollision(Collider* a, Collider* b)
 	return info;
 }
 
+void CollisionSystem::RemoveCollider(Collider* c)
+{
+	colliders.erase(std::remove(colliders.begin(), colliders.end(), c),
+		colliders.end());
+
+	for (auto it = lastFrameResult.begin(); it != lastFrameResult.end(); )
+	{
+		if (it->first.first == c || it->first.second == c)
+		{
+			it = lastFrameResult.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+}
+
 void CollisionSystem::Clear()
 {
 	lastFrameResult.clear();
@@ -232,6 +250,8 @@ void CollisionSystem::FireEvents()
 	//FireExit
 	for (auto& res : lastFrameResult)
 	{
+		if (res.first.first == nullptr || res.first.second == nullptr)
+			continue;
 		CallEvent(res.first.first->onExit, res.first.second);
 		CallEvent(res.first.second->onExit, res.first.first);
 	}

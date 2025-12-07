@@ -74,11 +74,7 @@ public:
 
 
 	void AddCollider(Collider* c) { colliders.push_back(c); }
-	void RemoveCollider(Collider* c)
-	{
-		colliders.erase(std::remove(colliders.begin(), colliders.end(), c),
-			colliders.end());
-	}
+	void RemoveCollider(Collider* c);
 
 
 private:

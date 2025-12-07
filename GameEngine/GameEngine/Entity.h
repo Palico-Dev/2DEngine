@@ -16,6 +16,7 @@ class Entity final : public Object
 public:
 	void Initialize() override;
 	void Update();
+	void Start();
 	void Destroy() override;
 
 	#pragma region Component

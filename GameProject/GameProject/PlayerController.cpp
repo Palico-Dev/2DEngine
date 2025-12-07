@@ -40,14 +40,22 @@ void PlayerController::Update()
 	Component::Update();
 	glm::vec2 direction = { 0, 0 };
 
+
+
 	if (InputManager::Instance().GetKeyPressed(SDLK_r))
 	{
-		PrefabAsset* a = (PrefabAsset*)AssetManager::Instance().GetAsset("testPrefab");
-		Gameplay::Spawn(a, { 500,500 });
+		Entity* e = Gameplay::Spawn(a, { 500,500 });
+		Gameplay::Destroy(e);
 	}
+
 	
 	direction.x = InputManager::Instance().GetAxis("walk_left", "walk_right");
 	direction.y = InputManager::Instance().GetAxis("walk_up", "walk_down");
 	//Debug::Log(glm::to_string(direction));
 	owner->transform->SetPosition(owner->transform->GetPosition()+direction*speed* Time::Instance().DeltaTime());
+}
+
+void PlayerController::Start()
+{
+	a = (PrefabAsset*)AssetManager::Instance().GetAsset("testPrefab");
 }

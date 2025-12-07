@@ -26,6 +26,14 @@ void Entity::Update()
 	}
 }
 
+void Entity::Start()
+{
+	for (auto& component : components)
+	{
+		component->Start();
+	}
+}
+
 Component* Entity::CreateComponent(const std::string& componentType)
 {
 	if(componentType == "Transform" && transform != nullptr)

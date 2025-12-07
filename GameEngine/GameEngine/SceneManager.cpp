@@ -39,14 +39,20 @@ void SceneManager::Destroy()
 
 void SceneManager::Start()
 {
-
+	for (auto& s : scenes)
+	{
+		s->Start();
+	}
 }
 
 
 
 void SceneManager::LateUpdate()
 {
-
+	for (auto& s : scenes)
+	{
+		s->LateUpdate();
+	}
 }
 
 void SceneManager::LoadScene(const char* path)

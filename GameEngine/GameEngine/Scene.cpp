@@ -31,6 +31,14 @@ void Scene::Load(json::JSON& jsonData)
 	}
 }
  
+void Scene::Start()
+{
+	for (auto& entity : entities)
+	{
+		entity->Start();
+	}
+}
+
 void Scene::Update()
 {
 	for (auto& entity : entities)
@@ -38,18 +46,17 @@ void Scene::Update()
 		entity->Update();
 	}
 
-	//// Deal with removals
-	//for (auto it = entities.begin(); it != entities.end(); ) {
-	//	Entity* entity = *it;
+}
 
-	//		entity->Destroy();
-	//		delete entity;
-	//		it = entities.erase(it);
-	//	}
-	//	else {
-	//		++it;
-	//	}
-	//}
+void Scene::LateUpdate()
+{
+	for (auto entity : entities_to_remove)
+	{
+		entity->Destroy();
+		entities.remove(entity);
+		delete entity;
+	}
+	entities_to_remove.clear();
 }
 
 void Scene::Destroy()
@@ -131,4 +138,9 @@ std::vector<Entity*> Scene::FindAllEntitiesByTag(const std::string& tag)
 			res.push_back(e);
 	}
 	return res;
+}
+
+void Scene::RemoveEntity(Entity* e)
+{
+	entities_to_remove.push_back(e);
 }

@@ -22,6 +22,7 @@ public:
 protected:
 	void Destroy() override;
 	virtual void Update() {};
+	virtual void Start() {};
 
 private:
 

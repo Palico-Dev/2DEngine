@@ -28,7 +28,7 @@ Entity* Gameplay::Spawn(PrefabAsset* prefab, glm::vec2 pos)
 
 void Gameplay::Destroy(Entity* e)
 {
-
+	SceneManager::Instance().GetCurrentScene()->RemoveEntity(e);
 }
 
 Entity* Gameplay::FindEntityWithName(const std::string& name)
