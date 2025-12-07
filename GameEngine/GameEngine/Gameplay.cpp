@@ -36,9 +36,9 @@ Entity* Gameplay::FindEntityWithName(const std::string& name)
 	return SceneManager::Instance().GetCurrentScene()->FindEntityByName(name);
 }
 
-Entity* Gameplay::FindEntityWithTag(const std::string& tag)
+std::vector<Entity*> Gameplay::FindAllEntitiesWithTag(const std::string& tag)
 {
-	return nullptr;
+	return SceneManager::Instance().GetCurrentScene()->FindAllEntitiesByTag(tag);
 }
 
 

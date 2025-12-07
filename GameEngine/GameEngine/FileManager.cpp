@@ -107,6 +107,24 @@ glm::vec4 FileManager::JsonReadColor(json::JSON& j, const char* key)
 	return glm::vec4(0.0f);
 }
 
+std::vector<json::JSON> FileManager::JsonReadArray(json::JSON j, const std::string& key)
+{
+	std::vector<json::JSON> result;
+
+	if (!j.hasKey(key) || j[key].JSONType()!=json::JSON::Class::Array)
+	{
+		Debug::Warning(std::string("CANNOT read Array: ") + key);
+		return result;
+	}
+
+	for (auto& node : j[key].ArrayRange())
+	{
+		result.push_back(node);
+	}
+
+	return result;
+}
+
 std::vector<std::string> FileManager::GetALLMetaFiles(fs::path path)
 {
 	std::vector<std::string> res;

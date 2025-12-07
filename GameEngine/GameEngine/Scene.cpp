@@ -121,3 +121,14 @@ Entity* Scene::FindEntityByName(const std::string& entityName)
 	}
 	return nullptr;
 }
+
+std::vector<Entity*> Scene::FindAllEntitiesByTag(const std::string& tag)
+{
+	std::vector<Entity*> res;
+	for (auto& e : entities)
+	{
+		if (e->HasTag(tag))
+			res.push_back(e);
+	}
+	return res;
+}

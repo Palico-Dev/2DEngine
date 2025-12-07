@@ -13,7 +13,7 @@ namespace Gameplay
 	void Destroy(Entity* e);
 
 	Entity* FindEntityWithName(const std::string& name);
-	Entity* FindEntityWithTag(const std::string& tag);
+	std::vector<Entity*> FindAllEntitiesWithTag(const std::string& tag);
 }
 
 #endif

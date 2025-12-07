@@ -18,6 +18,7 @@ public:
 	const std::string& GetName() const { return name; }
 	void SetName(const std::string& _name) { name = _name; }
 	Entity* FindEntityByName(const std::string& entityName);
+	std::vector<Entity*> FindAllEntitiesByTag(const std::string& tag);
 
 private:
 	void Initialize();

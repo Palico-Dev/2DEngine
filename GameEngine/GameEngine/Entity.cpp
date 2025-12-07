@@ -98,11 +98,28 @@ std::vector<Component*> Entity::GetAllComponentsByType(const std::string& comp_t
 	return result;
 }
 
+bool Entity::HasTag(const std::string& tag)
+{
+	STRCODE hashcode = GetHashCode(tag.c_str());
+	for (auto& t : tags)
+	{
+		if (t == hashcode)
+			return true;
+	}
+	return false;
+}
+
 void Entity::Load(json::JSON& jsonData)
 {
 	Object::Load(jsonData);
 
 	name = FileManager::JsonReadString(jsonData, "name");
+
+	auto tagNodes = FileManager::JsonReadArray(jsonData, "tags");
+	for (auto& tagJson : tagNodes)
+	{
+		tags.push_back(GetHashCode(tagJson.ToString().c_str()));
+	}
 
 	json::JSON componentsJson = jsonData.at("components");
 	for (auto& comp : componentsJson.ArrayRange()) {

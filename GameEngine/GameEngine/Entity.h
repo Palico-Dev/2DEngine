@@ -18,11 +18,9 @@ public:
 	void Update();
 	void Destroy() override;
 
+	#pragma region Component
 	Component* CreateComponent(const std::string& componentType);
 	bool RemoveComponent(Component* component);
-
-	Component* const GetComponentByType(const std::string& comp_type);
-	std::vector<Component*> GetAllComponentsByType(const std::string& comp_type);
 
 	template <typename T>
 	T* GetComponent()
@@ -43,6 +41,11 @@ public:
 
 		return typedList;
 	}
+	#pragma endregion
+
+	bool HasTag(const std::string& tag);
+
+
 
 	void Load(json::JSON& jsonData) override;
 	Entity* Clone();
@@ -52,10 +55,12 @@ public:
 	Transform* transform = nullptr;
 
 private:
-
+	Component* const GetComponentByType(const std::string& comp_type);
+	std::vector<Component*> GetAllComponentsByType(const std::string& comp_type);
 
 private:
 	std::list<Component*> components;
+	std::vector<STRCODE> tags;
 
 	friend class Scene;
 };
