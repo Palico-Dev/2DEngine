@@ -10,6 +10,14 @@
 class AnimatedSprite : public Component,public IRenderable
 {
 	DECLARE_DYNAMIC_DERIVED_CLASS(AnimatedSprite, Component);
+
+public:
+	void Initialize() final;
+	void Destroy() final;
+	void Update() final;
+	void Load(json::JSON& _document) final;
+	Component* Clone() override;
+	void Render() final;
 private:
 	std::string spriteName = "";
 
@@ -29,12 +37,7 @@ private:
 	SDL_Rect* clip = NULL;
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
 
-protected:
-	void Initialize() final;
-	void Destroy() final;
-	void Update() final;
-	void Load(json::JSON& _document) final;
-	void Render() final;
+
 };
 
 #endif

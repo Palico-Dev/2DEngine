@@ -18,6 +18,7 @@ protected:
 	void Destroy() final;
 	void Update() final;
 	void Load(json::JSON& _document) final;
+	Component* Clone() override;
 	void Render() final;
 
 	int GetLayer() { return layer; }

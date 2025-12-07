@@ -59,6 +59,7 @@
 #include "StandardTypes.h"
 #include "TypeClass.h"
 #include "EngineTime.h"
+#include "Gameplay.h"
 
 #include "Debug.h"
 

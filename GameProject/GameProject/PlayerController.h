@@ -10,6 +10,7 @@ class PlayerController : public Component
 public:
 	void Update() override;
 	void Initialize() override;
+	Component* Clone() override;
 
 public:
 	float speed = 100.0f;

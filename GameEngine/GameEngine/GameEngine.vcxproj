@@ -199,6 +199,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="FontAsset.cpp" />
+    <ClCompile Include="Gameplay.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PrefabAsset.cpp" />
     <ClCompile Include="IRenderable.cpp" />
@@ -243,6 +244,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="FontAsset.h" />
+    <ClInclude Include="Gameplay.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="PrefabAsset.h" />
     <ClInclude Include="IRenderable.h" />

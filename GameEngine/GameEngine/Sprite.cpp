@@ -72,6 +72,16 @@ void Sprite::Load(json::JSON& _document)
 	
 }
 
+Component* Sprite::Clone()
+{
+	Sprite* clone = (Sprite*)CreateObject("Sprite");
+
+	*clone = *this;
+
+	clone->owner = nullptr;
+	return clone;
+}
+
 void Sprite::Render()
 {
 

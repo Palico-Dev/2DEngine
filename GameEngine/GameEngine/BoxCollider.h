@@ -22,6 +22,7 @@ public:
 	void Destroy() override;
 
 	void Load(json::JSON& _jsonData) override;
+	Component* Clone() override;
 
 private:
 	std::vector<glm::vec2> vertices;

@@ -102,10 +102,29 @@ void Entity::Load(json::JSON& jsonData)
 {
 	Object::Load(jsonData);
 
+	name = FileManager::JsonReadString(jsonData, "name");
+
 	json::JSON componentsJson = jsonData.at("components");
 	for (auto& comp : componentsJson.ArrayRange()) {
 		std::string compType = FileManager::JsonReadString(comp,"type");
 		Component* component = CreateComponent(compType);
 		component->Load(comp);
 	}
+}
+
+Entity* Entity::Clone()
+{
+	Entity* cloneEntity = (Entity*)CreateObject("Entity");
+	for (auto& c : components)
+	{
+		Component* cloneComponent = c->Clone();
+		cloneEntity->components.push_back(cloneComponent);
+		cloneComponent->owner = cloneEntity;
+		if (cloneComponent->GetDerivedTypeClassHashCode() == Transform::GetTypeClassHashCode())
+		{
+			cloneEntity->transform = (Transform*)cloneComponent;
+		}
+	}
+	return cloneEntity;
+
 }

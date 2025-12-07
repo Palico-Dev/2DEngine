@@ -1,0 +1,45 @@
+{
+	"name": "testPrefab",
+	"id": "0000-0000-0002",
+	"components": [
+		{
+			"type": "Transform",
+			"position": {
+				"x": 100.0,
+				"y": 100.0
+			},
+			"scale": {
+				"x": 1.0,
+				"y": 1.0
+			},
+			"rotation": 0.0
+		},
+		{
+			"type": "BoxCollider",
+			"isRendered": true,
+			"center": {
+				"x": 0.0,
+				"y": 0.0
+			},
+			"layer": 0,
+			"isTrigger": false,
+			"isStatic": false,
+			"size": {
+				"x": 50.0,
+				"y": 50.0
+			},
+			"radius": 50.0
+		},
+		{
+			"type": "Sprite",
+			"name": "Sprite01",
+			"asset": "player",
+			"layer" : 0,
+			"size" : {"x":100.0,"y":100.0},
+			"offset" : {"x":0.0,"y":50.0},
+			"rotation" : 0.0,
+			"flip" : "SDL_FLIP_NONE",
+			"color" :{"r":1.0,"g":1.0,"b":1.0,"a":1.0}
+		}
+	]
+}

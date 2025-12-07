@@ -67,6 +67,26 @@ void Scene::Destroy()
 	AssetManager::Instance().Unload(name);
 }
 
+std::string Scene::GetUniqueName(const std::string& candidateName)
+{
+	if (FindEntityByName(candidateName) == nullptr)
+	{
+		return candidateName;
+	}
+	std::string baseName = candidateName;
+	int i = 1;
+	while (true)
+	{
+		std::string newName = baseName + " (" + std::to_string(i) + ")";
+
+		if (FindEntityByName(newName.c_str())==nullptr)
+		{
+			return newName;
+		}
+		i++;
+	}
+}
+
 Entity* Scene::CreateEntity(const std::vector<std::string>& component_list)
 {
 	Entity* new_entity = static_cast<Entity*>(CreateObject("Entity"));
@@ -78,8 +98,26 @@ Entity* Scene::CreateEntity(const std::vector<std::string>& component_list)
 			new_entity->CreateComponent(comp);			
 		}
 		new_entity->Initialize();
-		entities.push_back(new_entity);
+		AddEntity(new_entity);
 		return new_entity;
+	}
+	return nullptr;
+}
+
+void Scene::AddEntity(Entity* e)
+{
+	entities.push_back(e);
+	e->name = GetUniqueName(e->name.c_str());
+}
+
+Entity* Scene::FindEntityByName(const std::string& entityName)
+{
+	for (auto& e : entities)
+	{
+		if (e->name == entityName)
+		{
+			return e;
+		}
 	}
 	return nullptr;
 }

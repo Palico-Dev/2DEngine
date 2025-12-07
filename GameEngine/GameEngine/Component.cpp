@@ -21,4 +21,4 @@ void Component::Destroy()
 void Component::Load(json::JSON& jsonData)
 {
 	Object::Load(jsonData);
-} 
+}

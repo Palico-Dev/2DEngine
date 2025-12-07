@@ -16,6 +16,7 @@ class Entity final : public Object
 public:
 	void Initialize() override;
 	void Update();
+	void Destroy() override;
 
 	Component* CreateComponent(const std::string& componentType);
 	bool RemoveComponent(Component* component);
@@ -44,11 +45,14 @@ public:
 	}
 
 	void Load(json::JSON& jsonData) override;
+	Entity* Clone();
 
+public:
+	std::string name = "";
 	Transform* transform = nullptr;
 
 private:
-	void Destroy() override;
+
 
 private:
 	std::list<Component*> components;

@@ -21,12 +21,10 @@
   <ItemGroup>
     <ClCompile Include="Game_Register.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="NextLevel.cpp" />
     <ClCompile Include="PlayerController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameCore.h" />
-    <ClInclude Include="NextLevel.h" />
     <ClInclude Include="PlayerController.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

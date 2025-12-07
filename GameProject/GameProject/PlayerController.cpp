@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "Transform.h"
 #include "EngineTime.h"
+#include "AssetManager.h"
 
 IMPLEMENT_DYNAMIC_CLASS(PlayerController)
 
@@ -24,10 +25,26 @@ void PlayerController::Initialize()
 	InputManager::Instance().BindAction("walk_right", SDLK_RIGHT);
 }
 
+Component* PlayerController::Clone()
+{
+	PlayerController* clone = (PlayerController*)CreateObject("PlayerController");
+
+	*clone = *this;
+
+	clone->owner = nullptr;
+	return clone;
+}
+
 void PlayerController::Update()
 {
 	Component::Update();
 	glm::vec2 direction = { 0, 0 };
+
+	if (InputManager::Instance().GetKeyPressed(SDLK_r))
+	{
+		PrefabAsset* a = (PrefabAsset*)AssetManager::Instance().GetAsset("testPrefab");
+		Gameplay::Spawn(a, { 500,500 });
+	}
 	
 	direction.x = InputManager::Instance().GetAxis("walk_left", "walk_right");
 	direction.y = InputManager::Instance().GetAxis("walk_up", "walk_down");

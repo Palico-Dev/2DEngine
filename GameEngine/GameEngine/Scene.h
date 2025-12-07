@@ -6,15 +6,18 @@
 class Entity;
 class Engine;
 class SceneManager;
+
 class Scene final : public Object
 {
 	DECLARE_DYNAMIC_DERIVED_CLASS(Scene, Object)
-private:
-	std::string name;
-	std::list<Entity*> entities;
-	std::list<Entity*> entities_to_remove;
-	friend class Engine;
-	friend class SceneManager;
+
+public:
+	Entity* CreateEntity(const std::vector<std::string>& component_list);
+
+	void AddEntity(Entity* e);
+	const std::string& GetName() const { return name; }
+	void SetName(const std::string& _name) { name = _name; }
+	Entity* FindEntityByName(const std::string& entityName);
 
 private:
 	void Initialize();
@@ -22,17 +25,15 @@ private:
 	void Update();
 	void Destroy();
 	
+	std::string GetUniqueName(const std::string& candidateName);
 
-public:
-	/// <summary>
-	/// Create an Entity with the given list of Component type names.
-	/// </summary>
-	/// <param name="component_list"></param>
-	/// <returns></returns>
-	Entity* CreateEntity(const std::vector<std::string>& component_list);
+private:
+	std::string name;
+	std::list<Entity*> entities;
+	std::list<Entity*> entities_to_remove;
+	friend class Engine;
+	friend class SceneManager;
 
-	const std::string& GetName() const { return name; }
-	void SetName(const std::string& _name) { name = _name; }
 };
 
-#endif //!_SCENE_H_
+#endif

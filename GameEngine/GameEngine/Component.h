@@ -14,6 +14,7 @@ class Component : public Object
 public:
 	void Initialize() override;
 	void Load(json::JSON& jsonData) override;
+	virtual Component* Clone() = 0;
 
 public:
 	Entity* owner = nullptr;

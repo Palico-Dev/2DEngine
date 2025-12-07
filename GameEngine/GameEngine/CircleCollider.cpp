@@ -43,3 +43,13 @@ void CircleCollider::Load(json::JSON& _jsonData)
         radius = _jsonData["radius"].ToFloat();
     }
 }
+
+Component* CircleCollider::Clone()
+{
+	CircleCollider* clone = (CircleCollider*)CreateObject("CircleCollider");
+
+	*clone = *this;
+
+	clone->owner = nullptr;
+	return clone;
+}

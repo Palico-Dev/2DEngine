@@ -4,6 +4,7 @@
 
 class Scene;
 class Engine;
+class PrefabAsset;
 
 class SceneRecord {
 public:
@@ -18,6 +19,7 @@ class SceneManager final
 
 public:
 	void LoadScene(const char* path);
+	Scene* GetCurrentScene() { return currentScene; }
 
 private:
 	void Initialize();
@@ -31,6 +33,9 @@ private:
 
 	std::list<Scene*> scenes;
 
+	Scene* currentScene;
+
 };
+
 
 #endif //_SCENEMANAGER_H_

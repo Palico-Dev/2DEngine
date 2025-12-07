@@ -1,30 +1,22 @@
 ﻿#include "EngineCore.h"
 #include "PrefabAsset.h"
 #include "Entity.h"
+#include "FileManager.h"
 
 IMPLEMENT_DYNAMIC_CLASS(PrefabAsset)
 
 void PrefabAsset::Load(json::JSON j)
 {
-    std::string path = FileManager::JsonReadString(j, "Asset");
-    json::JSON entityItem = LoadJson(path);
-    m_Entity = static_cast<Entity*>(CreateObject("Entity"));
+    fs::path path = FileManager::GetAssetPath(j);
 
-    if (m_Entity == nullptr)
-    {
-        std::cout << "Error: Failed Prefab: " << path << std::endl;
-        return;
-    }
-    m_Entity->Load(entityItem);
+    json::JSON prefabJson = FileManager::LoadJson(path.generic_string().c_str());
+    prefab = (Entity*)CreateObject("Entity");
+    prefab->Load(prefabJson);
 
-    if (m_Entity->transform == nullptr)
-    {
-        // Ensure every Entity has a Transform
-        m_Entity->CreateComponent("Transform");
-    }
 }
 
 void PrefabAsset::Destroy()
 {
-    m_Entity = nullptr;
+    prefab->Destroy();
+    prefab = nullptr;
 }

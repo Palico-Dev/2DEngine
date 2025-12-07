@@ -51,6 +51,16 @@ void AnimatedSprite::Load(json::JSON& _document)
 	}
 }
 
+Component* AnimatedSprite::Clone()
+{
+	AnimatedSprite* clone = (AnimatedSprite*)CreateObject("AnimatedSprite");
+
+	*clone = *this;
+
+	clone->owner = nullptr;
+	return clone;
+}
+
 void AnimatedSprite::Render()
 {
 	if (owner)

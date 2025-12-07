@@ -40,3 +40,13 @@ void Transform::Load(json::JSON& data)
 		rotation = static_cast<float>(data.at("rotation").ToFloat());
 	}
 }
+
+Component* Transform::Clone()
+{
+	Transform* clone = (Transform*)CreateObject("Transform");
+
+	*clone = *this;
+
+	clone->owner = nullptr;
+	return clone;
+}

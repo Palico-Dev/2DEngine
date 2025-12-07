@@ -3,7 +3,8 @@
 		"player",
 		"life",
 		"enemyShip",
-		"cour"
+		"cour",
+		"testPrefab"
 	],
 	"scene": {
 		"name": "Level1",
@@ -88,9 +89,6 @@
 						},
 						"radius": 50.0
 
-					},
-					{
-						"type": "NextLevel"
 					}
 				]
 			}

@@ -48,6 +48,7 @@ public:
 	float GetZIndex() const { return zIndex; }
 
 	void Load(json::JSON& data);
+	Component* Clone() override;
 
 private:
 	glm::vec2 position = glm::vec2(0.0f, 0.0f);

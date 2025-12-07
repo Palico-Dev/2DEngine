@@ -6,6 +6,7 @@
 #include "Engine.h"
 #include "FileManager.h"
 #include "UISystem.h"
+#include "Entity.h"
 
 void SceneManager::Initialize()
 {
@@ -67,10 +68,8 @@ void SceneManager::LoadScene(const char* path)
 		scene->Initialize();
 
 		scenes.push_back(scene);
+		currentScene = scene;
 	}
 
 	UISystem::Instance().Load(sceneJson);
 }
-
-
-

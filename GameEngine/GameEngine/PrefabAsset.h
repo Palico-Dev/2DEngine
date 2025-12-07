@@ -10,10 +10,10 @@ class PrefabAsset : public Asset
     DECLARE_DYNAMIC_DERIVED_CLASS(PrefabAsset, Asset)
 
 public:
-    Entity* GetPrefabBlueprintEntity() { return m_Entity; }
+    Entity* GetPrefab() { return prefab; }
 
 private:
-    Entity* m_Entity;
+    Entity* prefab;
     void Load(json::JSON j) override;
     void Destroy() override;
 };

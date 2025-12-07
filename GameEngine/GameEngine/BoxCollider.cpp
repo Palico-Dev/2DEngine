@@ -89,3 +89,13 @@ void BoxCollider::Load(json::JSON& _jsonData)
 		size.y = s["y"].ToFloat();
 	}
 }
+
+Component* BoxCollider::Clone()
+{
+	BoxCollider* clone = (BoxCollider*)CreateObject("BoxCollider");
+
+	*clone = *this;
+
+	clone->owner = nullptr; 
+	return clone;
+}
