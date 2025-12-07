@@ -42,10 +42,9 @@ void PlayerController::Update()
 
 
 
-	if (InputManager::Instance().GetKeyPressed(SDLK_r))
+	if (InputManager::Instance().GetKeyPressed(SDLK_SPACE))
 	{
-		Entity* e = Gameplay::Spawn(a, { 500,500 });
-		Gameplay::Destroy(e);
+		Entity* e = Gameplay::Spawn(bulletAsset, owner->transform->GetPosition()+glm::vec2(0,-50));
 	}
 
 	
@@ -57,5 +56,5 @@ void PlayerController::Update()
 
 void PlayerController::Start()
 {
-	a = (PrefabAsset*)AssetManager::Instance().GetAsset("testPrefab.prefab");
+	bulletAsset = (PrefabAsset*)AssetManager::Instance().GetAsset("bullet.prefab");
 }

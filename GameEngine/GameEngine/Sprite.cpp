@@ -69,7 +69,7 @@ void Sprite::Load(json::JSON& _document)
 
 	color = FileManager::JsonReadColor(_document, "color");
 
-	
+
 }
 
 Component* Sprite::Clone()
@@ -84,50 +84,69 @@ Component* Sprite::Clone()
 
 void Sprite::Render()
 {
+	// 1. Get the Scale
+	glm::vec2 scale = owner->transform->GetScale();
 
-	float renderW = size.x;
-	float renderH = size.y;
+	// 2. Calculate the Final Size on Screen
+	// Since clip is NULL, we just stretch the 'size' by the scale.
+	// Ensure 'size' was initialized to the Texture's width/height in your Load() function!
+	float renderW = size.x * scale.x;
+	float renderH = size.y * scale.y;
 
+	// 3. SCALE THE OFFSET (Crucial Step!)
+	// If we scale the image, we must also scale the distance from the pivot.
+	float scaledOffsetX = offset.x * scale.x;
+	float scaledOffsetY = offset.y * scale.y;
+
+	// 4. Calculate Rotation Pivot
 	glm::vec2 ownerPos = owner->transform->GetPosition();
 	float ownerAngleDeg = owner->transform->GetRotationDegrees();
-
 	float angleRad = ownerAngleDeg * (M_PI / 180.0f);
 
-	float rotatedOffsetX = (offset.x * std::cos(angleRad)) - (offset.y * std::sin(angleRad));
-	float rotatedOffsetY = (offset.x * std::sin(angleRad)) + (offset.y * std::cos(angleRad));
+	// Use the SCALED offset for rotation math
+	float rotatedOffsetX = (scaledOffsetX * std::cos(angleRad)) - (scaledOffsetY * std::sin(angleRad));
+	float rotatedOffsetY = (scaledOffsetX * std::sin(angleRad)) + (scaledOffsetY * std::cos(angleRad));
 
 	float finalCenterX = ownerPos.x + rotatedOffsetX;
 	float finalCenterY = ownerPos.y + rotatedOffsetY;
+	// ---- THE FIX: SNAP TO PIXEL ----
+	// We calculate the float position, but we ROUND it to the nearest whole number.
+	// This prevents drawing at "97.5px", forcing it to "98.0px".
+	float destX = std::round(finalCenterX - (renderW * 0.5f));
+	float destY = std::round(finalCenterY - (renderH * 0.5f));
 
+	// 5. Build the Destination Quad
+	// This centers the Quad around the calculated point
 	SDL_FRect renderQuad = {
-		finalCenterX - (renderW * 0.5f),
-		finalCenterY - (renderH * 0.5f),
-		renderW,
-		renderH
+			destX,
+			destY,
+			renderW, // Keep size as float (for scaling)
+			renderH
 	};
 
-	float finalRenderAngle = ownerAngleDeg + rotation;
-
+	// 6. Render
 	SDL_Texture* tex = textureAsset->GetTexture();
 
+	// Set Colors
 	Uint8 r = static_cast<Uint8>(color.r * 255.0f);
 	Uint8 g = static_cast<Uint8>(color.g * 255.0f);
 	Uint8 b = static_cast<Uint8>(color.b * 255.0f);
 	Uint8 a = static_cast<Uint8>(color.a * 255.0f);
-
 	SDL_SetTextureColorMod(tex, r, g, b);
 	SDL_SetTextureAlphaMod(tex, a);
 
+	// Draw
 	SDL_RenderCopyExF(
 		RenderSystem::Instance().GetRenderer(),
 		tex,
-		NULL,               // clip
-		&renderQuad,        // The calculated world position
-		finalRenderAngle,   // Total Angle
-		NULL,               // NULL center = Rotate around Sprite's OWN center
+		NULL,               // ALWAYS NULL (Draws the whole image)
+		&renderQuad,        // The Scaled Destination
+		ownerAngleDeg + rotation,
+		NULL,               // Center (NULL = Rotate around center of renderQuad)
 		flip
 	);
 
+	// Reset Colors
 	SDL_SetTextureColorMod(tex, 255, 255, 255);
 	SDL_SetTextureAlphaMod(tex, 255);
 }

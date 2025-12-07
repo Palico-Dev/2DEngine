@@ -16,10 +16,10 @@ public:
 	Component* Clone() override;
 
 public:
-	float speed = 100.0f;
+	float speed = 200.0f;
 
 	std::vector<Entity*> entities;
-	PrefabAsset* a = nullptr;
+	PrefabAsset* bulletAsset = nullptr;
 	
 };
 

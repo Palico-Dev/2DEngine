@@ -1,0 +1,63 @@
+{
+	"type": "Prefab",
+	"name": "Player",
+	"id": "0000-0000-0002",
+	"tag":[
+		"Player"
+	],
+	"components": [
+		{
+			"type": "Transform",
+			"position": {
+				"x": 0.0,
+				"y": 0.0
+			},
+			"scale": {
+				"x": 1.0,
+				"y": 1.0
+			},
+			"rotation": 0.0
+		},
+		{
+			"type": "CircleCollider",
+			"isRendered": true,
+			"center": {
+				"x": 0.0,
+				"y": 0.0
+			},
+			"layer": 0,
+			"isTrigger": false,
+			"isStatic": false,
+			"size": {
+				"x": 100.0,
+				"y": 100.0
+			},
+			"radius": 24.0
+		},
+		{
+			"type": "PlayerController"
+		},
+		{
+			"type": "Sprite",
+			"name": "Sprite01",
+			"asset": "player.png",
+			"layer": 0,
+			"size": {
+				"x": 48.0,
+				"y": 48.0
+			},
+			"offset": {
+				"x": 0.0,
+				"y": 0.0
+			},
+			"rotation": 0.0,
+			"flip": "SDL_FLIP_NONE",
+			"color": {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"a": 1.0
+			}
+		}
+	]
+}

@@ -1,8 +1,8 @@
 {
 	"RenderSystem" : {
 	  "Name" : "Main Window",
-	  "Width" : 1600,
-	  "Height" : 900,
+	  "Width" : 750,
+	  "Height" : 1000,
 	  "FullScreen" : false
 	},	
 	"Scenes":[

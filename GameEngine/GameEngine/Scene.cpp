@@ -2,6 +2,9 @@
 #include "Scene.h"
 #include "Entity.h"
 #include "AssetManager.h"
+#include "FileManager.h"
+#include "PrefabAsset.h"
+#include "Transform.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Scene)
 
@@ -23,10 +26,30 @@ void Scene::Load(json::JSON& jsonData)
 	if (jsonData.hasKey("entities"))
 	{
 		json::JSON entitiesJson = jsonData.at("entities");
-		for (auto& entityItem : entitiesJson.ArrayRange()) {
-			Entity* newEntity = (Entity*)(CreateObject("Entity"));
-			newEntity->Load(entityItem);
-			entities.push_back(newEntity);
+		for (auto& entityJson : entitiesJson.ArrayRange()) {
+			std::string type = FileManager::JsonReadString(entityJson, "type");
+			if (type == "Prefab")
+			{
+				std::string assetName = FileManager::JsonReadString(entityJson, "asset");
+				PrefabAsset* asset = (PrefabAsset*)AssetManager::Instance().GetAsset(assetName);
+				Entity* newEntity = asset->GetPrefab()->Clone();
+
+				glm::vec2 pos = FileManager::JsonReadVec2(entityJson, "position");
+				if (newEntity->transform != nullptr)
+				{
+					newEntity->transform->SetPosition(pos);
+				}
+
+				entities.push_back(newEntity);
+			}
+			else if (type == "Entity")
+			{
+				Entity* newEntity = (Entity*)(CreateObject("Entity"));
+				newEntity->Load(entityJson);
+				entities.push_back(newEntity);
+
+			}
+
 		}
 	}
 }
