@@ -1,7 +1,7 @@
 {
   "Asset" : "Textures/Background/backgroundColor.png",
-  "FileName" : "backgroundColor",
-  "Guid" : "157f7329-8f21-4677-b339-956a2d184e37",
+  "FileName" : "backgroundColor.png",
+  "Guid" : "aaffa736-7944-419a-9dcc-972a2f0abb05",
   "Location" : "Project",
   "Type" : "TextureAsset"
 }

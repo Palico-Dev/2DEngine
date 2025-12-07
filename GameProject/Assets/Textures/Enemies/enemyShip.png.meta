@@ -1,7 +1,7 @@
 {
   "Asset" : "Textures/Enemies/enemyShip.png",
-  "FileName" : "enemyShip",
-  "Guid" : "fdf79ccb-b8a8-4957-ba45-b4c367370946",
+  "FileName" : "enemyShip.png",
+  "Guid" : "4ebad3c7-3044-4644-a78c-a4f37199aaab",
   "Location" : "Project",
   "Type" : "TextureAsset"
 }

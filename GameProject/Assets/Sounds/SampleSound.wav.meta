@@ -1,7 +1,7 @@
 {
   "Asset" : "Sounds/SampleSound.wav",
-  "FileName" : "SampleSound",
-  "Guid" : "224f3fed-dcd1-4fbb-a3d2-1118ff63c6b6",
+  "FileName" : "SampleSound.wav",
+  "Guid" : "c6f5a7d4-a978-4666-8de2-110c2b9aae86",
   "Location" : "Project",
   "Type" : "SoundAsset"
 }

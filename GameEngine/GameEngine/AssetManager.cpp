@@ -67,19 +67,43 @@ void AssetManager::Unload(std::string& _scene)
 	//}
 }
 
-Asset* AssetManager::GetAsset(const char* fileName)
+Asset* AssetManager::GetAsset(const std::string& fileName)
 {
-	return assets.at(GetHashCode(fileName));
+	STRCODE key = GetHashCode(fileName.c_str());
+	auto it = assets.find(key);
+
+	if (it != assets.end())
+	{
+		return it->second;
+	}
+	Debug::Warning("CANNOT find asset!!! " + fileName);
+	return nullptr;
 }
 
-Asset* AssetManager::GetEngineAsset(const char* fileName)
+Asset* AssetManager::GetEngineAsset(const std::string& fileName)
 {
-	return engineAssets.at(fileName);
+	auto it = engineAssets.find(fileName);
+
+	if (it != engineAssets.end())
+	{
+		return it->second;
+	}
+
+	return nullptr;
 }
 
-std::string& AssetManager::GetAssetPath(const char* fileName)
+std::string& AssetManager::GetAssetPath(const std::string& fileName)
 {
-	return metaDatabase.at(GetHashCode(fileName));
+	STRCODE key = GetHashCode(fileName.c_str());
+	auto it = metaDatabase.find(key);
+
+	if (it != metaDatabase.end())
+	{
+		return it->second; 
+	}
+
+	static std::string emptyString = "";
+	return emptyString;
 }
 
 void AssetManager::Initialize()

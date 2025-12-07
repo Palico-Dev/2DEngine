@@ -1,7 +1,7 @@
 {
   "Asset" : "Textures/Enemies/laserRed.png",
-  "FileName" : "laserRed",
-  "Guid" : "d0cb8d63-3ddc-4443-afa8-6966cc9bccc3",
+  "FileName" : "laserRed.png",
+  "Guid" : "c7178d52-98b2-4f44-b916-12eec7562f0e",
   "Location" : "Project",
   "Type" : "TextureAsset"
 }

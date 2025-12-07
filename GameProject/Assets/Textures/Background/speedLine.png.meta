@@ -1,7 +1,7 @@
 {
   "Asset" : "Textures/Background/speedLine.png",
-  "FileName" : "speedLine",
-  "Guid" : "c598f8ad-15eb-474e-9b18-dae98229520f",
+  "FileName" : "speedLine.png",
+  "Guid" : "5d127254-1f30-493b-8458-4d68fcd6bca8",
   "Location" : "Project",
   "Type" : "TextureAsset"
 }

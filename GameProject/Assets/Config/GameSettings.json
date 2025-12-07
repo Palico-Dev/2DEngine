@@ -6,14 +6,6 @@
 	  "FullScreen" : false
 	},	
 	"Scenes":[
-	 { "SceneName": "DefaultScene",
-	 	"Type" : "Engine",
-	    "FilePath": "Scenes/Scene01.json" 
-	},
-	{ "SceneName": "Scene01",   
-		"Type" : "Project",
-		"FilePath": "Scenes/Scene01.json"
-	}
 	],
-	"StartupScene" : "Scene01"
+	"StartupScene" : "Scene01.scene"
 }

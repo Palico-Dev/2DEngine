@@ -1,7 +1,7 @@
 {
   "Asset" : "Textures/Background/nebula.png",
-  "FileName" : "nebula",
-  "Guid" : "dccdcbb6-0bc2-4a11-b6c9-2781aee6422c",
+  "FileName" : "nebula.png",
+  "Guid" : "6d63a39d-91ed-4935-8f0f-e9495fb5534d",
   "Location" : "Project",
   "Type" : "TextureAsset"
 }

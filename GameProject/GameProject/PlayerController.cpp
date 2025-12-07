@@ -57,5 +57,5 @@ void PlayerController::Update()
 
 void PlayerController::Start()
 {
-	a = (PrefabAsset*)AssetManager::Instance().GetAsset("testPrefab");
+	a = (PrefabAsset*)AssetManager::Instance().GetAsset("testPrefab.prefab");
 }

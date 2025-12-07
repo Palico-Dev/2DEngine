@@ -12,11 +12,11 @@ class AssetManager final
 public:
 	void Load(json::JSON& _json);
 	void Unload(std::string& _scene);
-	Asset* GetAsset(const char* fileName);
-	Asset* GetEngineAsset(const char* fileName);
+	Asset* GetAsset(const std::string& fileName);
+	Asset* GetEngineAsset(const std::string& fileName);
 
 
-	std::string& GetAssetPath(const char* fileName);
+	std::string& GetAssetPath(const std::string& fileName);
 
 
 private:

@@ -1,7 +1,7 @@
 {
   "Asset" : "Textures/Asteroids/meteorBig.png",
-  "FileName" : "meteorBig",
-  "Guid" : "ef58dfc5-42d2-4ecd-b6d5-2373d9d80576",
+  "FileName" : "meteorBig.png",
+  "Guid" : "bf8a0a1f-e186-4fde-95bd-d963b4c5f8da",
   "Location" : "Project",
   "Type" : "TextureAsset"
 }

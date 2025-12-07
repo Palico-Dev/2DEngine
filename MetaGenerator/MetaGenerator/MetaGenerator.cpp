@@ -32,14 +32,20 @@ void CreateMetaFile_(fs::path assetPath,fs::path folderPath,AssetLocation locati
 
 	json::JSON j;
 
-	j["FileName"] = assetPath.stem().string();
+
 
 	j["Type"] = GetAssetType(assetPath);
 
 	if (location == AssetLocation::Engine)
+	{
 		j["Location"] = "Engine";
+		j["FileName"] = assetPath.stem().string();
+	}
 	else
+	{
 		j["Location"] = "Project";
+		j["FileName"] = assetPath.filename().string();
+	}
 
 	UUID _uid;
 	CreateUUID(&_uid);

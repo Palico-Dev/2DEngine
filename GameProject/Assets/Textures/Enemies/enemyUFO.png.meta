@@ -1,7 +1,7 @@
 {
   "Asset" : "Textures/Enemies/enemyUFO.png",
-  "FileName" : "enemyUFO",
-  "Guid" : "452dfaec-7a41-4c66-ba26-fb619716276b",
+  "FileName" : "enemyUFO.png",
+  "Guid" : "846f802d-409c-402b-8386-01cd2644fabd",
   "Location" : "Project",
   "Type" : "TextureAsset"
 }

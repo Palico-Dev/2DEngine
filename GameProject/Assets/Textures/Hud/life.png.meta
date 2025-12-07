@@ -1,7 +1,7 @@
 {
   "Asset" : "Textures/Hud/life.png",
-  "FileName" : "life",
-  "Guid" : "bf2059d8-921f-441e-9832-1a91d7f7fa6e",
+  "FileName" : "life.png",
+  "Guid" : "15d4fb45-4c98-4e8d-8ffa-a77e43fbd472",
   "Location" : "Project",
   "Type" : "TextureAsset"
 }

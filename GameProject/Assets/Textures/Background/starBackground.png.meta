@@ -1,7 +1,7 @@
 {
   "Asset" : "Textures/Background/starBackground.png",
-  "FileName" : "starBackground",
-  "Guid" : "044423ac-a26c-4cdc-95cd-730b36e1ad7a",
+  "FileName" : "starBackground.png",
+  "Guid" : "f6e2f2eb-6fbe-442b-b60f-5f064a9f4b4e",
   "Location" : "Project",
   "Type" : "TextureAsset"
 }
