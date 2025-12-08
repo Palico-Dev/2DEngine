@@ -14,6 +14,7 @@ public:
 	void Update();
 
 	void GetDamage();
+	void OnTriggerEnter(Collider* other);
 private:
 	int maxHealth = 3;
 	int health = maxHealth;

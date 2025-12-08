@@ -3,6 +3,7 @@
 #include "FileManager.h"
 #include "Entity.h"
 #include "Transform.h"
+#include "Collider.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Meteor)
 CLONEABLE_IMPLEMENT(Meteor)
@@ -29,4 +30,12 @@ void Meteor::GetDamage()
 	health--;
 	if (health <= 0)
 		Gameplay::Destroy(owner);
+}
+
+void Meteor::OnTriggerEnter(Collider* other)
+{
+	if (other->owner->HasTag("Enemy"))
+	{
+		other->owner->GetComponent<>()
+	}
 }
