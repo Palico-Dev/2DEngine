@@ -5,6 +5,7 @@
 #include "Transform.h"
 #include "EngineTime.h"
 #include "AssetManager.h"
+#include "Random.h"
 
 IMPLEMENT_DYNAMIC_CLASS(PlayerController)
 
@@ -45,6 +46,11 @@ void PlayerController::Update()
 	if (InputManager::Instance().GetKeyPressed(SDLK_SPACE))
 	{
 		Entity* e = Gameplay::Spawn(bulletAsset, owner->transform->GetPosition()+glm::vec2(0,-50));
+	}
+	if (InputManager::Instance().GetKeyPressed(SDLK_r))
+	{
+		int i = Random::Int(0, 100);
+		Debug::Log(std::to_string(i));
 	}
 
 	

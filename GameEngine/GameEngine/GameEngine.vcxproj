@@ -211,6 +211,7 @@
     <ClCompile Include="Phase_Quadtree.cpp" />
     <ClCompile Include="Phase_SpatialHash.cpp" />
     <ClCompile Include="QuadTree.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -255,6 +256,7 @@
     <ClInclude Include="Phase_Quadtree.h" />
     <ClInclude Include="Phase_SpatialHash.h" />
     <ClInclude Include="QuadTree.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="randomc.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Scene.h" />

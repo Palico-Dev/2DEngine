@@ -150,6 +150,8 @@ Entity* Entity::Clone()
 			cloneEntity->transform = (Transform*)cloneComponent;
 		}
 	}
+	cloneEntity->tags = tags;
+	cloneEntity->name = name;
 	return cloneEntity;
 
 }
