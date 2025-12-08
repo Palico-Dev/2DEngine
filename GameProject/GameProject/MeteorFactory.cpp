@@ -9,7 +9,7 @@ IMPLEMENT_DYNAMIC_CLASS(MeteorFactory)
 
 void MeteorFactory::Start()
 {
-	createTimer = Random::Float(3.0f, 7.0f);
+	createTimer = Random::Float(3.0f, 5.0f);
 }
 
 void MeteorFactory::Update()
@@ -17,7 +17,7 @@ void MeteorFactory::Update()
 	createTimer -= Time::Instance().DeltaTime();
 	if (createTimer <= 0.0f)
 	{
-		createTimer = Random::Float(3.0f, 7.0f);
+		createTimer = Random::Float(3.0f, 5.0f);
 
 		CreateMeteor();
 	}
@@ -33,7 +33,7 @@ void MeteorFactory::Load(json::JSON& j)
 
 void MeteorFactory::CreateMeteor()
 {
-	int count = Random::Int(1, 5);
+	int count = Random::Int(1, 3);
 
 	std::vector<glm::vec2> posList;
 	float minDist = 50.0f;

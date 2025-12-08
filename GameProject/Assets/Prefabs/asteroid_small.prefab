@@ -58,7 +58,8 @@
 		{
 			"type": "Meteor",
 			"name": "Meteor",
-			"health": 3
+			"health": 3,
+			"speed" : 150.0
 		}
 	]
 }

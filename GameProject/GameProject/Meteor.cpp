@@ -16,6 +16,7 @@ void Meteor::Start()
 void Meteor::Load(json::JSON& jsonData)
 {
 	maxHealth = FileManager::JsonReadInt(jsonData, "health");
+	speed = FileManager::JsonReadFloat(jsonData, "speed");
 }
 
 void Meteor::Update()
