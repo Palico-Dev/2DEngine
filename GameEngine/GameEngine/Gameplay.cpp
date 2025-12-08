@@ -8,6 +8,7 @@
 
 Entity* Gameplay::Spawn(PrefabAsset* prefab)
 {
+	Debug::Log("Spawn prefab");
 	Entity* e = prefab->GetPrefab();
 	Entity* res = e->Clone();
 	SceneManager::Instance().GetCurrentScene()->AddEntity(res);
@@ -17,7 +18,6 @@ Entity* Gameplay::Spawn(PrefabAsset* prefab)
 
 Entity* Gameplay::Spawn(PrefabAsset* prefab, glm::vec2 pos)
 {
-	Debug::Log("Spawn prefab");
 	Entity* clone = Spawn(prefab);
 	if (clone->GetComponent<Transform>())
 	{

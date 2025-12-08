@@ -42,11 +42,11 @@ void UIImage::Load(json::JSON j)
 	if (!j.hasKey("asset"))
 	{
 		Debug::Warning("Texture are missing!!!");
-		textureAsset = (TextureAsset*)AssetManager::Instance().GetEngineAsset("DefaultTexture");
+		textureAsset = AssetManager::Instance().GetEngineAsset<TextureAsset>("DefaultTexture");
 	}
 	else
 	{
-		textureAsset = (TextureAsset*)AssetManager::Instance().GetAsset(FileManager::JsonReadString(j, "asset").c_str());
+		textureAsset = AssetManager::Instance().GetAsset<TextureAsset>(FileManager::JsonReadString(j, "asset").c_str());
 	}
 }
 

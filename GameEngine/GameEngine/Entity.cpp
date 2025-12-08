@@ -83,11 +83,12 @@ Component* const Entity::GetComponentByType(const std::string& comp_type)
 {
 	for(auto component: components)
 	{
-		if (component->GetDerivedTypeClassName() == comp_type)
+		if (component->IsA(GetHashCode(comp_type.c_str())) )
 		{
 			return component;
 		}
 	}
+	Debug::Error("Cannot find Component: " + comp_type);
 	return nullptr;
 }
 

@@ -32,14 +32,14 @@ void Collider::Initialize()
 		switch (GetType())
 		{
 		case ColliderType::Box:
-			t = (TextureAsset*)AssetManager::Instance().GetEngineAsset("ColliderBox");
+			t = AssetManager::Instance().GetEngineAsset<TextureAsset>("ColliderBox");
 			debugTexture = t->GetTexture();
 			if (!debugTexture)
 				Debug::Warning("Fail to load ColliderBox Texture!");
 			break;
 
 		case ColliderType::Circle:
-			t = (TextureAsset*)AssetManager::Instance().GetEngineAsset("ColliderCircle");
+			t = AssetManager::Instance().GetEngineAsset<TextureAsset>("ColliderCircle");
 			debugTexture = t->GetTexture();
 			if (!debugTexture)
 				Debug::Warning("Fail to load ColliderBox Texture!");

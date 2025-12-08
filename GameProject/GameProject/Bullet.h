@@ -4,14 +4,19 @@
 
 #include "Component.h"
 
+class Collider;
+
 class Bullet : public Component
 {
 	DECLARE_DYNAMIC_DERIVED_CLASS(Bullet, Component);
+	CLONEABLE(Bullet)
 public:
 	void Update() override;
 	void Start() override;
-	Component* Clone() override;
 	void Load(json::JSON& jsonData) override;
+
+private:
+	void OnTriggerEnter(Collider* other);
 
 private:
 	float speed = 0.0f;

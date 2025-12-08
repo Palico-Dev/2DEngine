@@ -7,17 +7,20 @@ class FontAsset : public Asset
 	DECLARE_DYNAMIC_DERIVED_CLASS(FontAsset, Asset)
 
 public:
-	TTF_Font* GetFontAsset() { return font; }
-	int GetFontSize() { return fontSize; }
+	TTF_Font* GetFontAsset(int _size) { return fontMap[_size]; }
 	void SetFontSize(int _size);
 
 private:
-	TTF_Font* font{};
-	int fontSize = 24;
 	void Init();
 	void Load(json::JSON j) override;
 	void Destroy() override;
 	void LoadFont(json::JSON j, int _size);
+
+private:
+	std::map<int,TTF_Font*> fontMap{};
+	int fontSize = 24;
+	json::JSON path;
+
 };
 
 #endif

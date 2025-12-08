@@ -11,6 +11,8 @@ class Transform : public Component
 public:
 	const glm::mat3& GetMatrix() const;
 
+	void Translate(glm::vec2 dir);
+
 	void SetPosition(const glm::vec2& pos)
 	{
 		position = pos;

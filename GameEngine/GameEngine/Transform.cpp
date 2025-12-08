@@ -20,6 +20,11 @@ const glm::mat3& Transform::GetMatrix() const
 	return cachedMatrix;
 }
 
+void Transform::Translate(glm::vec2 dir)
+{
+	SetPosition(GetPosition() + dir);
+}
+
 void Transform::Load(json::JSON& data)
 {
 	Component::Load(data);

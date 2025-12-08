@@ -49,19 +49,18 @@ void PlayerController::Update()
 	}
 	if (InputManager::Instance().GetKeyPressed(SDLK_r))
 	{
-		int i = Random::Int(0, 100);
-		Debug::Log(std::to_string(i));
+		Gameplay::Spawn(AssetManager::Instance().GetAsset<PrefabAsset>("asteroid_small.prefab"));
 	}
 
 	
 	direction.x = InputManager::Instance().GetAxis("walk_left", "walk_right");
 	direction.y = InputManager::Instance().GetAxis("walk_up", "walk_down");
 	//Debug::Log(glm::to_string(direction));
-	owner->transform->SetPosition(owner->transform->GetPosition()+direction*speed* Time::Instance().DeltaTime());
+	owner->transform->Translate(direction * speed * Time::Instance().DeltaTime());
 }
 
 void PlayerController::Start()
 {
 	Debug::Log("PlayerController Start");
-	bulletAsset = (PrefabAsset*)AssetManager::Instance().GetAsset("bullet.prefab");
+	bulletAsset = AssetManager::Instance().GetAsset<PrefabAsset>("bullet.prefab");
 }

@@ -67,7 +67,7 @@ void AssetManager::Unload(std::string& _scene)
 	//}
 }
 
-Asset* AssetManager::GetAsset(const std::string& fileName)
+Asset* AssetManager::GetAssetInternal(const std::string& fileName)
 {
 	STRCODE key = GetHashCode(fileName.c_str());
 	auto it = assets.find(key);
@@ -80,7 +80,7 @@ Asset* AssetManager::GetAsset(const std::string& fileName)
 	return nullptr;
 }
 
-Asset* AssetManager::GetEngineAsset(const std::string& fileName)
+Asset* AssetManager::GetEngineAssetInternal(const std::string& fileName)
 {
 	auto it = engineAssets.find(fileName);
 

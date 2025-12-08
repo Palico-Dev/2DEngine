@@ -30,13 +30,13 @@ void UILabel::Load(json::JSON j)
 	size = FileManager::JsonReadInt(j, "size");
 	color = FileManager::JsonReadColor(j, "color");
 	text = FileManager::JsonReadString(j, "text");
-	fontAsset = (FontAsset*)AssetManager::Instance().GetAsset(FileManager::JsonReadString(j, "font").c_str());
+	fontAsset = AssetManager::Instance().GetAsset<FontAsset>(FileManager::JsonReadString(j, "font").c_str());
 	fontAsset->SetFontSize(size);
 }
 
 void UILabel::OnRender()
 {
-	if (isDirty && fontAsset->GetFontAsset() != nullptr && !text.empty())
+	if (isDirty && fontAsset->GetFontAsset(size) != nullptr && !text.empty())
 	{
 		if (texture) SDL_DestroyTexture(texture);
 
@@ -46,7 +46,7 @@ void UILabel::OnRender()
 		Uint8 a = static_cast<Uint8>(color.a * 255.0f);
 		SDL_Color c = { r,g,b,a };
 
-		TTF_Font* font = fontAsset->GetFontAsset();
+		TTF_Font* font = fontAsset->GetFontAsset(size);
 
 		SDL_Surface* surface = TTF_RenderText_Blended(font, text.c_str(), c);
 

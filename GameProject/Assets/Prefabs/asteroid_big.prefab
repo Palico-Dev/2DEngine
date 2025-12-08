@@ -1,12 +1,15 @@
 {
-	"name": "testPrefab",
+	"name": "Meteor_Big",
 	"id": "0000-0000-0002",
+	"tags": [
+		"Meteor"
+	],
 	"components": [
 		{
 			"type": "Transform",
 			"position": {
-				"x": 100.0,
-				"y": 100.0
+				"x": 300.0,
+				"y": 500.0
 			},
 			"scale": {
 				"x": 1.0,
@@ -15,31 +18,47 @@
 			"rotation": 0.0
 		},
 		{
-			"type": "BoxCollider",
+			"type": "CircleCollider",
 			"isRendered": true,
 			"center": {
 				"x": 0.0,
 				"y": 0.0
 			},
 			"layer": 0,
-			"isTrigger": false,
+			"isTrigger": true,
 			"isStatic": false,
 			"size": {
 				"x": 50.0,
 				"y": 50.0
 			},
-			"radius": 50.0
+			"radius": 32.0
 		},
 		{
 			"type": "Sprite",
 			"name": "Sprite01",
-			"asset": "player.png",
-			"layer" : 0,
-			"size" : {"x":100.0,"y":100.0},
-			"offset" : {"x":0.0,"y":50.0},
-			"rotation" : 0.0,
-			"flip" : "SDL_FLIP_NONE",
-			"color" :{"r":1.0,"g":1.0,"b":1.0,"a":1.0}
+			"asset": "meteorBig.png",
+			"layer": 0,
+			"size": {
+				"x": 64.0,
+				"y": 64.0
+			},
+			"offset": {
+				"x": 0.0,
+				"y": 0.0
+			},
+			"rotation": 0.0,
+			"flip": "SDL_FLIP_NONE",
+			"color": {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"a": 1.0
+			}
+		},
+		{
+			"type": "Meteor",
+			"name": "Meteor",
+			"health": 5
 		}
 	]
 }

@@ -20,15 +20,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="FPSLabel.cpp" />
     <ClCompile Include="Game_Register.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Meteor.cpp" />
+    <ClCompile Include="MeteorFactory.cpp" />
     <ClCompile Include="PlayerController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="FPSLabel.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="Meteor.h" />
+    <ClInclude Include="MeteorFactory.h" />
     <ClInclude Include="PlayerController.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

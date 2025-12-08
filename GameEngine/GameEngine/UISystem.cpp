@@ -20,6 +20,11 @@ void UISystem::Destroy()
 	root->Destroy();
 }
 
+void UISystem::Start()
+{
+	root->Start();
+}
+
 void UISystem::Load(json::JSON j)
 {
 	if (j.hasKey("ui"))

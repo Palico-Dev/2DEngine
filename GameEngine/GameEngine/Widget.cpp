@@ -25,7 +25,11 @@ void Widget::Destroy()
 
 void Widget::Update()
 {
-
+	
+	for (auto& w : children)
+	{
+		w->Update();
+	}
 }
 
 void Widget::Load(json::JSON j)
@@ -47,6 +51,14 @@ void Widget::Load(json::JSON j)
 			newWidget->parent = this;
 			newWidget->Load(w);
 		}
+	}
+}
+
+void Widget::Start()
+{
+	for (auto& w : children)
+	{
+		w->Start();
 	}
 }
 

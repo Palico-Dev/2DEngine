@@ -31,7 +31,7 @@ void Scene::Load(json::JSON& jsonData)
 			if (type == "Prefab")
 			{
 				std::string assetName = FileManager::JsonReadString(entityJson, "asset");
-				PrefabAsset* asset = (PrefabAsset*)AssetManager::Instance().GetAsset(assetName);
+				PrefabAsset* asset = AssetManager::Instance().GetAsset<PrefabAsset>(assetName);
 				Entity* newEntity = asset->GetPrefab()->Clone();
 
 				glm::vec2 pos = FileManager::JsonReadVec2(entityJson, "position");

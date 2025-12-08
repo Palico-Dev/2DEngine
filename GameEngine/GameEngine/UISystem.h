@@ -17,6 +17,7 @@ private:
 	void Initialize();
 	void Update();
 	void Destroy();
+	void Start();
 
 
 

@@ -41,6 +41,7 @@ void Engine::Destroy()
 
 void Engine::GameLoop()
 {
+	UISystem::Instance().Start();
 	while (!quit)
 	{
         // PreUpdate TBD
@@ -53,6 +54,7 @@ void Engine::GameLoop()
         SceneManager::Instance().Update();
         CollisionSystem::Instance().Update();
         RenderSystem::Instance().Update();
+		UISystem::Instance().Update();
 
 		SceneManager::Instance().LateUpdate();
         // PostUpdate TBD

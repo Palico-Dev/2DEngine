@@ -35,7 +35,7 @@ public:
 protected:
 	void OnRender() override;
 
-private:
+protected:
 	FontAsset* fontAsset;
 	float size = 24;
 	std::string text = "";

@@ -11,11 +11,15 @@ class Meteor : public Component
 public:
 	void Start() override;
 	void Load(json::JSON& jsonData) override;
+	void Update();
 
 	void GetDamage();
 private:
 	int maxHealth = 3;
 	int health = maxHealth;
+
+	float speed = 100.0f;
+	glm::vec2 dir = { 0,1 };
 };
 
 #endif

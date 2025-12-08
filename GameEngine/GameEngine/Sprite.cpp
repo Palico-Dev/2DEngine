@@ -47,11 +47,11 @@ void Sprite::Load(json::JSON& _document)
 	if (!_document.hasKey("asset"))
 	{
 		Debug::Warning("Texture are missing!!!");
-		textureAsset = (TextureAsset*)AssetManager::Instance().GetEngineAsset("DefaultTexture");
+		textureAsset = AssetManager::Instance().GetEngineAsset<TextureAsset>("DefaultTexture");
 	}
 	else
 	{
-		textureAsset = (TextureAsset*)AssetManager::Instance().GetAsset(FileManager::JsonReadString(_document, "asset").c_str());
+		textureAsset = AssetManager::Instance().GetAsset<TextureAsset>(FileManager::JsonReadString(_document, "asset").c_str());
 	}
 
 	size = FileManager::JsonReadVec2(_document, "size");

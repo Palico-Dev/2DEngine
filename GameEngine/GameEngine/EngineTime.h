@@ -12,6 +12,7 @@ public:
 	float TotalTime() { return totalTime.count(); }
 	long long TotalTimeMill();
 	unsigned int FrameCount() { return frameCount; }
+	unsigned int FPS() { return fps; }
 
 private:
 	void Initialize();
@@ -24,6 +25,9 @@ private:
 	std::chrono::time_point<std::chrono::system_clock> beginTime;
 	std::chrono::time_point<std::chrono::system_clock> endTime;
 	std::chrono::time_point<std::chrono::steady_clock> programStartTime;
+	unsigned int fps = 0;
+	unsigned int fpsCounter = 0;
+	std::chrono::time_point<std::chrono::system_clock> fpsTime;
 
 	DECLARE_SINGLETON(Time)
 

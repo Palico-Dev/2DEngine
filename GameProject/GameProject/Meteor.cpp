@@ -1,6 +1,8 @@
 #include "GameCore.h"
 #include "Meteor.h"
 #include "FileManager.h"
+#include "Entity.h"
+#include "Transform.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Meteor)
 CLONEABLE_IMPLEMENT(Meteor)
@@ -14,6 +16,11 @@ void Meteor::Start()
 void Meteor::Load(json::JSON& jsonData)
 {
 	maxHealth = FileManager::JsonReadInt(jsonData, "health");
+}
+
+void Meteor::Update()
+{
+	owner->transform->Translate(dir * speed * Time::Instance().DeltaTime());
 }
 
 void Meteor::GetDamage()
