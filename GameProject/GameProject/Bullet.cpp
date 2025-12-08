@@ -5,13 +5,15 @@
 #include "Transform.h"
 #include "Collider.h"
 #include "Meteor.h"
+#include "Enemy.h"
+#include "PlayerController.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Bullet);
 CLONEABLE_IMPLEMENT(Bullet)
 
 void Bullet::Update()
 {
-	if (owner->transform->GetPosition().y < 0)
+	if (owner->transform->GetPosition().y < 0.0f|| owner->transform->GetPosition().y > 1050.0f)
 	{
 		Gameplay::Destroy(owner);
 	}
@@ -20,16 +22,15 @@ void Bullet::Update()
 
 void Bullet::Start()
 {
-	Debug::Log("Bullet Start");
-
 	Collider* collider = owner->GetComponent<Collider>();
 	if (collider == nullptr)
 	{
 		std::cout << "Cannot find Collider" << std::endl;
 		return;
 	}
-	collider->onEnter = [this](Collider* other) {
-		this->OnTriggerEnter(other);
+	collider->onEnter = [this](Collider* other)
+		{
+			this->OnTriggerEnter(other);
 		};
 }
 
@@ -39,14 +40,29 @@ void Bullet::Load(json::JSON& jsonData)
 
 	speed = FileManager::JsonReadFloat(jsonData, "speed");
 	dir = FileManager::JsonReadVec2(jsonData, "direction");
+
+	auto jsonNode = FileManager::JsonReadArray(jsonData, "targetTags");
+	for (auto& n : jsonNode)
+	{
+		targetTags.push_back(n.ToString());
+	}
 }
 
 void Bullet::OnTriggerEnter(Collider* other)
 {
-	Debug::Log(other->owner->name);
-	if (other->owner->HasTag("Meteor"))
+	if (other->owner->HasTag("Meteor") && Utility::VectorContains<std::string>(targetTags, "Meteor"))
 	{
 		other->owner->GetComponent<Meteor>()->GetDamage();
+		Gameplay::Destroy(owner);
+	}
+	if (other->owner->HasTag("Enemy") && Utility::VectorContains<std::string>(targetTags, "Enemy"))
+	{
+		other->owner->GetComponent<Enemy>()->GetDamage();
+		Gameplay::Destroy(owner);
+	}
+	if (other->owner->HasTag("Player") && Utility::VectorContains<std::string>(targetTags, "Player"))
+	{
+		other->owner->GetComponent<PlayerController>()->GetDamage();
 		Gameplay::Destroy(owner);
 	}
 

@@ -21,6 +21,9 @@ private:
 private:
 	float speed = 0.0f;
 	glm::vec2 dir = { 0,0 };
+
+private:
+	std::vector<std::string> targetTags;
 };
 
 #endif

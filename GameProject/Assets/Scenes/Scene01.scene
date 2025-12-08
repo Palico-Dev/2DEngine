@@ -10,8 +10,12 @@
 		"bullet.prefab",
 		"meteorBig.png",
 		"meteorSmall.png",
+		"enemyShip.png",
+		"laserRed.png",
+		"bullet_enemy.prefab",
 		"asteroid_big.prefab",
-		"asteroid_small.prefab"
+		"asteroid_small.prefab",
+		"enemy.prefab"
 	],
 	"scene": {
 		"name": "Level1",
@@ -34,6 +38,10 @@
 						"type": "MeteorFactory",
 						"small": "asteroid_small.prefab",
 						"big": "asteroid_big.prefab"
+					},
+					{
+						"type" : "EnemyFactory",
+						"enemy" : "enemy.prefab"
 					}
 				]
 			}

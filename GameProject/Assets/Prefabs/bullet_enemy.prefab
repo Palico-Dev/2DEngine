@@ -1,7 +1,10 @@
 {
-	"name": "Enemy",
+	"type": "Prefab",
+	"name": "Bullet",
 	"id": "0000-0000-0002",
-	"tags" : ["Enemy"],
+	"tags": [
+		"Bullet"
+	],
 	"components": [
 		{
 			"type": "Transform",
@@ -16,7 +19,7 @@
 			"rotation": 0.0
 		},
 		{
-			"type": "CircleCollider",
+			"type": "BoxCollider",
 			"isRendered": true,
 			"center": {
 				"x": 0.0,
@@ -26,19 +29,19 @@
 			"isTrigger": true,
 			"isStatic": false,
 			"size": {
-				"x": 50.0,
-				"y": 50.0
+				"x": 6.0,
+				"y": 20.0
 			},
-			"radius": 24.0
+			"radius": 50.0
 		},
 		{
 			"type": "Sprite",
 			"name": "Sprite01",
-			"asset": "enemyShip.png",
+			"asset": "laserRed.png",
 			"layer": 0,
 			"size": {
-				"x": 48.0,
-				"y": 48.0
+				"x": 5.0,
+				"y": 17.0
 			},
 			"offset": {
 				"x": 0.0,
@@ -54,10 +57,17 @@
 			}
 		},
 		{
-			"type": "Enemy",
-			"health" : 5,
-			"shootInterval" : 1.0,
-			"bullet" : "bullet_enemy.prefab"
+			"type": "Bullet",
+			"name": "Bullet",
+			"speed": 500.0,
+			"direction": {
+				"x": 0.0,
+				"y": 1.0
+			},
+			"targetTags": [
+				"Meteor",
+				"Player"
+			]
 		}
 	]
 }

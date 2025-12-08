@@ -177,6 +177,9 @@
     <ClCompile Include="Random.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h">
@@ -312,6 +315,9 @@
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Gameplay.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>

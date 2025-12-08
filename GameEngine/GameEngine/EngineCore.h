@@ -60,6 +60,7 @@
 #include "TypeClass.h"
 #include "EngineTime.h"
 #include "Gameplay.h"
+#include "Utility.h"
 
 #include "Debug.h"
 

@@ -8,11 +8,12 @@
 
 Entity* Gameplay::Spawn(PrefabAsset* prefab)
 {
-	Debug::Log("Spawn prefab");
+	
 	Entity* e = prefab->GetPrefab();
 	Entity* res = e->Clone();
 	SceneManager::Instance().GetCurrentScene()->AddEntity(res);
 	res->Initialize();
+	Debug::Log("Spawn prefab: "+res->name);
 	return res;
 }
 

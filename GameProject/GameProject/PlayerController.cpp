@@ -6,6 +6,7 @@
 #include "EngineTime.h"
 #include "AssetManager.h"
 #include "Random.h"
+#include "Collider.h"
 
 IMPLEMENT_DYNAMIC_CLASS(PlayerController)
 
@@ -36,20 +37,29 @@ Component* PlayerController::Clone()
 	return clone;
 }
 
+void PlayerController::OnTriggerEnter(Collider* other)
+{
+
+}
+
+void PlayerController::GetDamage()
+{
+	health--;
+	Debug::Log("Player Health: " + std::to_string(health));
+}
+
 void PlayerController::Update()
 {
 	Component::Update();
 	glm::vec2 direction = { 0, 0 };
 
-
-
 	if (InputManager::Instance().GetKeyPressed(SDLK_SPACE))
 	{
-		Entity* e = Gameplay::Spawn(bulletAsset, owner->transform->GetPosition()+glm::vec2(0,-50));
+		Entity* e = Gameplay::Spawn(bulletAsset, owner->transform->GetPosition()+glm::vec2(0,-20));
 	}
 	if (InputManager::Instance().GetKeyPressed(SDLK_r))
 	{
-		Gameplay::Spawn(AssetManager::Instance().GetAsset<PrefabAsset>("asteroid_small.prefab"));
+		Gameplay::Spawn(AssetManager::Instance().GetAsset<PrefabAsset>("enemy.prefab"),{350,500});
 	}
 
 	
@@ -63,4 +73,6 @@ void PlayerController::Start()
 {
 	Debug::Log("PlayerController Start");
 	bulletAsset = AssetManager::Instance().GetAsset<PrefabAsset>("bullet.prefab");
+
+
 }

@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyFactory.cpp" />
     <ClCompile Include="FPSLabel.cpp" />
     <ClCompile Include="Game_Register.cpp" />
     <ClCompile Include="main.cpp" />
@@ -29,6 +31,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyFactory.h" />
     <ClInclude Include="FPSLabel.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="Meteor.h" />

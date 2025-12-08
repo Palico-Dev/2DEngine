@@ -1,0 +1,35 @@
+#pragma once
+#ifndef _ENEMY_H_
+#define _ENEMY_H_
+
+#include "Component.h"
+
+class PrefabAsset;
+
+class Enemy : public Component
+{
+	DECLARE_DYNAMIC_DERIVED_CLASS(Enemy,Component)
+	CLONEABLE(Enemy);
+
+public:
+	void GetDamage();
+
+private:
+	void Start() override;
+	void Update() override;
+	void Load(json::JSON& jsonData) override;
+
+	void Shoot();
+
+private:
+	int maxHealth = 5;
+	int health = maxHealth;
+	float shootTimer = 0.0f;
+	float shootInterval = 3.0f;
+	float speed = 130.0f;
+	PrefabAsset* bullet = nullptr;
+};
+
+
+#endif
+

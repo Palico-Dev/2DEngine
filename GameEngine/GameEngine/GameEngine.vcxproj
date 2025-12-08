@@ -224,6 +224,7 @@
     <ClCompile Include="UIImage.cpp" />
     <ClCompile Include="UILabel.cpp" />
     <ClCompile Include="UISystem.cpp" />
+    <ClCompile Include="Utility.cpp" />
     <ClCompile Include="Widget.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +272,7 @@
     <ClInclude Include="UIImage.h" />
     <ClInclude Include="UILabel.h" />
     <ClInclude Include="UISystem.h" />
+    <ClInclude Include="Utility.h" />
     <ClInclude Include="Widget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

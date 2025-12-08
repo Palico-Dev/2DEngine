@@ -2,7 +2,7 @@
 	"type": "Prefab",
 	"name": "Bullet",
 	"id": "0000-0000-0002",
-	"tag": [
+	"tags": [
 		"Bullet"
 	],
 	"components": [
@@ -63,7 +63,11 @@
 			"direction": {
 				"x": 0.0,
 				"y": -1.0
-			}
+			},
+			"targetTags": [
+				"Meteor",
+				"Enemy"
+			]
 		}
 	]
 }

@@ -2,7 +2,7 @@
 	"type": "Prefab",
 	"name": "Player",
 	"id": "0000-0000-0002",
-	"tag":[
+	"tags":[
 		"Player"
 	],
 	"components": [
