@@ -88,8 +88,6 @@ private:
 	void FireEvents();
 	void Resolve();
 
-	void CallEvent(std::function<void(Collider*)> func,Collider* other);
-
 	friend class Engine;
 
 	std::pair<Collider*, Collider*> MakePairKey(Collider* c1, Collider* c2,CollisionInfo& info);

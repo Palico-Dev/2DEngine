@@ -8,17 +8,18 @@ class PrefabAsset;
 
 class Enemy : public Component
 {
-	DECLARE_DYNAMIC_DERIVED_CLASS(Enemy,Component)
+	DECLARE_DYNAMIC_DERIVED_CLASS(Enemy, Component)
 	CLONEABLE(Enemy);
 
 public:
 	void GetDamage();
 
-private:
+public:
 	void Start() override;
 	void Update() override;
 	void Load(json::JSON& jsonData) override;
 
+private:
 	void Shoot();
 
 private:

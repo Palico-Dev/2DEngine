@@ -8,6 +8,7 @@
 class Scene;
 class Component;
 class Transform;
+class Collider;
 
 class Entity final : public Object
 {
@@ -46,10 +47,22 @@ public:
 
 	bool HasTag(const std::string& tag);
 
-
-
 	void Load(json::JSON& jsonData) override;
 	Entity* Clone();
+
+	#pragma region Collision Event
+public:
+	void DispatchCollisionEnter(Collider* other);
+	void DispatchCollisionStay(Collider* other);
+	void DispatchCollisionExit(Collider* other);
+	void DispatchTriggerEnter(Collider* other);
+	void DispatchTriggerStay(Collider* other);
+	void DispatchTriggerExit(Collider* other);
+	#pragma endregion
+
+
+
+
 
 public:
 	std::string name = "";

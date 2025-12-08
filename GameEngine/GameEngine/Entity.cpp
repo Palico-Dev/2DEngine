@@ -3,6 +3,7 @@
 #include "Component.h"
 #include "Transform.h"
 #include "FileManager.h"
+#include "Collider.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Entity)
 
@@ -155,4 +156,52 @@ Entity* Entity::Clone()
 	cloneEntity->name = name;
 	return cloneEntity;
 
+}
+
+void Entity::DispatchCollisionEnter(Collider* other)
+{
+	for (auto& c : components)
+	{
+		c->OnCollisionEnter(other);
+	}
+}
+
+void Entity::DispatchCollisionStay(Collider* other)
+{
+	for (auto& c : components)
+	{
+		c->OnCollisionStay(other);
+	}
+}
+
+void Entity::DispatchCollisionExit(Collider* other)
+{
+	for (auto& c : components)
+	{
+		c->OnCollisionExit(other);
+	}
+}
+
+void Entity::DispatchTriggerEnter(Collider* other)
+{
+	for (auto& c : components)
+	{
+		c->OnTriggerEnter(other);
+	}
+}
+
+void Entity::DispatchTriggerStay(Collider* other)
+{
+	for (auto& c : components)
+	{
+		c->OnTriggerStay(other);
+	}
+}
+
+void Entity::DispatchTriggerExit(Collider* other)
+{
+	for (auto& c : components)
+	{
+		c->OnTriggerExit(other);
+	}
 }

@@ -7,6 +7,7 @@
 
 class Entity;
 class Transform;
+class Collider;
 class Component : public Object
 {
 	DECLARE_ABSTRACT_DERIVED_CLASS(Component, Object)
@@ -23,6 +24,14 @@ protected:
 	void Destroy() override;
 	virtual void Update() {};
 	virtual void Start() {};
+
+	virtual void OnCollisionEnter(Collider* other) {}
+	virtual void OnCollisionStay(Collider* other) {}
+	virtual void OnCollisionExit(Collider* other) {}
+
+	virtual void OnTriggerEnter(Collider* other) {}
+	virtual void OnTriggerStay(Collider* other) {}
+	virtual void OnTriggerExit(Collider* other) {}
 
 private:
 

@@ -22,16 +22,7 @@ void Bullet::Update()
 
 void Bullet::Start()
 {
-	Collider* collider = owner->GetComponent<Collider>();
-	if (collider == nullptr)
-	{
-		std::cout << "Cannot find Collider" << std::endl;
-		return;
-	}
-	collider->onEnter = [this](Collider* other)
-		{
-			this->OnTriggerEnter(other);
-		};
+
 }
 
 void Bullet::Load(json::JSON& jsonData)

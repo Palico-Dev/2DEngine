@@ -93,6 +93,7 @@ void Scene::LateUpdate()
 	{
 		entity->Destroy();
 		entities.remove(entity);
+		entities_to_add.remove(entity);
 		delete entity;
 	}
 	entities_to_remove.clear();

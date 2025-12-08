@@ -15,8 +15,8 @@ public:
 	void Start() override;
 	void Load(json::JSON& jsonData) override;
 
-private:
-	void OnTriggerEnter(Collider* other);
+protected:
+	void OnTriggerEnter(Collider* other) override;
 
 private:
 	float speed = 0.0f;

@@ -32,11 +32,6 @@ public:
 	bool isStatic = false;
 	float mass = 1.0f;
 
-	//On collision event callbacks
-	std::function<void(Collider*)> onEnter;
-	std::function<void(Collider*)> onStay;
-	std::function<void(Collider*)> onExit;
-
 	virtual void Load(json::JSON& _jsonData) override;
 
 protected:

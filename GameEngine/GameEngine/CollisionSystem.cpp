@@ -235,25 +235,61 @@ void CollisionSystem::FireEvents()
 		if (it != lastFrameResult.end())
 		{
 			//FireStay
-			CallEvent(res.first.first->onStay, res.first.second);
-			CallEvent(res.first.second->onStay, res.first.first);
+			Collider* a = res.first.first;
+			Collider* b = res.first.second;
+
+			if (a->isTrigger || b->isTrigger)
+			{
+				a->owner->DispatchTriggerStay(b);
+				b->owner->DispatchTriggerStay(a);
+			}
+			else
+			{
+				a->owner->DispatchCollisionStay(b);
+				b->owner->DispatchCollisionStay(a);
+			}
 			lastFrameResult.erase(it);
 		}
 		else
 		{
 			//FireEnter
-			CallEvent(res.first.first->onEnter, res.first.second);
-			CallEvent(res.first.second->onEnter, res.first.first);
+
+			Collider* a = res.first.first;
+			Collider* b = res.first.second;
+
+			if (a->isTrigger || b->isTrigger)
+			{
+				a->owner->DispatchTriggerEnter(b);
+				b->owner->DispatchTriggerEnter(a);
+			}
+			else
+			{
+				a->owner->DispatchCollisionEnter(b);
+				b->owner->DispatchCollisionEnter(a);
+			}
 		}
 	}
 
 	//FireExit
 	for (auto& res : lastFrameResult)
 	{
-		if (res.first.first == nullptr || res.first.second == nullptr)
+		Collider* a = res.first.first;
+		Collider* b = res.first.second;
+
+		if (a == nullptr || b == nullptr)
 			continue;
-		CallEvent(res.first.first->onExit, res.first.second);
-		CallEvent(res.first.second->onExit, res.first.first);
+
+
+		if (a->isTrigger || b->isTrigger)
+		{
+			a->owner->DispatchTriggerExit(b);
+			b->owner->DispatchTriggerExit(a);
+		}
+		else
+		{
+			a->owner->DispatchCollisionExit(b);
+			b->owner->DispatchCollisionExit(a);
+		}
 	}
 }
 
@@ -294,13 +330,6 @@ void CollisionSystem::Resolve()
 		}
 
 	}
-}
-
-void CollisionSystem::CallEvent(std::function<void(Collider*)> func, Collider* other)
-{
-	if (func == nullptr)
-		return;
-	func(other);
 }
 
 std::pair<Collider*, Collider*> CollisionSystem::MakePairKey(Collider* c1, Collider* c2, CollisionInfo& info)

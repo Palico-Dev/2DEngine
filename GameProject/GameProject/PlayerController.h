@@ -13,12 +13,12 @@ class PlayerController : public Component
 public:
 	void GetDamage();
 
-private:
+public:
 	void Update() override;
 	void Start() override;
 	void Initialize() override;
 	Component* Clone() override;
-	void OnTriggerEnter(Collider* other);
+	void OnTriggerEnter(Collider* other) override;
 
 public:
 	float speed = 200.0f;
@@ -28,7 +28,7 @@ public:
 
 	float maxHealth = 5;
 	float health = 5;
-	
+
 };
 
 #endif
