@@ -25,6 +25,7 @@ private:
 	void Initialize();
 	void Load(json::JSON& jsonData) override;
 	void Start();
+	void PreUpdate();
 	void Update();
 	void LateUpdate();
 	void Destroy();
@@ -35,6 +36,7 @@ private:
 	std::string name;
 	std::list<Entity*> entities;
 	std::list<Entity*> entities_to_remove;
+	std::list<Entity*> entities_to_add;
 	friend class Engine;
 	friend class SceneManager;
 

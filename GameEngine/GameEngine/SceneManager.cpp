@@ -55,6 +55,14 @@ void SceneManager::LateUpdate()
 	}
 }
 
+void SceneManager::PreUpdate()
+{
+	for (auto& s : scenes)
+	{
+		s->PreUpdate();
+	}
+}
+
 void SceneManager::LoadScene(const char* path)
 {
 	Debug::Log(std::string("Load Scene :") + path);

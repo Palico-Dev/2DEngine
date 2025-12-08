@@ -40,13 +40,17 @@ void Scene::Load(json::JSON& jsonData)
 					newEntity->transform->SetPosition(pos);
 				}
 
-				entities.push_back(newEntity);
+				newEntity->Initialize();
+				AddEntity(newEntity);
+				
 			}
 			else if (type == "Entity")
 			{
 				Entity* newEntity = (Entity*)(CreateObject("Entity"));
 				newEntity->Load(entityJson);
-				entities.push_back(newEntity);
+
+				newEntity->Initialize();
+				AddEntity(newEntity);
 
 			}
 
@@ -60,6 +64,18 @@ void Scene::Start()
 	{
 		entity->Start();
 	}
+}
+
+void Scene::PreUpdate()
+{
+	if (entities_to_add.empty())
+		return;
+	for (auto& entity : entities_to_add)
+	{
+		entity->Start();
+		entities.push_back(entity);
+	}
+	entities_to_add.clear();
 }
 
 void Scene::Update()
@@ -136,7 +152,7 @@ Entity* Scene::CreateEntity(const std::vector<std::string>& component_list)
 
 void Scene::AddEntity(Entity* e)
 {
-	entities.push_back(e);
+	entities_to_add.push_back(e);
 	e->name = GetUniqueName(e->name.c_str());
 }
 

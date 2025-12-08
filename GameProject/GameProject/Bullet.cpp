@@ -17,12 +17,7 @@ void Bullet::Update()
 
 void Bullet::Start()
 {
-
-}
-
-void Bullet::Initialize()
-{
-
+	Debug::Log("Bullet Start");
 }
 
 Component* Bullet::Clone()

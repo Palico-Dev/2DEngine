@@ -84,8 +84,8 @@
 				"type": "UILabel",
 				"name": "Label01",
 				"localPosition": {
-					"x": 50.0,
-					"y": 50.0
+					"x": 100.0,
+					"y": 100.0
 				},
 				"layer": 0,
 				"rotation": 0.0,
@@ -97,6 +97,26 @@
 					"r": 1.0,
 					"g": 1.0,
 					"b": 1.0,
+					"a": 1.0
+				}
+			},
+			{
+				"type": "UILabel",
+				"name": "FPSLabel",
+				"localPosition": {
+					"x": 10.0,
+					"y": 10.0
+				},
+				"layer": 0,
+				"rotation": 0.0,
+				"visibility": "Visible",
+				"font": "cour.ttf",
+				"size": 24,
+				"text": "100",
+				"color": {
+					"r": 0.0,
+					"g": 1.0,
+					"b": 0.0,
 					"a": 1.0
 				}
 			}

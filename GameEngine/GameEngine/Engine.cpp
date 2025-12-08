@@ -41,14 +41,15 @@ void Engine::Destroy()
 
 void Engine::GameLoop()
 {
-    SceneManager::Instance().Start();
-
 	while (!quit)
 	{
         // PreUpdate TBD
 
 		Time::Instance().Update();
         InputManager::Instance().Update();
+
+		SceneManager::Instance().PreUpdate();
+
         SceneManager::Instance().Update();
         CollisionSystem::Instance().Update();
         RenderSystem::Instance().Update();

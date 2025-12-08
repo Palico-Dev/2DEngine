@@ -174,5 +174,19 @@ extern Object* CreateObject(const char* _class);
 #define REGISTER_TYPECLASS(name)																							\
    name::staticClassInfo_##name = TypeClass::GetTypeClass(std::string(#name));	
 
+#define CLONEABLE(name)	\
+public: \
+	Component* Clone() override;
+
+#define CLONEABLE_IMPLEMENT(ClassName) \
+Component* ClassName::Clone() \
+{ \
+    /* #ClassName turns BoxCollider into "BoxCollider" */ \
+    ClassName* clone = (ClassName*)CreateObject(#ClassName); \
+    *clone = *this; \
+    clone->owner = nullptr; \
+    return clone; \
+} 
+
 #endif // _TYPECLASS_H_
 

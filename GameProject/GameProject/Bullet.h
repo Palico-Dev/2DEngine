@@ -10,7 +10,6 @@ class Bullet : public Component
 public:
 	void Update() override;
 	void Start() override;
-	void Initialize() override;
 	Component* Clone() override;
 	void Load(json::JSON& jsonData) override;
 
