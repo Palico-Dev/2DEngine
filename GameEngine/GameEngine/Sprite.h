@@ -12,6 +12,8 @@ class Sprite : public Component, public IRenderable
 	DECLARE_DYNAMIC_DERIVED_CLASS(Sprite, Component);
 public:
 	void SetColor(glm::vec4 c);
+	void SetTexture(TextureAsset* newTexture) { textureAsset = newTexture; }
+	void SetSize(glm::vec2 newSize) { size = newSize; }
 
 protected:
 	void Initialize() final;

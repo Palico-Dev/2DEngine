@@ -7,6 +7,7 @@
 #include "SceneManager.h"
 #include "FileManager.h"
 #include "UISystem.h"
+#include "Scene.h"
 
 extern void Engine_Register();
 
@@ -58,6 +59,11 @@ void Engine::GameLoop()
 
 		SceneManager::Instance().LateUpdate();
         // PostUpdate TBD
+
+		//Debug::Log("Asset Manager : " + std::to_string(AssetManager::Instance().assets.size()));
+		//Debug::Log("Render system : " + std::to_string(RenderSystem::Instance().GetRenderableSize()));
+		//Debug::Log("Collision system : " + std::to_string(CollisionSystem::Instance().colliders.size()));
+		//Debug::Log("Scene Manager : " + std::to_string(SceneManager::Instance().currentScene->entities.size()));
 	}
 }
 

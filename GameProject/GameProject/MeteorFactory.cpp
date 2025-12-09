@@ -4,6 +4,8 @@
 #include "AssetManager.h"
 #include "PrefabAsset.h"
 #include "Random.h"
+#include "Entity.h"
+#include "Meteor.h"
 
 IMPLEMENT_DYNAMIC_CLASS(MeteorFactory)
 
@@ -69,11 +71,13 @@ void MeteorFactory::CreateMeteor()
 
 		if (Random::Bool())
 		{
-			Gameplay::Spawn(meteorBig, posList[i]);
+			Entity* e = Gameplay::Spawn(meteorBig, posList[i]);
+			e->GetComponent<Meteor>()->SetSpeed(Random::Float(80.0f,120.0f));
 		}
 		else
 		{
-			Gameplay::Spawn(meteorSmall, posList[i]);
+			Entity* e = Gameplay::Spawn(meteorSmall, posList[i]);
+			e->GetComponent<Meteor>()->SetSpeed(Random::Float(130.0f, 150.0f));
 		}
 	}
 

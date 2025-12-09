@@ -21,6 +21,7 @@ public:
 
 private:
 	void Shoot();
+	void OnTriggerEnter(Collider* other);
 
 private:
 	int maxHealth = 5;

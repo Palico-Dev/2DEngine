@@ -12,10 +12,16 @@
 		"meteorSmall.png",
 		"enemyShip.png",
 		"laserRed.png",
+		"backgroundColor.png",
+		"nebula.png",
+		"speedLine.png",
+		"starBig.png",
+		"starSmall.png",
 		"bullet_enemy.prefab",
 		"asteroid_big.prefab",
 		"asteroid_small.prefab",
-		"enemy.prefab"
+		"enemy.prefab",
+		"backgroundItem.prefab"
 	],
 	"scene": {
 		"name": "Level1",
@@ -40,8 +46,53 @@
 						"big": "asteroid_big.prefab"
 					},
 					{
-						"type" : "EnemyFactory",
-						"enemy" : "enemy.prefab"
+						"type": "EnemyFactory",
+						"enemy": "enemy.prefab"
+					}
+				]
+			},
+			{
+				"type": "Entity",
+				"name": "Background",
+				"tags": [],
+				"components": [
+					{
+						"type": "Transform",
+						"position": {
+							"x": 0.0,
+							"y": 0.0
+						},
+						"scale": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"rotation": 0.0
+					},
+					{
+						"type": "Sprite",
+						"name": "Sprite01",
+						"asset": "backgroundColor.png",
+						"layer": -2,
+						"size": {
+							"x": 750.0,
+							"y": 1000.0
+						},
+						"offset": {
+							"x": 375.0,
+							"y": 500.0
+						},
+						"rotation": 0.0,
+						"flip": "SDL_FLIP_NONE",
+						"color": {
+							"r": 1.0,
+							"g": 1.0,
+							"b": 1.0,
+							"a": 1.0
+						}
+					},
+					{
+						"type": "Background",
+						"backgroundItem": "backgroundItem.prefab"
 					}
 				]
 			}

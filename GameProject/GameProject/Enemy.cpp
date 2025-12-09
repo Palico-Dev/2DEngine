@@ -5,6 +5,8 @@
 #include "PrefabAsset.h"
 #include "Transform.h"
 #include "Entity.h"
+#include "Collider.h"
+#include "PlayerController.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Enemy)
 CLONEABLE_IMPLEMENT(Enemy)
@@ -35,7 +37,7 @@ void Enemy::Update()
 		Shoot();
 		shootTimer = shootInterval;
 	}
-	
+
 
 
 
@@ -51,4 +53,13 @@ void Enemy::Load(json::JSON& jsonData)
 void Enemy::Shoot()
 {
 	Gameplay::Spawn(bullet, owner->transform->GetPosition() + glm::vec2(0, 20));
+}
+
+void Enemy::OnTriggerEnter(Collider* other)
+{
+	if (other->owner->HasTag("Player"))
+	{
+		other->owner->GetComponent<PlayerController>()->GetDamage();
+		Gameplay::Destroy(owner);
+	}
 }

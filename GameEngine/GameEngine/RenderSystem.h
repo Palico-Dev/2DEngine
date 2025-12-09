@@ -33,6 +33,19 @@ private:
 	void Update();
 	void Destroy();
 
+	int GetRenderableSize()
+	{
+		int count = 0;
+		for (auto& layerRenderables : renderableMap)
+		{
+			for (auto& r : layerRenderables.second)
+			{
+				count++;
+			}
+		}
+		return count;
+	}
+
 private:
 	static RenderSystem* instance;
 	std::map<int,std::list<IRenderable*>> renderableMap;

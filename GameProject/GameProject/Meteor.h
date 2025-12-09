@@ -15,6 +15,8 @@ public:
 
 	void GetDamage();
 	void OnTriggerEnter(Collider* other);
+
+	void SetSpeed(float _speed) { speed = _speed; }
 private:
 	int maxHealth = 3;
 	int health = maxHealth;
