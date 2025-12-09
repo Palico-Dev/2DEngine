@@ -45,6 +45,9 @@ protected:
 	SDL_Texture* texture = nullptr;
 	int texW = 0;
 	int texH = 0;
+
+private:
+	std::function<std::string()> dataBinding = nullptr;
 };
 
 #endif

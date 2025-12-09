@@ -178,6 +178,9 @@
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Utility.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBindingRegistry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -319,6 +322,9 @@
     </ClInclude>
     <ClInclude Include="Utility.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBindingRegistry.h">
+      <Filter>Header Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

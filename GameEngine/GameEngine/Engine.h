@@ -14,14 +14,19 @@ public:
 
 	json::JSON GetGameSettings() { return gameSettings; }
 
+	void SetGameInitCallback(std::function<void()> callback)
+	{
+		gameInitCallback = callback;
+	}
+
 private:
 	void LoadGameSettings();
-
-	bool quit = false;
 	friend class InputManager;
 
 private:
 	json::JSON gameSettings;
+	bool quit = false;
+	std::function<void()> gameInitCallback = nullptr;
 };
 
 #endif

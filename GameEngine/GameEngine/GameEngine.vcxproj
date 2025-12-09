@@ -193,6 +193,7 @@
     <ClCompile Include="CollisionMath.cpp" />
     <ClCompile Include="CollisionSystem.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="DataBindingRegistry.cpp" />
     <ClCompile Include="EngineTime.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Engine_Register.cpp" />
@@ -238,6 +239,7 @@
     <ClInclude Include="CollisionMath.h" />
     <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="DataBindingRegistry.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="EngineCore.h" />
     <ClInclude Include="EngineTime.h" />

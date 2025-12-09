@@ -21,9 +21,17 @@ void Engine::Initialize()
 	AssetManager::Instance().Initialize();
 	Time::Instance().Initialize();
 
+	if (gameInitCallback)
+	{
+		gameInitCallback();
+	}
+
     SceneManager::Instance().Initialize();
     InputManager::Instance().Initialize();
     CollisionSystem::Instance().Initialize();
+
+
+
 	UISystem::Instance().Initialize();
 	
 
@@ -59,7 +67,7 @@ void Engine::GameLoop()
 
 		SceneManager::Instance().LateUpdate();
         // PostUpdate TBD
-
+		
 		//Debug::Log("Asset Manager : " + std::to_string(AssetManager::Instance().assets.size()));
 		//Debug::Log("Render system : " + std::to_string(RenderSystem::Instance().GetRenderableSize()));
 		//Debug::Log("Collision system : " + std::to_string(CollisionSystem::Instance().colliders.size()));

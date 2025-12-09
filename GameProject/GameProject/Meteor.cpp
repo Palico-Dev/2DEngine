@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "PlayerController.h"
 #include "Random.h"
+#include "GameController.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Meteor)
 CLONEABLE_IMPLEMENT(Meteor)
@@ -35,7 +36,11 @@ void Meteor::GetDamage()
 {
 	health--;
 	if (health <= 0)
+	{
 		Gameplay::Destroy(owner);
+		GameController::Instance().AddScore(15);
+	}
+
 }
 
 void Meteor::OnTriggerEnter(Collider* other)

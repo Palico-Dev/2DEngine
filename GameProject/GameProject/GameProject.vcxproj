@@ -25,6 +25,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyFactory.cpp" />
     <ClCompile Include="FPSLabel.cpp" />
+    <ClCompile Include="GameController.cpp" />
     <ClCompile Include="Game_Register.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Meteor.cpp" />
@@ -38,6 +39,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyFactory.h" />
     <ClInclude Include="FPSLabel.h" />
+    <ClInclude Include="GameController.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="Meteor.h" />
     <ClInclude Include="MeteorFactory.h" />

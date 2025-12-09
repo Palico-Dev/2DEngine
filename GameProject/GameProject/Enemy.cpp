@@ -7,6 +7,7 @@
 #include "Entity.h"
 #include "Collider.h"
 #include "PlayerController.h"
+#include "GameController.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Enemy)
 CLONEABLE_IMPLEMENT(Enemy)
@@ -15,7 +16,11 @@ void Enemy::GetDamage()
 {
 	health--;
 	if (health <= 0)
+	{
 		Gameplay::Destroy(owner);
+		GameController::Instance().AddScore(25);
+	}
+
 }
 
 void Enemy::Start()
@@ -37,9 +42,6 @@ void Enemy::Update()
 		Shoot();
 		shootTimer = shootInterval;
 	}
-
-
-
 
 }
 

@@ -4,6 +4,7 @@
 #include "FontAsset.h"
 #include "AssetManager.h"
 #include "RenderSystem.h"
+#include "DataBindingRegistry.h"
 
 IMPLEMENT_DYNAMIC_CLASS(UILabel)
 
@@ -21,6 +22,11 @@ void UILabel::Destroy()
 
 void UILabel::Update()
 {
+	if (dataBinding != nullptr)
+	{
+		std::string newText = dataBinding();
+		SetText(newText);
+	}
 	Widget::Update();
 }
 void UILabel::Load(json::JSON j)
@@ -32,6 +38,12 @@ void UILabel::Load(json::JSON j)
 	text = FileManager::JsonReadString(j, "text");
 	fontAsset = AssetManager::Instance().GetAsset<FontAsset>(FileManager::JsonReadString(j, "font").c_str());
 	fontAsset->SetFontSize(size);
+
+	std::string bindkey = FileManager::JsonReadString(j, "binding");
+	if (bindkey != "")
+	{
+		dataBinding = DataBindingRegistry::Instance().GetStringBinding(GetHashCode(bindkey.c_str()));
+	}
 }
 
 void UILabel::OnRender()

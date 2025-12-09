@@ -4,10 +4,23 @@
 
 #include "Component.h"
 
-class GameController : public Component
+class GameController
 {
-	DECLARE_DYNAMIC_DERIVED_CLASS(GameController, Component);
-	//DECLARE_SINGLETON(GameController)
+	DECLARE_SINGLETON(GameController);
+
+
+public:
+	void Init();
+	void LoseHealth();
+	void RestartGame();
+	
+	void AddScore(int add);
+	int GetScore() { return score; }
+	int GetHighestScore() { return highestScore; }
+
+private:
+	int highestScore = 0;
+	int score = 0;
 };
 
 #endif
