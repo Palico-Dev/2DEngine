@@ -13,7 +13,7 @@ CLONEABLE_IMPLEMENT(Bullet)
 
 void Bullet::Update()
 {
-	if (owner->transform->GetPosition().y < 0.0f|| owner->transform->GetPosition().y > 1050.0f)
+	if (owner->transform->GetPosition().y < -10.0f || owner->transform->GetPosition().y > 1050.0f || owner->transform->GetPosition().x > 770.0f || owner->transform->GetPosition().x < -10.0f)
 	{
 		Gameplay::Destroy(owner);
 	}
@@ -37,6 +37,12 @@ void Bullet::Load(json::JSON& jsonData)
 	{
 		targetTags.push_back(n.ToString());
 	}
+}
+
+void Bullet::SetDirection(glm::vec2 newDir)
+{
+	dir = newDir;
+	owner->transform->LookAt({ -newDir.y,newDir.x });
 }
 
 void Bullet::OnTriggerEnter(Collider* other)

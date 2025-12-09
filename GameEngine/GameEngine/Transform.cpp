@@ -25,6 +25,22 @@ void Transform::Translate(glm::vec2 dir)
 	SetPosition(GetPosition() + dir);
 }
 
+void Transform::Rotate(float angle)
+{
+	SetRotationDegrees(GetRotationDegrees() + angle);
+}
+
+void Transform::LookAt(const glm::vec2& direction)
+{
+	if (glm::length(direction) < 0.001f)
+	{
+		return;
+	}
+	float angleRadians = glm::atan(direction.y, direction.x);
+
+	SetRotation(angleRadians);
+}
+
 void Transform::Load(json::JSON& data)
 {
 	Component::Load(data);

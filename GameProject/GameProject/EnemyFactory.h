@@ -18,7 +18,7 @@ private:
 
 private:
 	float createTimer = 0.0f;
-	PrefabAsset* enemyPrefab;
+	std::vector<PrefabAsset*> enemyPrefabs;
 };
 
 #endif

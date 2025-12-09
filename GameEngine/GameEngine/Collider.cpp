@@ -82,6 +82,8 @@ glm::vec2 Collider::GetCenterWorld() const
 
 void Collider::Render()
 {
+#ifdef _DEBUG
+
 	//skip if invisible or has missing texture
 	if (!isRendered || !debugTexture) return;
 
@@ -125,6 +127,8 @@ void Collider::Render()
 		&rotationCenter,                        //rotation around rect center
 		SDL_FLIP_NONE                           //mirroring?
 	);
+
+#endif
 }
 
 void Collider::Load(json::JSON& _jsonData)

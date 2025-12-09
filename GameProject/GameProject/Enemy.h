@@ -19,11 +19,11 @@ public:
 	void Update() override;
 	void Load(json::JSON& jsonData) override;
 
-private:
-	void Shoot();
+protected:
+	virtual void Shoot();
 	void OnTriggerEnter(Collider* other);
 
-private:
+protected:
 	int maxHealth = 5;
 	int health = maxHealth;
 	float shootTimer = 0.0f;

@@ -15,6 +15,9 @@ public:
 	void Start() override;
 	void Load(json::JSON& jsonData) override;
 
+public:
+	void SetDirection(glm::vec2 newDir);
+
 protected:
 	void OnTriggerEnter(Collider* other) override;
 

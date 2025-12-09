@@ -62,10 +62,10 @@ void PlayerController::Update()
 	{
 		Entity* e = Gameplay::Spawn(bulletAsset, owner->transform->GetPosition()+glm::vec2(0,-20));
 	}
-	if (InputManager::Instance().GetKeyPressed(SDLK_r))
-	{
-		Gameplay::Spawn(AssetManager::Instance().GetAsset<PrefabAsset>("enemy.prefab"),{350,500});
-	}
+	//if (InputManager::Instance().GetKeyPressed(SDLK_r))
+	//{
+	//	Gameplay::Spawn(AssetManager::Instance().GetAsset<PrefabAsset>("enemy_03.prefab"),{350,500});
+	//}
 
 	
 	direction.x = InputManager::Instance().GetAxis("walk_left", "walk_right");

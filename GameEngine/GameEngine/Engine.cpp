@@ -70,6 +70,7 @@ void Engine::GameLoop()
 		SceneManager::Instance().LateUpdate();
         // PostUpdate TBD
 		
+		//leaking check
 		//Debug::Log("Asset Manager : " + std::to_string(AssetManager::Instance().assets.size()));
 		//Debug::Log("Render system : " + std::to_string(RenderSystem::Instance().GetRenderableSize()));
 		//Debug::Log("Collision system : " + std::to_string(CollisionSystem::Instance().colliders.size()));

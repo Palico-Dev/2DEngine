@@ -3,6 +3,7 @@
 		"player.png",
 		"life.png",
 		"enemyShip.png",
+		"enemyUFO.png",
 		"cour.ttf",
 		"testPrefab.prefab",
 		"player.prefab",
@@ -21,6 +22,8 @@
 		"asteroid_big.prefab",
 		"asteroid_small.prefab",
 		"enemy.prefab",
+		"enemy_02.prefab",
+		"enemy_03.prefab",
 		"backgroundItem.prefab"
 	],
 	"scene": {
@@ -38,7 +41,9 @@
 			{
 				"type": "Entity",
 				"name": "GameController",
-				"tags": ["DontDestroyOnLoad"],
+				"tags": [
+					"DontDestroyOnLoad"
+				],
 				"components": [
 					{
 						"type": "MeteorFactory",
@@ -47,14 +52,20 @@
 					},
 					{
 						"type": "EnemyFactory",
-						"enemy": "enemy.prefab"
+						"enemy": [
+							"enemy.prefab",
+							"enemy_02.prefab",
+							"enemy_03.prefab"
+						]
 					}
 				]
 			},
 			{
 				"type": "Entity",
 				"name": "Background",
-				"tags": ["DontDestroyOnLoad"],
+				"tags": [
+					"DontDestroyOnLoad"
+				],
 				"components": [
 					{
 						"type": "Transform",
@@ -124,7 +135,7 @@
 					"x": 50.0,
 					"y": 40.0
 				},
-				"binding" : "GAME_HEALTH"
+				"binding": "GAME_HEALTH"
 			},
 			{
 				"type": "UILabel",

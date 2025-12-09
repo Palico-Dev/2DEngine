@@ -12,6 +12,19 @@ public:
 	const glm::mat3& GetMatrix() const;
 
 	void Translate(glm::vec2 dir);
+	void Rotate(float angle);
+	void LookAt(const glm::vec2& direction);
+
+	glm::vec2 GetForward() const
+	{
+		return glm::vec2(glm::cos(rotation), glm::sin(rotation));
+	}
+
+	glm::vec2 GetRight() const
+	{
+		glm::vec2 fwd = GetForward();
+		return glm::vec2(fwd.y, -fwd.x);
+	}
 
 	void SetPosition(const glm::vec2& pos)
 	{

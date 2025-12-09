@@ -18,11 +18,25 @@ void EnemyFactory::Update()
 
 void EnemyFactory::Load(json::JSON& jsonData)
 {
-	enemyPrefab = AssetManager::Instance().GetAsset<PrefabAsset>(FileManager::JsonReadString(jsonData, "enemy"));
+	auto jsonNodes = FileManager::JsonReadArray(jsonData, "enemy");
+	for (auto& j : jsonNodes)
+	{
+		PrefabAsset* p = AssetManager::Instance().GetAsset<PrefabAsset>(j.ToString());
+		enemyPrefabs.push_back(p);
+	}
 
 }
 
 void EnemyFactory::CreateEnemy()
 {
-	Gameplay::Spawn(enemyPrefab, { Random::Float(50.0f,700.0f),0 });
+	int index = Random::Int(0, 2);
+	if (index == 2)
+	{
+		Gameplay::Spawn(enemyPrefabs[index], { 0,Random::Float(50.0f,700.0f) });
+	}
+	else
+	{
+		Gameplay::Spawn(enemyPrefabs[index], {Random::Float(50.0f,700.0f),0});
+	}
+
 }
