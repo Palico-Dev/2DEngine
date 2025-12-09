@@ -27,6 +27,7 @@
     <ClCompile Include="FPSLabel.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="Game_Register.cpp" />
+    <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Meteor.cpp" />
     <ClCompile Include="MeteorFactory.cpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="FPSLabel.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GameCore.h" />
+    <ClInclude Include="HealthBar.h" />
     <ClInclude Include="Meteor.h" />
     <ClInclude Include="MeteorFactory.h" />
     <ClInclude Include="PlayerController.h" />

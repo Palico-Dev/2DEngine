@@ -4,6 +4,8 @@
 
 #include "Component.h"
 
+class Entity;
+
 class GameController
 {
 	DECLARE_SINGLETON(GameController);
@@ -12,6 +14,7 @@ class GameController
 public:
 	void Init();
 	void LoseHealth();
+	void Start();
 	void RestartGame();
 	
 	void AddScore(int add);
@@ -21,6 +24,10 @@ public:
 private:
 	int highestScore = 0;
 	int score = 0;
+
+	int gameHealth = 3;
+
+	Entity* player = nullptr;
 };
 
 #endif

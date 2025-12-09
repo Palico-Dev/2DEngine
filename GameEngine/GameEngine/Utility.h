@@ -10,6 +10,12 @@ public:
 	{
 		return std::find(vec.begin(), vec.end(), item) != vec.end();
 	}
+
+	template <typename T>
+	static bool ListContains(std::list<T>& vec, T item)
+	{
+		return std::find(vec.begin(), vec.end(), item) != vec.end();
+	}
 };
 
 #endif

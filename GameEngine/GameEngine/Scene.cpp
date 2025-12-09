@@ -5,6 +5,7 @@
 #include "FileManager.h"
 #include "PrefabAsset.h"
 #include "Transform.h"
+#include "Utility.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Scene)
 
@@ -177,10 +178,25 @@ std::vector<Entity*> Scene::FindAllEntitiesByTag(const std::string& tag)
 		if (e->HasTag(tag))
 			res.push_back(e);
 	}
+	for (auto& e : entities_to_add)
+	{
+		if (e->HasTag(tag))
+			res.push_back(e);
+	}
 	return res;
 }
 
 void Scene::RemoveEntity(Entity* e)
 {
-	entities_to_remove.push_back(e);
+	if(!Utility::ListContains<Entity*>(entities_to_remove,e))
+		entities_to_remove.push_back(e);
+}
+
+void Scene::CleanScene()
+{
+	for (auto& e : entities)
+	{
+		if(!e->HasTag("DontDestroyOnLoad"))
+			Gameplay::Destroy(e);
+	}
 }

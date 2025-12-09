@@ -29,6 +29,7 @@ public:
 	float maxHealth = 5;
 	float health = 5;
 
+
 };
 
 #endif

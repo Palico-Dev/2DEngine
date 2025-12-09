@@ -21,6 +21,8 @@ public:
 	std::vector<Entity*> FindAllEntitiesByTag(const std::string& tag);
 	void RemoveEntity(Entity* e);
 
+	void CleanScene();
+
 private:
 	void Initialize();
 	void Load(json::JSON& jsonData) override;

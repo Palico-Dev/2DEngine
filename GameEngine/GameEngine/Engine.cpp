@@ -51,6 +51,8 @@ void Engine::Destroy()
 void Engine::GameLoop()
 {
 	UISystem::Instance().Start();
+	if (gameStartCallback)
+		gameStartCallback();
 	while (!quit)
 	{
         // PreUpdate TBD

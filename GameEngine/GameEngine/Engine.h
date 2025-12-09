@@ -18,6 +18,10 @@ public:
 	{
 		gameInitCallback = callback;
 	}
+	void SetGameStartCallback(std::function<void()> callback)
+	{
+		gameStartCallback = callback;
+	}
 
 private:
 	void LoadGameSettings();
@@ -27,6 +31,7 @@ private:
 	json::JSON gameSettings;
 	bool quit = false;
 	std::function<void()> gameInitCallback = nullptr;
+	std::function<void()> gameStartCallback = nullptr;
 };
 
 #endif

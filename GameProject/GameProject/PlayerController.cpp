@@ -7,6 +7,7 @@
 #include "AssetManager.h"
 #include "Random.h"
 #include "Collider.h"
+#include "GameController.h"
 
 IMPLEMENT_DYNAMIC_CLASS(PlayerController)
 
@@ -45,7 +46,11 @@ void PlayerController::OnTriggerEnter(Collider* other)
 void PlayerController::GetDamage()
 {
 	health--;
-	Debug::Log("Player Health: " + std::to_string(health));
+	if (health <= 0)
+	{
+		GameController::Instance().LoseHealth();
+		health = maxHealth;
+	}
 }
 
 void PlayerController::Update()

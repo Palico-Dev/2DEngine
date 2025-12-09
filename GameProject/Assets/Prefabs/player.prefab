@@ -3,7 +3,8 @@
 	"name": "Player",
 	"id": "0000-0000-0002",
 	"tags":[
-		"Player"
+		"Player",
+		"DontDestroyOnLoad"
 	],
 	"components": [
 		{

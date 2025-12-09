@@ -8,4 +8,10 @@ void Game_Register()
 		GameController::Instance().Init();
 
 		});
+
+	Engine::Instance().SetGameStartCallback([]() {
+
+		GameController::Instance().Start();
+
+		});
 }
