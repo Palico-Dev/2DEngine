@@ -136,10 +136,10 @@ void FileManager::JsonWriteVec2(json::JSON& j, const std::string& key, glm::vec2
 void FileManager::JsonWriteColor(json::JSON& j, const std::string& key, glm::vec4 color)
 {
 	json::JSON vecNode = json::JSON::Object();
-	vecNode["r"] = color.x;
-	vecNode["g"] = color.y;
-	vecNode["b"] = color.y;
-	vecNode["a"] = color.y;
+	vecNode["r"] = color.r;
+	vecNode["g"] = color.g;
+	vecNode["b"] = color.b;
+	vecNode["a"] = color.a;
 	j[key] = vecNode;
 }
 

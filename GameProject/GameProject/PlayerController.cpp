@@ -65,11 +65,11 @@ void PlayerController::Update()
 	{
 		Entity* e = Gameplay::Spawn(bulletAsset, owner->transform->GetPosition()+glm::vec2(0,-20));
 	}
-	if (InputManager::Instance().GetKeyPressed(SDLK_r))
+	if (InputManager::Instance().GetKeyPressed(SDLK_BACKQUOTE))
 	{
 		SaveManager::Instance().SaveGame();
 	}
-	if (InputManager::Instance().GetKeyPressed(SDLK_t))
+	if (InputManager::Instance().GetKeyPressed(SDLK_l))
 	{
 		SceneManager::Instance().GetCurrentScene()->CleanScene();
 		SaveManager::Instance().LoadGame();
