@@ -5,7 +5,7 @@
 #include <windows.h>
 #endif
 
-json::JSON FileManager::LoadJson(const char* path)
+json::JSON FileManager::LoadJson(const std::string& path)
 {
 	std::ifstream file(path);
 	if (!file.is_open())
@@ -20,7 +20,7 @@ json::JSON FileManager::LoadJson(const char* path)
 	return j;
 }
 
-int FileManager::JsonReadInt(json::JSON& j, const char* key)
+int FileManager::JsonReadInt(json::JSON& j, const std::string& key)
 {
 	if (j.hasKey(key))
 	{
@@ -31,7 +31,7 @@ int FileManager::JsonReadInt(json::JSON& j, const char* key)
 	return -1;
 }
 
-float FileManager::JsonReadFloat(json::JSON& j, const char* key)
+float FileManager::JsonReadFloat(json::JSON& j, const std::string& key)
 {
 	if (j.hasKey(key))
 	{
@@ -42,7 +42,7 @@ float FileManager::JsonReadFloat(json::JSON& j, const char* key)
 	return -1.0f;
 }
 
-std::string FileManager::JsonReadString(json::JSON& j, const char* key)
+std::string FileManager::JsonReadString(json::JSON& j, const std::string& key)
 {
 	if (j.hasKey(key))
 	{
@@ -53,7 +53,7 @@ std::string FileManager::JsonReadString(json::JSON& j, const char* key)
 	return "";
 }
 
-glm::vec2 FileManager::JsonReadVec2(json::JSON& j, const char* key)
+glm::vec2 FileManager::JsonReadVec2(json::JSON& j, const std::string& key)
 {
 	if (j.hasKey(key))
 	{
@@ -69,7 +69,7 @@ glm::vec2 FileManager::JsonReadVec2(json::JSON& j, const char* key)
 	return glm::vec2(0.0f);
 }
 
-json::JSON FileManager::JsonReadJson(json::JSON& j, const char* key)
+json::JSON FileManager::JsonReadJson(json::JSON& j, const std::string& key)
 {
 	if (j.hasKey(key))
 	{
@@ -79,7 +79,7 @@ json::JSON FileManager::JsonReadJson(json::JSON& j, const char* key)
 	return json::JSON();
 }
 
-bool FileManager::JsonReadBool(json::JSON& j, const char* key)
+bool FileManager::JsonReadBool(json::JSON& j, const std::string& key)
 {
 	if (j.hasKey(key))
 	{
@@ -89,7 +89,7 @@ bool FileManager::JsonReadBool(json::JSON& j, const char* key)
 	return false;
 }
 
-glm::vec4 FileManager::JsonReadColor(json::JSON& j, const char* key)
+glm::vec4 FileManager::JsonReadColor(json::JSON& j, const std::string& key)
 {
 	if (j.hasKey(key))
 	{
@@ -107,7 +107,7 @@ glm::vec4 FileManager::JsonReadColor(json::JSON& j, const char* key)
 	return glm::vec4(0.0f);
 }
 
-std::vector<json::JSON> FileManager::JsonReadArray(json::JSON j, const std::string& key)
+std::vector<json::JSON> FileManager::JsonReadArray(json::JSON& j, const std::string& key)
 {
 	std::vector<json::JSON> result;
 
@@ -123,6 +123,44 @@ std::vector<json::JSON> FileManager::JsonReadArray(json::JSON j, const std::stri
 	}
 
 	return result;
+}
+
+void FileManager::JsonWriteVec2(json::JSON& j, const std::string& key, glm::vec2 vec)
+{
+	json::JSON vecNode = json::JSON::Object();
+	vecNode["x"] = vec.x;
+	vecNode["y"] = vec.y;
+	j[key] = vecNode;
+}
+
+void FileManager::JsonWriteColor(json::JSON& j, const std::string& key, glm::vec4 color)
+{
+	json::JSON vecNode = json::JSON::Object();
+	vecNode["r"] = color.x;
+	vecNode["g"] = color.y;
+	vecNode["b"] = color.y;
+	vecNode["a"] = color.y;
+	j[key] = vecNode;
+}
+
+void FileManager::JsonWriteInt(json::JSON& j, const std::string& key, int value)
+{
+	j[key] = value;
+}
+
+void FileManager::JsonWriteFloat(json::JSON& j, const std::string& key, float value)
+{
+	j[key] = value;
+}
+
+void FileManager::JsonWriteString(json::JSON& j, const std::string& key, std::string& value)
+{
+	j[key] = value;
+}
+
+void FileManager::JsonWriteBool(json::JSON& j, const std::string& key, bool value)
+{
+	j[key] = value;
 }
 
 std::vector<std::string> FileManager::GetALLMetaFiles(fs::path path)
@@ -198,4 +236,16 @@ fs::path FileManager::GetAssetPath(json::JSON j)
 	path = path / FileManager::JsonReadString(j, "Asset");
 
 	return path;
+}
+
+fs::path FileManager::GetSavePath()
+{
+	fs::path rootDir = GetAssetFolderPath().parent_path();
+	fs::path saveDir = rootDir / "Saves";
+	if (!fs::exists(saveDir))
+	{
+		fs::create_directory(saveDir);
+	}
+
+	return saveDir;
 }

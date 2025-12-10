@@ -15,6 +15,9 @@ public:
 	void SetTexture(TextureAsset* newTexture) { textureAsset = newTexture; }
 	void SetSize(glm::vec2 newSize) { size = newSize; }
 
+	void Serialize(json::JSON& j) override;
+	void Deserialize(json::JSON& j) override;
+
 protected:
 	void Initialize() final;
 	void Destroy() final;
@@ -29,10 +32,12 @@ protected:
 private:
 	std::string spriteName = "";
 
-	TextureAsset* textureAsset;
+	std::string assetName = "";
+	TextureAsset* textureAsset = nullptr;
 	glm::vec2 size = { 100,100 };
 	glm::vec2 offset = { 0,0 };
 	float rotation = 0.0f;
+	std::string flipString = "";
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
 	glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 };

@@ -12,7 +12,7 @@ public:
 
 private:
 	void Init();
-	void Load(json::JSON j) override;
+	void Load(json::JSON j, std::string& _fileName) override;
 	void Destroy() override;
 	void LoadFont(json::JSON j, int _size);
 

@@ -5,8 +5,9 @@
 
 IMPLEMENT_DYNAMIC_CLASS(PrefabAsset)
 
-void PrefabAsset::Load(json::JSON j)
+void PrefabAsset::Load(json::JSON j, std::string& _fileName)
 {
+    fileName = _fileName;
     fs::path path = FileManager::GetAssetPath(j);
 
     json::JSON prefabJson = FileManager::LoadJson(path.generic_string().c_str());

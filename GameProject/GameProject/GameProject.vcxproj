@@ -26,7 +26,6 @@
     <ClCompile Include="EnemyFactory.cpp" />
     <ClCompile Include="Enemy_02.cpp" />
     <ClCompile Include="Enemy_03.cpp" />
-    <ClCompile Include="FPSLabel.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="Game_Register.cpp" />
     <ClCompile Include="HealthBar.cpp" />
@@ -43,7 +42,6 @@
     <ClInclude Include="EnemyFactory.h" />
     <ClInclude Include="Enemy_02.h" />
     <ClInclude Include="Enemy_03.h" />
-    <ClInclude Include="FPSLabel.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="HealthBar.h" />

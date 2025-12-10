@@ -8,9 +8,9 @@
 #include "IRenderable.h"
 #include "Transform.h"
 
-class Collider : public Component,public IRenderable
+class Collider : public Component, public IRenderable
 {
-	DECLARE_ABSTRACT_DERIVED_CLASS(Collider,Component);
+	DECLARE_ABSTRACT_DERIVED_CLASS(Collider, Component);
 
 public:
 	void Initialize() override;
@@ -33,6 +33,8 @@ public:
 	float mass = 1.0f;
 
 	virtual void Load(json::JSON& _jsonData) override;
+	virtual void Serialize(json::JSON& j) override;
+	virtual void Deserialize(json::JSON& j) override;
 
 protected:
 	void Render() override;

@@ -35,8 +35,9 @@ void FontAsset::LoadFont(json::JSON j, int _size)
     fontMap.emplace(_size, font);
 }
 
-void FontAsset::Load(json::JSON j)
+void FontAsset::Load(json::JSON j, std::string& _fileName)
 {
+    fileName = _fileName;
     Init();
     LoadFont(j,fontSize);   
     path = j;

@@ -21,6 +21,9 @@ public:
 	int GetScore() { return score; }
 	int GetHighestScore() { return highestScore; }
 
+	void Serialize(json::JSON& j);
+	void Deserialize(json::JSON& j);
+
 private:
 	int highestScore = 0;
 	int score = 0;

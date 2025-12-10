@@ -39,6 +39,18 @@ void Bullet::Load(json::JSON& jsonData)
 	}
 }
 
+void Bullet::Serialize(json::JSON& j)
+{
+	FileManager::JsonWriteFloat(j, "speed", speed);
+	FileManager::JsonWriteVec2(j, "direction", dir);
+	FileManager::JsonWriteArray<std::string>(j, "targetTags", targetTags);
+}
+
+void Bullet::Deserialize(json::JSON& j)
+{
+
+}
+
 void Bullet::SetDirection(glm::vec2 newDir)
 {
 	dir = newDir;

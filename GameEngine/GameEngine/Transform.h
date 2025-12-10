@@ -64,6 +64,8 @@ public:
 
 	void Load(json::JSON& data);
 	Component* Clone() override;
+	void Serialize(json::JSON& j) override;
+	void Deserialize(json::JSON& j) override;
 
 private:
 	glm::vec2 position = glm::vec2(0.0f, 0.0f);

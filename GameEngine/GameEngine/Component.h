@@ -17,6 +17,10 @@ public:
 	void Load(json::JSON& jsonData) override;
 	virtual Component* Clone() { return nullptr; };
 
+	virtual void Serialize(json::JSON& j){}
+	virtual void Deserialize(json::JSON& j){}
+
+
 public:
 	Entity* owner = nullptr;
 

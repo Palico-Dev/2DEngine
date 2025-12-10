@@ -24,6 +24,9 @@ public:
     void Load(json::JSON& _jsonData) override;
     Component* Clone() override;
 
+	virtual void Serialize(json::JSON& j) override;
+	virtual void Deserialize(json::JSON& j) override;
+
 private:
 	float radius = 1.0f;
 };

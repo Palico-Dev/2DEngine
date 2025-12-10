@@ -1,6 +1,6 @@
 #include "GameCore.h"
 #include "GameController.h"
-
+#include "SaveManager.h"
 void Game_Register()
 {
 	Engine::Instance().SetGameInitCallback([]() {
@@ -14,4 +14,12 @@ void Game_Register()
 		GameController::Instance().Start();
 
 		});
+
+	SaveManager::Instance().SetGameSerialize([](json::JSON& j) {
+
+		GameController::Instance().Serialize(j);
+
+		});
+
+
 }

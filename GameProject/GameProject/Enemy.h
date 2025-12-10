@@ -18,6 +18,8 @@ public:
 	void Start() override;
 	void Update() override;
 	void Load(json::JSON& jsonData) override;
+	void Serialize(json::JSON& j) override;
+	void Deserialize(json::JSON& j) override;
 
 protected:
 	virtual void Shoot();
@@ -29,6 +31,7 @@ protected:
 	float shootTimer = 0.0f;
 	float shootInterval = 3.0f;
 	float speed = 130.0f;
+	std::string bulletName = "";
 	PrefabAsset* bullet = nullptr;
 };
 

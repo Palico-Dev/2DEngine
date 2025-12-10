@@ -1,5 +1,6 @@
 #include "EngineCore.h"
 #include "Transform.h"
+#include "FileManager.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Transform);
 
@@ -44,22 +45,9 @@ void Transform::LookAt(const glm::vec2& direction)
 void Transform::Load(json::JSON& data)
 {
 	Component::Load(data);
-	if (data.hasKey("position"))
-	{
-		auto posJson = data.at("position");
-		position.x = static_cast<float>(posJson.at("x").ToFloat());
-		position.y = static_cast<float>(posJson.at("y").ToFloat());
-	}
-	if (data.hasKey("scale"))
-	{
-		auto scaleJson = data.at("scale");
-		scale.x = static_cast<float>(scaleJson.at("x").ToFloat());
-		scale.y = static_cast<float>(scaleJson.at("y").ToFloat());
-	}
-	if (data.hasKey("rotation"))
-	{
-		rotation = static_cast<float>(data.at("rotation").ToFloat());
-	}
+	position = FileManager::JsonReadVec2(data, "position");
+	scale = FileManager::JsonReadVec2(data, "scale");
+	rotation = FileManager::JsonReadFloat(data, "rotation");
 }
 
 Component* Transform::Clone()
@@ -70,4 +58,16 @@ Component* Transform::Clone()
 
 	clone->owner = nullptr;
 	return clone;
+}
+
+void Transform::Serialize(json::JSON& j)
+{
+	FileManager::JsonWriteVec2(j, "position", position);
+	FileManager::JsonWriteVec2(j, "scale", scale);
+	FileManager::JsonWriteFloat(j, "rotation", rotation);
+}
+
+void Transform::Deserialize(json::JSON& j)
+{
+
 }

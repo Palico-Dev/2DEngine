@@ -135,15 +135,24 @@ void Collider::Load(json::JSON& _jsonData)
 {
 	Component::Load(_jsonData);
 
-	if (_jsonData.hasKey("center"))
-	{
-		auto c = _jsonData["center"];
-		center.x = c["x"].ToFloat();
-		center.y = c["y"].ToFloat();
-	}
-	if (_jsonData.hasKey("isTrigger")) isTrigger = _jsonData["isTrigger"].ToBool();
-	if (_jsonData.hasKey("layer")) layer = _jsonData["layer"].ToInt();
-	if (_jsonData.hasKey("isStatic")) isStatic = _jsonData["isStatic"].ToBool();
-	if (_jsonData.hasKey("isRendered"))
-		isRendered = _jsonData["isRendered"].ToBool();
+	center = FileManager::JsonReadVec2(_jsonData, "center");
+	isTrigger = FileManager::JsonReadBool(_jsonData, "isTrigger");
+	isStatic = FileManager::JsonReadBool(_jsonData, "isStatic");
+	isRendered = FileManager::JsonReadBool(_jsonData, "isRendered");
+	layer = FileManager::JsonReadInt(_jsonData, "layer");
+}
+
+void Collider::Serialize(json::JSON& j)
+{
+	FileManager::JsonWriteVec2(j, "center", center);
+	FileManager::JsonWriteBool(j, "isTrigger", isTrigger);
+	FileManager::JsonWriteBool(j, "layer", isStatic);
+	FileManager::JsonWriteBool(j, "isStatic", isRendered);
+	FileManager::JsonWriteInt(j, "layer", layer);
+
+}
+
+void Collider::Deserialize(json::JSON& j)
+{
+
 }

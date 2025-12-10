@@ -214,6 +214,7 @@
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="SaveManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundAsset.cpp" />
@@ -262,6 +263,7 @@
     <ClInclude Include="Random.h" />
     <ClInclude Include="randomc.h" />
     <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="SaveManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SoundAsset.h" />

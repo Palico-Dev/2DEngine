@@ -14,6 +14,8 @@ public:
 	void Update() override;
 	void Start() override;
 	void Load(json::JSON& jsonData) override;
+	void Serialize(json::JSON& j) override;
+	void Deserialize(json::JSON& j) override;
 
 public:
 	void SetDirection(glm::vec2 newDir);

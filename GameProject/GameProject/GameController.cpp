@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "Entity.h"
 #include "Transform.h"
+#include "FileManager.h"
 
 void GameController::Init()
 {
@@ -53,4 +54,20 @@ void GameController::AddScore(int add)
 	score += add;
 	if (score > highestScore)
 		highestScore = score;
+}
+
+void GameController::Serialize(json::JSON& j)
+{
+	json::JSON node;
+	FileManager::JsonWriteInt(node, "highestScore", highestScore);
+	FileManager::JsonWriteInt(node, "score", score);
+	FileManager::JsonWriteInt(node, "gameHealth", gameHealth);
+	FileManager::JsonWriteVec2(node, "playerPosition", player->transform->GetPosition());
+
+	j["gameController"] = node;
+}
+
+void GameController::Deserialize(json::JSON& j)
+{
+
 }

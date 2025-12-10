@@ -24,6 +24,9 @@ public:
 	void Load(json::JSON& _jsonData) override;
 	Component* Clone() override;
 
+	virtual void Serialize(json::JSON& j) override;
+	virtual void Deserialize(json::JSON& j) override;
+
 private:
 	std::vector<glm::vec2> vertices;
 	glm::vec2 size = { 1.0f, 1.0f };

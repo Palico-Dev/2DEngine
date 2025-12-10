@@ -26,7 +26,7 @@ void AssetManager::Load(json::JSON& _json)
 		{
 			json::JSON j = FileManager::LoadJson(path.c_str());
 			Asset* newAsset = (Asset*)CreateObject(FileManager::JsonReadString(j, "Type").c_str());
-			newAsset->Load(j);
+			newAsset->Load(j, fileName);
 
 			assets.emplace(GetHashCode(fileName.c_str()), newAsset);
 		}
@@ -155,7 +155,7 @@ void AssetManager::LoadEngineAsset()
 			continue;
 
 		Asset* asset = (Asset*)CreateObject(type.c_str());
-		asset->Load(j);
+		asset->Load(j, fileName);
 		engineAssets.emplace(fileName, asset);
 
 	}

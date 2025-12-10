@@ -12,7 +12,7 @@ public:
 
 private:
 	SDL_Texture* texture{};
-	void Load(json::JSON j) override;
+	void Load(json::JSON j, std::string& _fileName) override;
 	void Destroy() override;
 };
 

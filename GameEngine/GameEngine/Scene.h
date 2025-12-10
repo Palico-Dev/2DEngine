@@ -41,6 +41,7 @@ private:
 	std::list<Entity*> entities_to_add;
 	friend class Engine;
 	friend class SceneManager;
+	friend class SaveManager;
 
 };
 

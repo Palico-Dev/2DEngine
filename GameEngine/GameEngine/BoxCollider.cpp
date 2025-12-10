@@ -1,5 +1,6 @@
 #include "EngineCore.h"
 #include "BoxCollider.h"
+#include "FileManager.h"
 
 IMPLEMENT_DYNAMIC_CLASS(BoxCollider);
 
@@ -82,12 +83,7 @@ void BoxCollider::Load(json::JSON& _jsonData)
 {
 	Collider::Load(_jsonData);
 
-	if (_jsonData.hasKey("size"))
-	{
-		auto s = _jsonData["size"];
-		size.x = s["x"].ToFloat();
-		size.y = s["y"].ToFloat();
-	}
+	size = FileManager::JsonReadVec2(_jsonData, "size");
 }
 
 Component* BoxCollider::Clone()
@@ -98,4 +94,16 @@ Component* BoxCollider::Clone()
 
 	clone->owner = nullptr; 
 	return clone;
+}
+
+void BoxCollider::Serialize(json::JSON& j)
+{
+	Collider::Serialize(j);
+
+	FileManager::JsonWriteVec2(j, "size", size);
+}
+
+void BoxCollider::Deserialize(json::JSON& j)
+{
+
 }

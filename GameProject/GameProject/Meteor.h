@@ -10,8 +10,11 @@ class Meteor : public Component
 	CLONEABLE(Meteor)
 public:
 	void Start() override;
-	void Load(json::JSON& jsonData) override;
 	void Update();
+	void Load(json::JSON& jsonData) override;
+
+	void Serialize(json::JSON& j) override;
+	void Deserialize(json::JSON& j) override;
 
 	void GetDamage();
 	void OnTriggerEnter(Collider* other);
@@ -21,6 +24,7 @@ private:
 	int maxHealth = 3;
 	int health = maxHealth;
 
+	float aSpeed = 100.0f;
 	float speed = 100.0f;
 	glm::vec2 dir = { 0,1 };
 };

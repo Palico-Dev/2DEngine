@@ -13,7 +13,7 @@ public:
 private:
 	Mix_Chunk* sound{};
 	void Init();
-	void Load(json::JSON j) override;
+	void Load(json::JSON j, std::string& _fileName) override;
 	void Destroy() override;
 };
 

@@ -205,3 +205,30 @@ void Entity::DispatchTriggerExit(Collider* other)
 		c->OnTriggerExit(other);
 	}
 }
+
+json::JSON Entity::Serialize()
+{
+	json::JSON entityNode;
+
+	FileManager::JsonWriteString(entityNode, "name", name);
+	FileManager::JsonWriteArray(entityNode, "tags", tags);
+
+	json::JSON compNodes = json::JSON::Array();
+	for (auto& comp : components)
+	{
+		json::JSON compJson;
+		compJson["type"] = comp->GetDerivedTypeClassName();
+
+		comp->Serialize(compJson);
+
+		compNodes.append(compJson);
+	}
+	entityNode["components"] = compNodes;
+
+	return entityNode;
+}
+
+void Entity::Deserialize(json::JSON& j)
+{
+
+}

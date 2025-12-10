@@ -14,7 +14,7 @@ public:
 
 private:
     Entity* prefab;
-    void Load(json::JSON j) override;
+    void Load(json::JSON j, std::string& _fileName) override;
     void Destroy() override;
 };
 

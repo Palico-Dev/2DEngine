@@ -60,7 +60,8 @@ public:
 	void DispatchTriggerExit(Collider* other);
 	#pragma endregion
 
-
+	json::JSON Serialize();
+	void Deserialize(json::JSON& j);
 
 
 

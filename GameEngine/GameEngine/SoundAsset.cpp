@@ -14,8 +14,9 @@ void SoundAsset::Init()
     }
 }
 
-void SoundAsset::Load(json::JSON j)
+void SoundAsset::Load(json::JSON j, std::string& _fileName)
 {
+    fileName = _fileName;
     Init();
     std::string path = FileManager::JsonReadString(j, "Asset");
     sound = Mix_LoadWAV(path.c_str());

@@ -1,5 +1,6 @@
 #include "EngineCore.h"
 #include "CircleCollider.h"
+#include "FileManager.h"
 
 IMPLEMENT_DYNAMIC_CLASS(CircleCollider);
 
@@ -38,10 +39,7 @@ void CircleCollider::Load(json::JSON& _jsonData)
 {
 	Collider::Load(_jsonData);
 
-    if (_jsonData.hasKey("radius"))
-    {
-        radius = _jsonData["radius"].ToFloat();
-    }
+	radius = FileManager::JsonReadFloat(_jsonData, "radius");
 }
 
 Component* CircleCollider::Clone()
@@ -52,4 +50,15 @@ Component* CircleCollider::Clone()
 
 	clone->owner = nullptr;
 	return clone;
+}
+
+void CircleCollider::Serialize(json::JSON& j)
+{
+	Collider::Serialize(j);
+	FileManager::JsonWriteFloat(j, "radius", radius);
+}
+
+void CircleCollider::Deserialize(json::JSON& j)
+{
+
 }

@@ -19,6 +19,7 @@ private:
 	void CreateStar();
 
 private:
+	std::string itemName = "";
 	PrefabAsset* backgroundItem = nullptr;
 
 	float nebulaTimer = 3.0f;

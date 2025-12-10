@@ -4,8 +4,9 @@
 
 IMPLEMENT_DYNAMIC_CLASS(TextureAsset)
 
-void TextureAsset::Load(json::JSON j)
+void TextureAsset::Load(json::JSON j, std::string& _fileName)
 {
+	fileName = _fileName;
 	fs::path path = FileManager::GetAssetPath(j);
 
 	SDL_Surface* surface = IMG_Load(path.generic_string().c_str());

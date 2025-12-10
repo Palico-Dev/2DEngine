@@ -37,8 +37,8 @@ void Background::Update()
 
 void Background::Load(json::JSON& jsonData)
 {
-	std::string n = FileManager::JsonReadString(jsonData, "backgroundItem");
-	backgroundItem = AssetManager::Instance().GetAsset<PrefabAsset>(n);
+	itemName = FileManager::JsonReadString(jsonData, "backgroundItem");
+	backgroundItem = AssetManager::Instance().GetAsset<PrefabAsset>(itemName);
 }
 
 void Background::CreateNebula()

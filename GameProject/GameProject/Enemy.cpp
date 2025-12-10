@@ -49,7 +49,20 @@ void Enemy::Load(json::JSON& jsonData)
 {
 	maxHealth = FileManager::JsonReadInt(jsonData, "health");
 	shootInterval = FileManager::JsonReadFloat(jsonData, "shootInterval");
-	bullet = AssetManager::Instance().GetAsset<PrefabAsset>(FileManager::JsonReadString(jsonData, "bullet"));
+	std::string bulletName = FileManager::JsonReadString(jsonData, "bullet");
+	bullet = AssetManager::Instance().GetAsset<PrefabAsset>(bulletName);
+}
+
+void Enemy::Serialize(json::JSON& j)
+{
+	FileManager::JsonWriteInt(j, "health", maxHealth);
+	FileManager::JsonWriteFloat(j, "shootInterval", shootInterval);
+	FileManager::JsonWriteString(j, "bullet", bullet->GetFileName());
+}
+
+void Enemy::Deserialize(json::JSON& j)
+{
+
 }
 
 void Enemy::Shoot()
