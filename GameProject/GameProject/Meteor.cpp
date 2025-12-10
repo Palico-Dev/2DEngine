@@ -28,12 +28,13 @@ void Meteor::Load(json::JSON& jsonData)
 void Meteor::Serialize(json::JSON& j)
 {
 	FileManager::JsonWriteInt(j, "health", maxHealth);
-	FileManager::JsonWriteFloat(j, "speed", aSpeed);
+	FileManager::JsonWriteFloat(j, "speed", speed);
 }
 
 void Meteor::Deserialize(json::JSON& j)
 {
-
+	maxHealth = FileManager::JsonReadInt(j, "health");
+	speed = FileManager::JsonReadFloat(j,"speed");
 }
 
 void Meteor::Update()

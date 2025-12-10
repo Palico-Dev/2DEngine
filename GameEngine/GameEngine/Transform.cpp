@@ -69,5 +69,7 @@ void Transform::Serialize(json::JSON& j)
 
 void Transform::Deserialize(json::JSON& j)
 {
-
+	position = FileManager::JsonReadVec2(j, "position");
+	scale = FileManager::JsonReadVec2(j, "scale");
+	rotation = FileManager::JsonReadFloat(j, "rotation");
 }

@@ -56,7 +56,7 @@ public:
 	static const TypeClass& GetTypeClass(const char* _class);
 	static const TypeClass& GetTypeClass(const STRCODE _class);
 
-	static Object* ConstructObject(const char* _class);
+	static Object* ConstructObject(const std::string& _class);
 	static Object* ConstructObject(const STRCODE _class);
 
 protected:
@@ -83,7 +83,7 @@ private:
 ///-------------------------------------------------------------------------------------------------
 /// <summary>	External Functions for easy implementation. </summary>
 ///-------------------------------------------------------------------------------------------------
-extern Object* CreateObject(const char* _class);
+extern Object* CreateObject(const std::string& _class);
 
 ///-------------------------------------------------------------------------------------------------
 /// <summary>	Class Definition used by all. </summary>

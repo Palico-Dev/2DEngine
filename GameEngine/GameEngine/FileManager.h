@@ -30,7 +30,14 @@ public:
 		json::JSON arrayNode = json::JSON::Array();
 		for (const auto& item : list)
 		{
-			arrayNode.append(item);
+			if constexpr (std::is_same_v<T, unsigned int> || std::is_same_v<T, uint32_t>)
+			{
+				arrayNode.append((long long)item);
+			}
+			else
+			{
+				arrayNode.append(item);
+			}	
 		}
 		j[key] = arrayNode;
 	}

@@ -13,9 +13,6 @@ void SaveManager::SaveGame()
 
 	Serialize(save);
 
-	if (gameCallback != nullptr)
-		gameCallback(save);
-
 	std::filesystem::path folderPath = FileManager::GetSavePath();
 	std::filesystem::path path = folderPath / "save01.save";
 	std::ofstream saveFile(path);
@@ -32,6 +29,14 @@ void SaveManager::SaveGame()
 void SaveManager::LoadGame()
 {
 	Debug::Log("Load Game");
+
+	std::filesystem::path folderPath = FileManager::GetSavePath();
+	std::filesystem::path path = folderPath / "save01.save";
+
+	json::JSON save = FileManager::LoadJson(path.generic_string());
+
+	Deserialize(save);
+
 }
 
 void SaveManager::Serialize(json::JSON& j)
@@ -44,9 +49,23 @@ void SaveManager::Serialize(json::JSON& j)
 			entityNodes.append(e->Serialize());
 	}
 	j["entities"] = entityNodes;
+
+	if (gameSerializeCallback != nullptr)
+		gameSerializeCallback(j);
 }
 
 void SaveManager::Deserialize(json::JSON& j)
 {
+	auto entitiesJson = FileManager::JsonReadArray(j, "entities");
+	for (auto& eJson : entitiesJson)
+	{
+		Entity* e = (Entity*)CreateObject("Entity");
+		e->Deserialize(eJson);
+		Gameplay::Spawn(e);
+	}
 
+	if (gameDeserializeCallback != nullptr)
+	{
+		gameDeserializeCallback(j);
+	}
 }

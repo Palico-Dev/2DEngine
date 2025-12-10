@@ -17,6 +17,12 @@ Entity* Gameplay::Spawn(PrefabAsset* prefab)
 	return res;
 }
 
+void Gameplay::Spawn(Entity* entity)
+{
+	SceneManager::Instance().GetCurrentScene()->AddEntity(entity);
+	entity->Initialize();
+}
+
 Entity* Gameplay::Spawn(PrefabAsset* prefab, glm::vec2 pos)
 {
 	Entity* clone = Spawn(prefab);

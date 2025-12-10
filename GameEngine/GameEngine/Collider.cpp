@@ -146,13 +146,17 @@ void Collider::Serialize(json::JSON& j)
 {
 	FileManager::JsonWriteVec2(j, "center", center);
 	FileManager::JsonWriteBool(j, "isTrigger", isTrigger);
-	FileManager::JsonWriteBool(j, "layer", isStatic);
-	FileManager::JsonWriteBool(j, "isStatic", isRendered);
+	FileManager::JsonWriteBool(j, "isStatic", isStatic);
+	FileManager::JsonWriteBool(j, "isRendered", isRendered);
 	FileManager::JsonWriteInt(j, "layer", layer);
 
 }
 
 void Collider::Deserialize(json::JSON& j)
 {
-
+	center = FileManager::JsonReadVec2(j, "center");
+	isTrigger = FileManager::JsonReadBool(j, "isTrigger");
+	isStatic = FileManager::JsonReadBool(j, "isStatic");
+	isRendered = FileManager::JsonReadBool(j, "isRendered");
+	layer = FileManager::JsonReadInt(j, "layer");
 }

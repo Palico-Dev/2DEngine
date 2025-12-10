@@ -8,6 +8,7 @@ class PrefabAsset;
 namespace Gameplay
 {
 	Entity* Spawn(PrefabAsset* prefab);
+	void Spawn(Entity* entity);
 	Entity* Spawn(PrefabAsset* prefab, glm::vec2 pos);
 
 	void Destroy(Entity* e);

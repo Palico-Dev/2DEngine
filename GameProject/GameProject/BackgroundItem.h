@@ -14,6 +14,9 @@ class BackgroundItem : public Component
 public:
 	void Init(TextureAsset* texture,glm::vec2 size,float newSpeed);
 
+	void Serialize(json::JSON& j) override;
+	void Deserialize(json::JSON& j) override;
+
 private:
 	void Update();
 

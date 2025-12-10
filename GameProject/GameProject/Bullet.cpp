@@ -48,6 +48,14 @@ void Bullet::Serialize(json::JSON& j)
 
 void Bullet::Deserialize(json::JSON& j)
 {
+	speed = FileManager::JsonReadFloat(j, "speed");
+	dir = FileManager::JsonReadVec2(j, "direction");
+
+	auto tagsNode = FileManager::JsonReadArray(j, "targetTags");
+	for (auto& t : tagsNode)
+	{
+		targetTags.push_back(t.ToString());
+	}
 
 }
 

@@ -2,8 +2,164 @@
   "entities" : [{
       "components" : [{
           "position" : {
-            "x" : 62.231033,
-            "y" : 865.808838
+            "x" : 647.225037,
+            "y" : 899.957092
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "asset" : "starBig.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : -1,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 23.000000,
+            "y" : 21.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "speed" : 81.343254,
+          "type" : "BackgroundItem"
+        }],
+      "name" : "BackgroundItem (6)",
+      "tags" : []
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 351.553436,
+            "y" : 635.739075
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "asset" : "starBig.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : -1,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 23.000000,
+            "y" : 21.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "speed" : 65.471703,
+          "type" : "BackgroundItem"
+        }],
+      "name" : "BackgroundItem (2) (1)",
+      "tags" : []
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 556.844299,
+            "y" : 569.965515
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "asset" : "starBig.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : -1,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 23.000000,
+            "y" : 21.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "speed" : 68.320229,
+          "type" : "BackgroundItem"
+        }],
+      "name" : "BackgroundItem (3) (1)",
+      "tags" : []
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 154.243439,
+            "y" : 365.340179
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "asset" : "nebula.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : -1,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 241.000000,
+            "y" : 168.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "speed" : 50.000000,
+          "type" : "BackgroundItem"
+        }],
+      "name" : "BackgroundItem (4) (1)",
+      "tags" : []
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 202.133728,
+            "y" : 751.979126
           },
           "rotation" : 0.000000,
           "scale" : {
@@ -16,7 +172,227 @@
             "x" : 0.000000,
             "y" : 0.000000
           },
-          "isStatic" : true,
+          "isRendered" : true,
+          "isStatic" : false,
+          "isTrigger" : true,
+          "layer" : 10,
+          "radius" : 32.000000,
+          "type" : "CircleCollider"
+        }, {
+          "asset" : "meteorBig.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : 0,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 64.000000,
+            "y" : 64.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "health" : 5,
+          "speed" : 81.679657,
+          "type" : "Meteor"
+        }],
+      "name" : "Meteor_Big (1)",
+      "tags" : [-205414884]
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 14.392665,
+            "y" : 581.359131
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "asset" : "starBig.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : -1,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 23.000000,
+            "y" : 21.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "speed" : 85.430511,
+          "type" : "BackgroundItem"
+        }],
+      "name" : "BackgroundItem (1) (1)",
+      "tags" : []
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 123.359398,
+            "y" : 755.111267
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "asset" : "starSmall.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : -1,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 11.000000,
+            "y" : 11.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "speed" : 123.752686,
+          "type" : "BackgroundItem"
+        }],
+      "name" : "BackgroundItem",
+      "tags" : []
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 515.820068,
+            "y" : 822.977661
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "center" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "isRendered" : true,
+          "isStatic" : false,
+          "isTrigger" : true,
+          "layer" : 10,
+          "radius" : 11.000000,
+          "type" : "CircleCollider"
+        }, {
+          "asset" : "meteorBig.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : 0,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 22.000000,
+            "y" : 22.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "health" : 3,
+          "speed" : 148.558014,
+          "type" : "Meteor"
+        }],
+      "name" : "Meteor_Big",
+      "tags" : [-205414884]
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 505.642487,
+            "y" : 328.743195
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "asset" : "starSmall.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : -1,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 11.000000,
+            "y" : 11.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "speed" : 85.492790,
+          "type" : "BackgroundItem"
+        }],
+      "name" : "BackgroundItem (1)",
+      "tags" : []
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 379.814148,
+            "y" : 608.275879
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "center" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "isRendered" : true,
+          "isStatic" : false,
           "isTrigger" : true,
           "layer" : 10,
           "radius" : 24.000000,
@@ -53,122 +429,8 @@
     }, {
       "components" : [{
           "position" : {
-            "x" : 192.438660,
-            "y" : 539.257629
-          },
-          "rotation" : 0.000000,
-          "scale" : {
-            "x" : 1.000000,
-            "y" : 1.000000
-          },
-          "type" : "Transform"
-        }, {
-          "asset" : "starSmall.png",
-          "color" : {
-            "a" : 1.000000,
-            "b" : 1.000000,
-            "g" : 1.000000,
-            "r" : 1.000000
-          },
-          "flip" : "SDL_FLIP_NONE",
-          "layer" : -1,
-          "name" : "Sprite01",
-          "offset" : {
-            "x" : 0.000000,
-            "y" : 0.000000
-          },
-          "rotation" : 0.000000,
-          "size" : {
-            "x" : 11.000000,
-            "y" : 11.000000
-          },
-          "type" : "Sprite"
-        }, {
-          "type" : "BackgroundItem"
-        }],
-      "name" : "BackgroundItem",
-      "tags" : []
-    }, {
-      "components" : [{
-          "position" : {
-            "x" : 598.151794,
-            "y" : 279.360352
-          },
-          "rotation" : 0.000000,
-          "scale" : {
-            "x" : 1.000000,
-            "y" : 1.000000
-          },
-          "type" : "Transform"
-        }, {
-          "asset" : "starBig.png",
-          "color" : {
-            "a" : 1.000000,
-            "b" : 1.000000,
-            "g" : 1.000000,
-            "r" : 1.000000
-          },
-          "flip" : "SDL_FLIP_NONE",
-          "layer" : -1,
-          "name" : "Sprite01",
-          "offset" : {
-            "x" : 0.000000,
-            "y" : 0.000000
-          },
-          "rotation" : 0.000000,
-          "size" : {
-            "x" : 23.000000,
-            "y" : 21.000000
-          },
-          "type" : "Sprite"
-        }, {
-          "type" : "BackgroundItem"
-        }],
-      "name" : "BackgroundItem (2)",
-      "tags" : []
-    }, {
-      "components" : [{
-          "position" : {
-            "x" : 176.199280,
-            "y" : 219.058945
-          },
-          "rotation" : 0.000000,
-          "scale" : {
-            "x" : 1.000000,
-            "y" : 1.000000
-          },
-          "type" : "Transform"
-        }, {
-          "asset" : "starBig.png",
-          "color" : {
-            "a" : 1.000000,
-            "b" : 1.000000,
-            "g" : 1.000000,
-            "r" : 1.000000
-          },
-          "flip" : "SDL_FLIP_NONE",
-          "layer" : -1,
-          "name" : "Sprite01",
-          "offset" : {
-            "x" : 0.000000,
-            "y" : 0.000000
-          },
-          "rotation" : 0.000000,
-          "size" : {
-            "x" : 23.000000,
-            "y" : 21.000000
-          },
-          "type" : "Sprite"
-        }, {
-          "type" : "BackgroundItem"
-        }],
-      "name" : "BackgroundItem (3)",
-      "tags" : []
-    }, {
-      "components" : [{
-          "position" : {
-            "x" : 333.387024,
-            "y" : 83.655556
+            "x" : 558.814697,
+            "y" : 129.084854
           },
           "rotation" : 0.000000,
           "scale" : {
@@ -198,6 +460,46 @@
           },
           "type" : "Sprite"
         }, {
+          "speed" : 50.000000,
+          "type" : "BackgroundItem"
+        }],
+      "name" : "BackgroundItem (3)",
+      "tags" : []
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 449.137054,
+            "y" : 79.928360
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "asset" : "starBig.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : -1,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 23.000000,
+            "y" : 21.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "speed" : 58.102020,
           "type" : "BackgroundItem"
         }],
       "name" : "BackgroundItem (4)",
@@ -205,8 +507,8 @@
     }, {
       "components" : [{
           "position" : {
-            "x" : 452.173370,
-            "y" : 473.548859
+            "x" : 188.343719,
+            "y" : 4.397337
           },
           "rotation" : 0.000000,
           "scale" : {
@@ -215,17 +517,7 @@
           },
           "type" : "Transform"
         }, {
-          "center" : {
-            "x" : 0.000000,
-            "y" : 0.000000
-          },
-          "isStatic" : true,
-          "isTrigger" : true,
-          "layer" : 10,
-          "radius" : 11.000000,
-          "type" : "CircleCollider"
-        }, {
-          "asset" : "meteorBig.png",
+          "asset" : "starBig.png",
           "color" : {
             "a" : 1.000000,
             "b" : 1.000000,
@@ -233,7 +525,7 @@
             "r" : 1.000000
           },
           "flip" : "SDL_FLIP_NONE",
-          "layer" : 0,
+          "layer" : -1,
           "name" : "Sprite01",
           "offset" : {
             "x" : 0.000000,
@@ -241,72 +533,21 @@
           },
           "rotation" : 0.000000,
           "size" : {
-            "x" : 22.000000,
-            "y" : 22.000000
+            "x" : 23.000000,
+            "y" : 21.000000
           },
           "type" : "Sprite"
         }, {
-          "health" : 3,
-          "speed" : 150.000000,
-          "type" : "Meteor"
+          "speed" : 52.497002,
+          "type" : "BackgroundItem"
         }],
-      "name" : "Meteor_Big",
-      "tags" : [-205414884]
+      "name" : "BackgroundItem (5)",
+      "tags" : []
     }, {
       "components" : [{
           "position" : {
-            "x" : 177.239365,
-            "y" : 507.069122
-          },
-          "rotation" : 0.000000,
-          "scale" : {
-            "x" : 1.000000,
-            "y" : 1.000000
-          },
-          "type" : "Transform"
-        }, {
-          "center" : {
-            "x" : 0.000000,
-            "y" : 0.000000
-          },
-          "isStatic" : true,
-          "isTrigger" : true,
-          "layer" : 10,
-          "radius" : 11.000000,
-          "type" : "CircleCollider"
-        }, {
-          "asset" : "meteorBig.png",
-          "color" : {
-            "a" : 1.000000,
-            "b" : 1.000000,
-            "g" : 1.000000,
-            "r" : 1.000000
-          },
-          "flip" : "SDL_FLIP_NONE",
-          "layer" : 0,
-          "name" : "Sprite01",
-          "offset" : {
-            "x" : 0.000000,
-            "y" : 0.000000
-          },
-          "rotation" : 0.000000,
-          "size" : {
-            "x" : 22.000000,
-            "y" : 22.000000
-          },
-          "type" : "Sprite"
-        }, {
-          "health" : 3,
-          "speed" : 150.000000,
-          "type" : "Meteor"
-        }],
-      "name" : "Meteor_Big",
-      "tags" : [-205414884]
-    }, {
-      "components" : [{
-          "position" : {
-            "x" : 581.244263,
-            "y" : 727.323303
+            "x" : 722.034424,
+            "y" : 582.446838
           },
           "rotation" : 0.000000,
           "scale" : {
@@ -336,55 +577,18 @@
           },
           "type" : "Sprite"
         }, {
+          "speed" : 400.000000,
           "type" : "BackgroundItem"
         }],
-      "name" : "BackgroundItem (1)",
+      "name" : "BackgroundItem (2)",
       "tags" : []
     }, {
       "components" : [{
           "position" : {
-            "x" : 253.509308,
-            "y" : 159.584290
+            "x" : 195.905914,
+            "y" : 669.668030
           },
-          "rotation" : 0.000000,
-          "scale" : {
-            "x" : 1.000000,
-            "y" : 1.000000
-          },
-          "type" : "Transform"
-        }, {
-          "asset" : "starSmall.png",
-          "color" : {
-            "a" : 1.000000,
-            "b" : 1.000000,
-            "g" : 1.000000,
-            "r" : 1.000000
-          },
-          "flip" : "SDL_FLIP_NONE",
-          "layer" : -1,
-          "name" : "Sprite01",
-          "offset" : {
-            "x" : 0.000000,
-            "y" : 0.000000
-          },
-          "rotation" : 0.000000,
-          "size" : {
-            "x" : 11.000000,
-            "y" : 11.000000
-          },
-          "type" : "Sprite"
-        }, {
-          "type" : "BackgroundItem"
-        }],
-      "name" : "BackgroundItem (5)",
-      "tags" : []
-    }, {
-      "components" : [{
-          "position" : {
-            "x" : 240.626923,
-            "y" : 237.924759
-          },
-          "rotation" : 4.199748,
+          "rotation" : 3.419210,
           "scale" : {
             "x" : 1.000000,
             "y" : 1.000000
@@ -395,7 +599,8 @@
             "x" : 0.000000,
             "y" : 0.000000
           },
-          "isStatic" : true,
+          "isRendered" : true,
+          "isStatic" : false,
           "isTrigger" : true,
           "layer" : 10,
           "radius" : 24.000000,
@@ -432,10 +637,10 @@
     }, {
       "components" : [{
           "position" : {
-            "x" : 455.605713,
-            "y" : 511.586121
+            "x" : 132.192230,
+            "y" : 176.700867
           },
-          "rotation" : 2.269806,
+          "rotation" : 0.000000,
           "scale" : {
             "x" : 1.000000,
             "y" : 1.000000
@@ -446,7 +651,161 @@
             "x" : 0.000000,
             "y" : 0.000000
           },
-          "isStatic" : true,
+          "isRendered" : true,
+          "isStatic" : false,
+          "isTrigger" : true,
+          "layer" : 10,
+          "radius" : 11.000000,
+          "type" : "CircleCollider"
+        }, {
+          "asset" : "meteorBig.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : 0,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 22.000000,
+            "y" : 22.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "health" : 3,
+          "speed" : 135.541351,
+          "type" : "Meteor"
+        }],
+      "name" : "Meteor_Big (2)",
+      "tags" : [-205414884]
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 274.276306,
+            "y" : 174.123520
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "center" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "isRendered" : true,
+          "isStatic" : false,
+          "isTrigger" : true,
+          "layer" : 10,
+          "radius" : 11.000000,
+          "type" : "CircleCollider"
+        }, {
+          "asset" : "meteorBig.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : 0,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 22.000000,
+            "y" : 22.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "health" : 3,
+          "speed" : 133.563965,
+          "type" : "Meteor"
+        }],
+      "name" : "Meteor_Big (2)",
+      "tags" : [-205414884]
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 678.381897,
+            "y" : 188.287552
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "center" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "isRendered" : true,
+          "isStatic" : false,
+          "isTrigger" : true,
+          "layer" : 10,
+          "radius" : 11.000000,
+          "type" : "CircleCollider"
+        }, {
+          "asset" : "meteorBig.png",
+          "color" : {
+            "a" : 1.000000,
+            "b" : 1.000000,
+            "g" : 1.000000,
+            "r" : 1.000000
+          },
+          "flip" : "SDL_FLIP_NONE",
+          "layer" : 0,
+          "name" : "Sprite01",
+          "offset" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "rotation" : 0.000000,
+          "size" : {
+            "x" : 22.000000,
+            "y" : 22.000000
+          },
+          "type" : "Sprite"
+        }, {
+          "health" : 3,
+          "speed" : 144.428925,
+          "type" : "Meteor"
+        }],
+      "name" : "Meteor_Big (2)",
+      "tags" : [-205414884]
+    }, {
+      "components" : [{
+          "position" : {
+            "x" : 467.990051,
+            "y" : 879.238037
+          },
+          "rotation" : 0.000000,
+          "scale" : {
+            "x" : 1.000000,
+            "y" : 1.000000
+          },
+          "type" : "Transform"
+        }, {
+          "center" : {
+            "x" : 0.000000,
+            "y" : 0.000000
+          },
+          "isRendered" : true,
+          "isStatic" : false,
           "isTrigger" : true,
           "layer" : 10,
           "size" : {
@@ -477,20 +836,20 @@
           "type" : "Sprite"
         }, {
           "direction" : {
-            "x" : 0.765480,
-            "y" : 0.643460
+            "x" : 0.000000,
+            "y" : 1.000000
           },
           "speed" : 500.000000,
           "targetTags" : ["Meteor", "Player"],
           "type" : "Bullet"
         }],
-      "name" : "Bullet (1)",
+      "name" : "Bullet (2)",
       "tags" : [2084693634]
     }, {
       "components" : [{
           "position" : {
-            "x" : 68.338943,
-            "y" : -68.364120
+            "x" : 564.718689,
+            "y" : -85.943336
           },
           "rotation" : 0.000000,
           "scale" : {
@@ -499,7 +858,7 @@
           },
           "type" : "Transform"
         }, {
-          "asset" : "starBig.png",
+          "asset" : "starSmall.png",
           "color" : {
             "a" : 1.000000,
             "b" : 1.000000,
@@ -515,122 +874,23 @@
           },
           "rotation" : 0.000000,
           "size" : {
-            "x" : 23.000000,
-            "y" : 21.000000
+            "x" : 11.000000,
+            "y" : 11.000000
           },
           "type" : "Sprite"
         }, {
+          "speed" : 106.560898,
           "type" : "BackgroundItem"
         }],
-      "name" : "BackgroundItem (6)",
+      "name" : "BackgroundItem (7)",
       "tags" : []
-    }, {
-      "components" : [{
-          "position" : {
-            "x" : 440.161041,
-            "y" : 13.099515
-          },
-          "rotation" : 0.000000,
-          "scale" : {
-            "x" : 1.000000,
-            "y" : 1.000000
-          },
-          "type" : "Transform"
-        }, {
-          "center" : {
-            "x" : 0.000000,
-            "y" : 0.000000
-          },
-          "isStatic" : true,
-          "isTrigger" : true,
-          "layer" : 10,
-          "radius" : 32.000000,
-          "type" : "CircleCollider"
-        }, {
-          "asset" : "meteorBig.png",
-          "color" : {
-            "a" : 1.000000,
-            "b" : 1.000000,
-            "g" : 1.000000,
-            "r" : 1.000000
-          },
-          "flip" : "SDL_FLIP_NONE",
-          "layer" : 0,
-          "name" : "Sprite01",
-          "offset" : {
-            "x" : 0.000000,
-            "y" : 0.000000
-          },
-          "rotation" : 0.000000,
-          "size" : {
-            "x" : 64.000000,
-            "y" : 64.000000
-          },
-          "type" : "Sprite"
-        }, {
-          "health" : 5,
-          "speed" : 100.000000,
-          "type" : "Meteor"
-        }],
-      "name" : "Meteor_Big (1)",
-      "tags" : [-205414884]
-    }, {
-      "components" : [{
-          "position" : {
-            "x" : 229.126038,
-            "y" : 11.540749
-          },
-          "rotation" : 0.000000,
-          "scale" : {
-            "x" : 1.000000,
-            "y" : 1.000000
-          },
-          "type" : "Transform"
-        }, {
-          "center" : {
-            "x" : 0.000000,
-            "y" : 0.000000
-          },
-          "isStatic" : true,
-          "isTrigger" : true,
-          "layer" : 10,
-          "radius" : 32.000000,
-          "type" : "CircleCollider"
-        }, {
-          "asset" : "meteorBig.png",
-          "color" : {
-            "a" : 1.000000,
-            "b" : 1.000000,
-            "g" : 1.000000,
-            "r" : 1.000000
-          },
-          "flip" : "SDL_FLIP_NONE",
-          "layer" : 0,
-          "name" : "Sprite01",
-          "offset" : {
-            "x" : 0.000000,
-            "y" : 0.000000
-          },
-          "rotation" : 0.000000,
-          "size" : {
-            "x" : 64.000000,
-            "y" : 64.000000
-          },
-          "type" : "Sprite"
-        }, {
-          "health" : 5,
-          "speed" : 100.000000,
-          "type" : "Meteor"
-        }],
-      "name" : "Meteor_Big (1)",
-      "tags" : [-205414884]
     }],
   "gameController" : {
     "gameHealth" : 3,
     "highestScore" : 0,
     "playerPosition" : {
-      "x" : 389.766846,
-      "y" : 587.458191
+      "x" : 282.389954,
+      "y" : 480.563293
     },
     "score" : 0
   }

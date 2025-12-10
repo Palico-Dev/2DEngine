@@ -32,7 +32,21 @@ void Sprite::Serialize(json::JSON& j)
 
 void Sprite::Deserialize(json::JSON& j)
 {
+	spriteName = FileManager::JsonReadString(j, "name");
+	layer = FileManager::JsonReadInt(j, "layer");
+	textureAsset = textureAsset = AssetManager::Instance().GetAsset<TextureAsset>(FileManager::JsonReadString(j, "asset"));
+	size = FileManager::JsonReadVec2(j, "size");
+	offset = FileManager::JsonReadVec2(j, "offset");
+	rotation = FileManager::JsonReadFloat(j, "rotation");
+	color = FileManager::JsonReadColor(j, "color");
 
+	flipString = FileManager::JsonReadString(j, "flip");
+	if (flipString == "SDL_FLIP_NONE")
+		flip = SDL_FLIP_NONE;
+	else if (flipString == "SDL_FLIP_VERTICAL")
+		flip = SDL_FLIP_VERTICAL;
+	else if (flipString == "SDL_FLIP_HORIZONTAL")
+		flip = SDL_FLIP_HORIZONTAL;
 }
 
 void Sprite::Initialize()

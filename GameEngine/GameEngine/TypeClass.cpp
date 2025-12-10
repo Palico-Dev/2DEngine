@@ -54,14 +54,14 @@ const TypeClass& TypeClass::GetTypeClass(const STRCODE _class)
 	return *(*_item).second;
 }
 
-Object* CreateObject(const char* _class)
+Object* CreateObject(const std::string& _class)
 {
 	return TypeClass::ConstructObject(_class);
 }
 
-Object* TypeClass::ConstructObject(const char* _class)
+Object* TypeClass::ConstructObject(const std::string& _class)
 {
-	return ConstructObject(GetHashCode(_class));
+	return ConstructObject(GetHashCode(_class.c_str()));
 }
 
 Object* TypeClass::ConstructObject(const STRCODE _class)

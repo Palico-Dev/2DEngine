@@ -9,6 +9,8 @@
 #include "Collider.h"
 #include "GameController.h"
 #include "SaveManager.h"
+#include "SceneManager.h"
+#include "Scene.h"
 
 IMPLEMENT_DYNAMIC_CLASS(PlayerController)
 
@@ -66,6 +68,11 @@ void PlayerController::Update()
 	if (InputManager::Instance().GetKeyPressed(SDLK_r))
 	{
 		SaveManager::Instance().SaveGame();
+	}
+	if (InputManager::Instance().GetKeyPressed(SDLK_t))
+	{
+		SceneManager::Instance().GetCurrentScene()->CleanScene();
+		SaveManager::Instance().LoadGame();
 	}
 
 	

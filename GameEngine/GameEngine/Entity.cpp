@@ -211,8 +211,8 @@ json::JSON Entity::Serialize()
 	json::JSON entityNode;
 
 	FileManager::JsonWriteString(entityNode, "name", name);
-	FileManager::JsonWriteArray(entityNode, "tags", tags);
 
+	FileManager::JsonWriteArray<STRCODE>(entityNode, "tags", tags);
 	json::JSON compNodes = json::JSON::Array();
 	for (auto& comp : components)
 	{
@@ -230,5 +230,19 @@ json::JSON Entity::Serialize()
 
 void Entity::Deserialize(json::JSON& j)
 {
+	name = FileManager::JsonReadString(j, "name");
 
+	auto tagNodes = FileManager::JsonReadArray(j, "tags");
+	for (auto& t:tagNodes)
+	{
+		tags.push_back((STRCODE)t.ToInt());
+	}
+
+	auto compNodes = FileManager::JsonReadArray(j, "components");
+	for (auto& c : compNodes)
+	{
+		std::string type = FileManager::JsonReadString(c, "type");
+		Component* comp = CreateComponent(type);
+		comp->Deserialize(c);
+	}
 }

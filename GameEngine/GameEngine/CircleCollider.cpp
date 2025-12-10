@@ -60,5 +60,6 @@ void CircleCollider::Serialize(json::JSON& j)
 
 void CircleCollider::Deserialize(json::JSON& j)
 {
-
+	Collider::Deserialize(j);
+	radius = FileManager::JsonReadFloat(j, "radius");
 }

@@ -21,5 +21,11 @@ void Game_Register()
 
 		});
 
+	SaveManager::Instance().SetGameDeserialize([](json::JSON& j) {
+
+		GameController::Instance().Deserialize(j);
+
+		});
+
 
 }

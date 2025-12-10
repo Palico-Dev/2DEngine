@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "TextureAsset.h"
 #include "Sprite.h"
+#include "FileManager.h"
 
 IMPLEMENT_DYNAMIC_CLASS(BackgroundItem)
 CLONEABLE_IMPLEMENT(BackgroundItem)
@@ -13,6 +14,16 @@ void BackgroundItem::Init(TextureAsset* texture, glm::vec2 size, float newSpeed)
 	owner->GetComponent<Sprite>()->SetTexture(texture);
 	owner->GetComponent<Sprite>()->SetSize(size);
 	speed = newSpeed;
+}
+
+void BackgroundItem::Serialize(json::JSON& j)
+{
+	FileManager::JsonWriteFloat(j, "speed", speed);
+}
+
+void BackgroundItem::Deserialize(json::JSON& j)
+{
+	speed = FileManager::JsonReadFloat(j, "speed");
 }
 
 void BackgroundItem::Update()

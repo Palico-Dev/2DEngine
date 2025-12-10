@@ -69,5 +69,9 @@ void GameController::Serialize(json::JSON& j)
 
 void GameController::Deserialize(json::JSON& j)
 {
-
+	json::JSON node = j["gameController"];
+	highestScore = FileManager::JsonReadInt(node, "highestScore");
+	score = FileManager::JsonReadInt(node, "score");
+	gameHealth = FileManager::JsonReadInt(node, "gameHealth");
+	player->transform->SetPosition(FileManager::JsonReadVec2(node, "playerPosition"));
 }

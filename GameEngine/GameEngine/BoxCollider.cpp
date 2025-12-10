@@ -105,5 +105,6 @@ void BoxCollider::Serialize(json::JSON& j)
 
 void BoxCollider::Deserialize(json::JSON& j)
 {
-
+	Collider::Deserialize(j);
+	size = FileManager::JsonReadVec2(j, "size");
 }
