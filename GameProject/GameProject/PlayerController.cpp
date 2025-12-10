@@ -87,4 +87,5 @@ void PlayerController::Start()
 	Debug::Log("PlayerController Start");
 	bulletAsset = AssetManager::Instance().GetAsset<PrefabAsset>("bullet.prefab");
 
+
 }

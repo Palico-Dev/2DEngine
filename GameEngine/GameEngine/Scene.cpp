@@ -90,7 +90,7 @@ void Scene::Update()
 
 void Scene::LateUpdate()
 {
-	for (auto entity : entities_to_remove)
+	for (auto& entity : entities_to_remove)
 	{
 		entity->Destroy();
 		entities.remove(entity);
