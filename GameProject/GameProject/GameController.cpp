@@ -29,12 +29,12 @@ void GameController::Init()
 
 void GameController::LoseHealth()
 {
-	//SceneManager::Instance().GetCurrentScene()->CleanScene();
-	//player->transform->SetPosition({ 375,700 });
-	//gameHealth--;
+	SceneManager::Instance().GetCurrentScene()->CleanScene();
+	player->transform->SetPosition({ 375,700 });
+	gameHealth--;
 
-	//if (gameHealth <= 0)
-	//	RestartGame();
+	if (gameHealth <= 0)
+		RestartGame();
 }
 
 void GameController::Start()
