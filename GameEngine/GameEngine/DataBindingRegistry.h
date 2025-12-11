@@ -10,6 +10,7 @@ public:
 	using StringBinder = std::function<std::string()>;
 	using FloatBinder = std::function<float()>;
 	using IntBinder = std::function<int()>;
+	using ActionBinder = std::function<void()>;
 
 
 	void RegisterString(const STRCODE key, StringBinder binder)
@@ -25,6 +26,11 @@ public:
 	void RegisterInt(const STRCODE key, IntBinder binder)
 	{
 		intBindings[key] = binder;
+	}
+
+	void RegisterAction(const STRCODE key, ActionBinder binder)
+	{
+		actionBindings[key] = binder;
 	}
 
 
@@ -58,11 +64,22 @@ public:
 		return nullptr;
 	}
 
+	ActionBinder GetActionBinding(const STRCODE key)
+	{
+		if (actionBindings.find(key) != actionBindings.end())
+		{
+			return actionBindings[key];
+		}
+		Debug::Warning("Action Binding not found:" + key);
+		return nullptr;
+	}
+
 
 private:
 	std::unordered_map<STRCODE, StringBinder> stringBindings;
 	std::unordered_map<STRCODE, FloatBinder>  floatBindings;
 	std::unordered_map<STRCODE, IntBinder>    intBindings;
+	std::unordered_map<STRCODE, ActionBinder>    actionBindings;
 };
 
 #endif

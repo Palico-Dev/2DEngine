@@ -24,7 +24,7 @@ void UIImage::Update()
 	Widget::Update();
 }
 
-void UIImage::Load(json::JSON j)
+void UIImage::Load(json::JSON& j)
 {
 	Widget::Load(j);
 

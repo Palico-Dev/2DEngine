@@ -14,7 +14,7 @@ public:
 	void Initialize() override;
 	void Destroy() override;
 	void Update() override;
-	void Load(json::JSON j) override;
+	void Load(json::JSON& j) override;
 
 protected:
 	void OnRender() override;

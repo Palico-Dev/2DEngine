@@ -25,6 +25,11 @@ public:
 	void Deserialize(json::JSON& j);
 
 private:
+	void ButtonTest();
+	void PauseGame();
+	void ResumeGame();
+
+private:
 	int highestScore = 0;
 	int score = 0;
 

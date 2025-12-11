@@ -30,7 +30,7 @@ void HealthBar::Update()
 	Widget::Update();
 }
 
-void HealthBar::Load(json::JSON j)
+void HealthBar::Load(json::JSON& j)
 {
 	Widget::Load(j);
 	size = FileManager::JsonReadVec2(j, "size");

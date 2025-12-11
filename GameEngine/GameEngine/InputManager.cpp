@@ -1,5 +1,3 @@
-// Written by Andy & Anthony
-
 #include "EngineCore.h"
 #include "InputManager.h"
 #include "Engine.h"

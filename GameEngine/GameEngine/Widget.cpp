@@ -32,7 +32,7 @@ void Widget::Update()
 	}
 }
 
-void Widget::Load(json::JSON j)
+void Widget::Load(json::JSON& j)
 {
 	name = FileManager::JsonReadString(j, "name");
 	localPosition = FileManager::JsonReadVec2(j, "localPosition");

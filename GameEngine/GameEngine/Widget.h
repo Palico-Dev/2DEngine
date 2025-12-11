@@ -19,7 +19,7 @@ public:
 	void Initialize() override;
 	void Destroy() override;
 	virtual void Update();
-	virtual void Load(json::JSON j);
+	virtual void Load(json::JSON& j);
 	virtual void Start();
 
 	void Render();

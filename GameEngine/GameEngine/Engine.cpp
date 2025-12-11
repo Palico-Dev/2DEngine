@@ -55,16 +55,19 @@ void Engine::GameLoop()
 		gameStartCallback();
 	while (!quit)
 	{
-        // PreUpdate TBD
-
 		Time::Instance().Update();
-        InputManager::Instance().Update();
+		InputManager::Instance().Update();
 
-		SceneManager::Instance().PreUpdate();
+		if (!pause)
+		{
+			SceneManager::Instance().PreUpdate();
 
-        SceneManager::Instance().Update();
-        CollisionSystem::Instance().Update();
-        RenderSystem::Instance().Update();
+			SceneManager::Instance().Update();
+			CollisionSystem::Instance().Update();
+
+		}
+
+		RenderSystem::Instance().Update();
 		UISystem::Instance().Update();
 
 		SceneManager::Instance().LateUpdate();

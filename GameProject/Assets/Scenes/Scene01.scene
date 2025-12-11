@@ -1,5 +1,6 @@
 {
 	"assets": [
+		"Taco.jpg",
 		"player.png",
 		"life.png",
 		"enemyShip.png",
@@ -199,6 +200,25 @@
 					"b": 0.0,
 					"a": 1.0
 				}
+			},
+			{
+				"type": "UIButton",
+				"name": "TestButton",
+				"localPosition": {
+					"x": 330.0,
+					"y": 50.0
+				},
+				"layer": 0,
+				"rotation": 0.0,
+				"visibility": "Visible",
+				"normalTexture": "Taco.jpg",
+				"hoverTexture": "Taco.jpg",
+				"pressedTexture": "Taco.jpg",
+				"size": {
+					"x": 50.0,
+					"y": 30.0
+				},
+				"onClick": "BUTTON_PAUSE"
 			}
 		]
 	}

@@ -1,5 +1,3 @@
-// Written by Anthony & Andy
-
 #pragma once
 #ifndef _INPUTMANAGER_H_
 #define _INPUTMANAGER_H_
@@ -49,6 +47,15 @@ public:
 	SDL_Point GetMousePosition() { return currMousePos; }
 	SDL_Point GetMouseDelta() { return difference; }
 	float GetScrollAmount() { return scrollY; }  // positive up
+
+	bool IsMouseDown(int button)
+	{
+		int x, y; 
+
+		Uint32 state = SDL_GetMouseState(&x, &y);
+
+		return (state & SDL_BUTTON(button));
+	}
 
 	void BindAction(std::string action, SDL_KeyCode key) { actionMap[action].insert(key); }
 	void UnbindAction(std::string action, SDL_KeyCode key) { actionMap[action].erase(key); }

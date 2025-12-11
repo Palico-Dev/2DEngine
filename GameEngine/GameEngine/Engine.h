@@ -23,6 +23,9 @@ public:
 		gameStartCallback = callback;
 	}
 
+	void SetGamePause(bool p) { pause = p; }
+	void ToggleGamePause() { pause = !pause; }
+
 private:
 	void LoadGameSettings();
 	friend class InputManager;
@@ -30,6 +33,8 @@ private:
 private:
 	json::JSON gameSettings;
 	bool quit = false;
+	bool pause = false;
+
 	std::function<void()> gameInitCallback = nullptr;
 	std::function<void()> gameStartCallback = nullptr;
 };

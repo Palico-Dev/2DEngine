@@ -29,7 +29,7 @@ void UILabel::Update()
 	}
 	Widget::Update();
 }
-void UILabel::Load(json::JSON j)
+void UILabel::Load(json::JSON& j)
 {
 	Widget::Load(j);
 

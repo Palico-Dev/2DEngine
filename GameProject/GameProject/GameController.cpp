@@ -26,6 +26,13 @@ void GameController::Init()
 	registry.RegisterInt(GetHashCode("GAME_HEALTH"), [this]() {
 		return this->gameHealth;
 		});
+
+	registry.RegisterAction(GetHashCode("BUTTON_TEST"), [this]() {
+		this->ButtonTest();
+		});
+	registry.RegisterAction(GetHashCode("BUTTON_PAUSE"), [this]() {
+		this->PauseGame();
+		});
 }
 
 void GameController::LoseHealth()
@@ -74,4 +81,19 @@ void GameController::Deserialize(json::JSON& j)
 	score = FileManager::JsonReadInt(node, "score");
 	gameHealth = FileManager::JsonReadInt(node, "gameHealth");
 	player->transform->SetPosition(FileManager::JsonReadVec2(node, "playerPosition"));
+}
+
+void GameController::ButtonTest()
+{
+	Debug::Log("ButtonTest");
+}
+
+void GameController::PauseGame()
+{
+	Engine::Instance().ToggleGamePause();
+}
+
+void GameController::ResumeGame()
+{
+
 }
