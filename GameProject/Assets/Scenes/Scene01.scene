@@ -1,6 +1,7 @@
 {
 	"assets": [
 		"Taco.jpg",
+		"Button.png",
 		"player.png",
 		"life.png",
 		"enemyShip.png",
@@ -142,7 +143,7 @@
 				"type": "UILabel",
 				"name": "Score",
 				"localPosition": {
-					"x": 50.0,
+					"x": 75.0,
 					"y": 50.0
 				},
 				"layer": 0,
@@ -163,7 +164,7 @@
 				"type": "UILabel",
 				"name": "HighestScore",
 				"localPosition": {
-					"x": 50.0,
+					"x": 130.0,
 					"y": 100.0
 				},
 				"layer": 0,
@@ -184,7 +185,7 @@
 				"type": "UILabel",
 				"name": "UILabel",
 				"localPosition": {
-					"x": 10.0,
+					"x": 20.0,
 					"y": 10.0
 				},
 				"layer": 0,
@@ -205,20 +206,42 @@
 				"type": "UIButton",
 				"name": "TestButton",
 				"localPosition": {
-					"x": 330.0,
+					"x": 375.0,
 					"y": 50.0
 				},
 				"layer": 0,
 				"rotation": 0.0,
 				"visibility": "Visible",
-				"normalTexture": "Taco.jpg",
+				"normalTexture": "Button.png",
 				"hoverTexture": "Taco.jpg",
 				"pressedTexture": "Taco.jpg",
 				"size": {
-					"x": 50.0,
+					"x": 70.0,
 					"y": 30.0
 				},
-				"onClick": "BUTTON_PAUSE"
+				"onClick": "BUTTON_PAUSE",
+				"children": [
+					{
+						"type": "UILabel",
+						"name": "UILabel",
+						"localPosition": {
+							"x": 0.0,
+							"y": 0.0
+						},
+						"layer": 0,
+						"rotation": 0.0,
+						"visibility": "Visible",
+						"font": "cour.ttf",
+						"size": 20,
+						"text": "Pause",
+						"color": {
+							"r": 0.0,
+							"g": 0.0,
+							"b": 0.0,
+							"a": 1.0
+						}
+					}
+				]
 			}
 		]
 	}

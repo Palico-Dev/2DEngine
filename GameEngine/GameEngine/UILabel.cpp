@@ -85,8 +85,8 @@ void UILabel::OnRender()
 		float finalY = parent->GetPosition().y + rotY;
 
 		SDL_FRect dstRect = {
-			finalX,
-			finalY,
+			finalX - texW/ 2.0f,
+			finalY - texH / 2.0f,
 			static_cast<float>(texW),
 			static_cast<float>(texH)
 		};
