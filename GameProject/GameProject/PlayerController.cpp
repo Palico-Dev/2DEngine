@@ -46,6 +46,26 @@ void PlayerController::OnTriggerEnter(Collider* other)
 
 }
 
+void PlayerController::MovementBounds(glm::vec2& dir)
+{
+
+	glm::vec2 pos = owner->transform->GetPosition();
+
+	int x = dir.x;
+	int y = dir.y;
+
+	if (pos.x < 20)
+		x = std::max(x, 0);
+	if (pos.x > 730)
+		x = std::min(x, 0);
+	if (pos.y < 20)
+		y = std::max(y, 0);
+	if (pos.y > 980)
+		y = std::min(y, 0);
+
+	dir = { x,y };
+}
+
 void PlayerController::GetDamage()
 {
 	health--;
@@ -78,6 +98,10 @@ void PlayerController::Update()
 	
 	direction.x = InputManager::Instance().GetAxis("walk_left", "walk_right");
 	direction.y = InputManager::Instance().GetAxis("walk_up", "walk_down");
+
+	
+
+	MovementBounds(direction);
 	//Debug::Log(glm::to_string(direction));
 	owner->transform->Translate(direction * speed * Time::Instance().DeltaTime());
 }
