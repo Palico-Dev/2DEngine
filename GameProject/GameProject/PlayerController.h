@@ -29,6 +29,9 @@ public:
 	float maxHealth = 5;
 	float health = 5;
 
+private:
+	void MovementBounds(glm::vec2& dir);
+
 
 };
 
