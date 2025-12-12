@@ -17,7 +17,7 @@
 		},
 		{
 			"type": "CircleCollider",
-			"isRendered": true,
+			"isRendered": false,
 			"center": {
 				"x": 0.0,
 				"y": 0.0
