@@ -62,6 +62,12 @@
 #include "Gameplay.h"
 #include "Utility.h"
 
+#include <RakPeerInterface.h>
+#include <MessageIdentifiers.h>
+#include <RakSleep.h>
+#include <BitStream.h>
+#include "NetworkCommon.h"
+
 #include "Debug.h"
 
 

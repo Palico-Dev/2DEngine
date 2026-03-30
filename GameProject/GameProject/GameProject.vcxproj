@@ -177,7 +177,7 @@ xcopy "$(SolutionDir)..\GameEngine\Assets" "$(OutDir)EngineAssets\" /Y /S /I</Co
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\GameEngine\GameEngine\;$(SolutionDir)..\GameEngine\External-Libs\SDL\include\;$(SolutionDir)..\GameEngine\External-Libs\glm</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\GameEngine\GameEngine\;$(SolutionDir)..\GameEngine\External-Libs\SDL\include\;$(SolutionDir)..\GameEngine\External-Libs\glm;$(SolutionDir)..\GameEngine\External-Libs\RakNet\Include\</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>GameCore.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -185,8 +185,8 @@ xcopy "$(SolutionDir)..\GameEngine\Assets" "$(OutDir)EngineAssets\" /Y /S /I</Co
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\GameEngine\External-Libs\SDL\lib\$(PlatformTarget);$(SolutionDir)..\GameEngine\Engine-Libs\GameEngine\$(PlatformTarget)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2_ttf.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\GameEngine\External-Libs\SDL\lib\$(PlatformTarget);$(SolutionDir)..\GameEngine\Engine-Libs\GameEngine\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)..\GameEngine\External-Libs\RakNet\Lib\$(PlatformTarget)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_ttf.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;GameEngine.lib;ws2_32.lib;RakNet.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y "$(SolutionDir)..\GameEngine\External-Libs\SDL\lib\$(PlatformTarget)\*.dll" "$(TargetDir)*.dll"</Command>

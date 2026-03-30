@@ -142,7 +142,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\External-Libs\SDL\include;$(ProjectDir)..\External-Libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\External-Libs\SDL\include;$(ProjectDir)..\External-Libs\glm;$(ProjectDir)..\External-Libs\RakNet\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>EngineCore.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -202,6 +202,8 @@
     <ClCompile Include="FontAsset.cpp" />
     <ClCompile Include="Gameplay.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="NetworkEngine.cpp" />
+    <ClCompile Include="NetworkRPC.cpp" />
     <ClCompile Include="PrefabAsset.cpp" />
     <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="json.cpp" />
@@ -251,6 +253,10 @@
     <ClInclude Include="FontAsset.h" />
     <ClInclude Include="Gameplay.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="ISerializable.h" />
+    <ClInclude Include="NetworkCommon.h" />
+    <ClInclude Include="NetworkEngine.h" />
+    <ClInclude Include="NetworkRPC.h" />
     <ClInclude Include="PrefabAsset.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="json.hpp" />
