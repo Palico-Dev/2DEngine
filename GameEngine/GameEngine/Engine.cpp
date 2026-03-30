@@ -8,14 +8,17 @@
 #include "FileManager.h"
 #include "UISystem.h"
 #include "Scene.h"
+#include "NetworkEngine.h"
 
 extern void Engine_Register();
 
-void Engine::Initialize()
+void Engine::Initialize(bool isServer)
 {
     Engine_Register();
 
 	LoadGameSettings();
+
+	NetworkEngine::Instance().Initialize(isServer);
 
 	RenderSystem::Instance().Initialize();
 	AssetManager::Instance().Initialize();
