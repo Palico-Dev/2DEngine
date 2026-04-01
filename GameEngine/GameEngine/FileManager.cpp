@@ -222,10 +222,10 @@ fs::path FileManager::GetGameSettingPath()
 	return GetAssetFolderPath() / "Config" / "GameSettings.json";
 }
 
-fs::path FileManager::GetAssetPath(json::JSON j)
+fs::path FileManager::GetAssetPath(json::JSON meta)
 {
 	fs::path path;
-	if (FileManager::JsonReadString(j, "Location") == "Engine")
+	if (FileManager::JsonReadString(meta, "Location") == "Engine")
 	{
 		path = GetEngineAssetFolderPath();
 	}
@@ -233,7 +233,7 @@ fs::path FileManager::GetAssetPath(json::JSON j)
 	{
 		path = FileManager::GetAssetFolderPath();
 	}
-	path = path / FileManager::JsonReadString(j, "Asset");
+	path = path / FileManager::JsonReadString(meta, "Asset");
 
 	return path;
 }
