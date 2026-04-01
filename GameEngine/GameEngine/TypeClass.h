@@ -181,7 +181,6 @@ public: \
 #define CLONEABLE_IMPLEMENT(ClassName) \
 Component* ClassName::Clone() \
 { \
-    /* #ClassName turns BoxCollider into "BoxCollider" */ \
     ClassName* clone = (ClassName*)CreateObject(#ClassName); \
     *clone = *this; \
     clone->owner = nullptr; \
