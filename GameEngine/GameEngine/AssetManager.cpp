@@ -35,36 +35,7 @@ void AssetManager::Load(json::JSON& _json)
 
 void AssetManager::Unload(std::string& _scene)
 {
-	//try
-	//{
-	//	if (!assetMeta.count(_scene))
-	//	{
-	//		std::cout << "No asset detected for scene: " + _scene + ". Asset unload process is skipped.\n";
-	//		return;
-	//	}
 
-	//	for (auto& _strcode : assetMeta.at(_scene))
-	//	{
-	//		Asset* asset_to_unload = assets.at(_strcode);
-	//		int& count = asset_to_unload->refCount;
-
-	//		if (!count) std::cout << "WARNING! Attempting to unload an asset with no instance.\n";
-	//		else count--;
-
-	//		if (!count)
-	//		{
-	//			asset_to_unload->Destroy();
-	//			delete asset_to_unload;
-	//			assets.erase(_strcode);
-	//		}
-	//	}
-	//	assetMeta.at(_scene).clear();
-	//	assetMeta.erase(_scene);
-	//}
-	//catch (const std::out_of_range& e)
-	//{
-	//	std::cerr << "Error: " << e.what() << std::endl;
-	//}
 }
 
 Asset* AssetManager::GetAssetInternal(const std::string& fileName)

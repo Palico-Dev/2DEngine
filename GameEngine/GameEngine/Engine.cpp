@@ -22,10 +22,16 @@ void Engine::Initialize(EngineRole _role)
 	LoadGameSettings();
 
 	NetworkEngine::Instance().Initialize();
-
-	RenderSystem::Instance().Initialize();
-	AssetManager::Instance().Initialize();
 	Time::Instance().Initialize();
+
+	if (role != EngineRole::Server)
+	{
+		RenderSystem::Instance().Initialize();
+		InputManager::Instance().Initialize();
+		UISystem::Instance().Initialize();
+	}
+
+	AssetManager::Instance().Initialize();
 
 	if (gameInitCallback)
 	{
@@ -33,18 +39,24 @@ void Engine::Initialize(EngineRole _role)
 	}
 
     SceneManager::Instance().Initialize();
-    InputManager::Instance().Initialize();
-    CollisionSystem::Instance().Initialize();
 
-	UISystem::Instance().Initialize();
-
+	if (role != EngineRole::Client)
+	{
+		CollisionSystem::Instance().Initialize();
+	}
 }
 
 void Engine::Destroy()
 {
-	UISystem::Instance().Destroy();
-    RenderSystem::Instance().Destroy();
-    CollisionSystem::Instance().Destroy();
+	if (role != EngineRole::Server)
+	{
+		UISystem::Instance().Destroy();
+		RenderSystem::Instance().Destroy();
+	}
+	if (role != EngineRole::Client)
+	{
+		CollisionSystem::Instance().Destroy();
+	}
     SceneManager::Instance().Destroy();
     AssetManager::Instance().Destroy();
 	
@@ -52,25 +64,38 @@ void Engine::Destroy()
 
 void Engine::GameLoop()
 {
-	UISystem::Instance().Start();
+	if (role != EngineRole::Server)
+	{
+		UISystem::Instance().Start();
+	}
 	if (gameStartCallback)
 		gameStartCallback();
 	while (!quit)
 	{
+		NetworkEngine::Instance().PreUpdate();
 		Time::Instance().Update();
-		InputManager::Instance().Update();
+
+		if (role != EngineRole::Server)
+		{
+			InputManager::Instance().Update();
+		}
 
 		if (!pause)
 		{
 			SceneManager::Instance().PreUpdate();
-
 			SceneManager::Instance().Update();
-			CollisionSystem::Instance().Update();
 
+			if (role != EngineRole::Client)
+			{
+				CollisionSystem::Instance().Update();
+			}
 		}
 
-		RenderSystem::Instance().Update();
-		UISystem::Instance().Update();
+		if (role != EngineRole::Server)
+		{
+			RenderSystem::Instance().Update();
+			UISystem::Instance().Update();
+		}
 
 		SceneManager::Instance().LateUpdate();
         // PostUpdate TBD

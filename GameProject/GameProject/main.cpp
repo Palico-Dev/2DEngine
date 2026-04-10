@@ -1,7 +1,7 @@
 #include "GameCore.h"
 #include "FileManager.h"
 
-#define DEV_ROLE_SERVER
+//#define DEV_ROLE_SERVER
 //#define DEV_ROLE_CLIENT
 //#define DEV_ROLE_STANDALONE
 

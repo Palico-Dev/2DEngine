@@ -99,7 +99,8 @@ void NetworkEngine::LoadSetting()
 {
 	//std::ifstream inputStream("../Assets/NetworkSettings.json");
 	//std::string str((std::istreambuf_iterator<char>(inputStream)), std::istreambuf_iterator<char>());
-	json::JSON document = FileManager::LoadJson(FileManager::GetConfigPath().string() + "//NetworkSettings.json");
+	json::JSON gamesetting = Engine::Instance().GetGameSettings();
+	json::JSON document = FileManager::JsonReadJson(gamesetting, "NetworkSetting");
 
 	THROW_RUNTIME_ERROR(document.hasKey("ipaddress") == false, "Unable to determine ip address");
 	ipAddress = document["ipaddress"].ToString();

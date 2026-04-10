@@ -1,6 +1,9 @@
 {
 	"name": "BackgroundItem",
 	"id": "0000-0000-0002",
+	"tags": [
+		
+	],
 	"components": [
 		{
 			"type": "Transform",

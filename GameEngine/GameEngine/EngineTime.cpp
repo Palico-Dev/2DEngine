@@ -1,5 +1,6 @@
 #include "EngineCore.h"
 #include "EngineTime.h"
+#include "Engine.h"
 
 void Time::Update()
 {
@@ -12,6 +13,15 @@ void Time::Update()
 		fps = fpsCounter;
 		fpsCounter = 0;
 		fpsTime = endTime;
+	}
+
+	if (Engine::Instance().GetRole()==EngineRole::Server && deltaTime.count() < 1.0f / FrameLimit)
+	{
+		int sleepTime = (1.0f / FrameLimit - deltaTime.count()) * 1000;
+		std::this_thread::sleep_for(std::chrono::milliseconds(sleepTime));
+
+		endTime = std::chrono::system_clock().now();
+		deltaTime = endTime - beginTime;
 	}
 
 	deltaTime = endTime - beginTime;

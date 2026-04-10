@@ -1,11 +1,16 @@
 #include "EngineCore.h"
 #include "TextureAsset.h"
 #include "RenderSystem.h"
+#include "Engine.h"
 
 IMPLEMENT_DYNAMIC_CLASS(TextureAsset)
 
 void TextureAsset::Load(json::JSON j, std::string& _fileName)
 {
+	if (Engine::Instance().GetRole() == EngineRole::Server)
+	{
+		return;
+	}
 	fileName = _fileName;
 	fs::path path = FileManager::GetAssetPath(j);
 

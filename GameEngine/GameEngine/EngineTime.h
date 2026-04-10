@@ -3,6 +3,8 @@
 #ifndef _TIME_H_
 #define _TIME_H_
 
+#define FrameLimit 120
+
 #include <chrono>
 
 class Time
