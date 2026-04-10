@@ -1,5 +1,7 @@
 #include "EngineCore.h"
 #include "NetworkEngine.h"
+#include "Engine.h"
+#include "FileManager.h"
 
 void NetworkEngine::SendPacket(RakNet::BitStream& bs, RakNet::RakNetGUID* guid /*= nullptr*/)
 {
@@ -40,11 +42,13 @@ void NetworkEngine::UnRegisterPacketCallback(int packetId, const std::function<v
 	}
 }
 
-void NetworkEngine::Initialize(bool _isServer)
+void NetworkEngine::Initialize()
 {
-	isServer = _isServer;
-	isClient = !_isServer;
-
+	if (Engine::Instance().GetRole() == EngineRole::Standalone)
+	{
+		state = NetworkState::DISABLE;
+		return;
+	}
 	LoadSetting();
 
 	rakInterface = RakNet::RakPeerInterface::GetInstance();
@@ -53,27 +57,35 @@ void NetworkEngine::Initialize(bool _isServer)
 
 void NetworkEngine::InitializeNetwork()
 {
-	if (isClient)
+	EngineRole role = Engine::Instance().GetRole();
+
+	if (role == EngineRole::Standalone)
+	{
+		state = NetworkState::DISABLE;
+		return;
+	}
+
+	if (role == EngineRole::Client)
 	{
 		RakNet::SocketDescriptor sd(0, NULL);
 
 		if (rakInterface->Startup(1, &sd, 1) != RakNet::RAKNET_STARTED)
 		{
-			std::cerr << "*** Failed to start client on port " << port << std::endl;
+			Debug::Error("*** Failed to start client on port " + port);
 			exit(1);
 		}
 
 		if (rakInterface->Connect(ipAddress.c_str(), port, NULL, 0) != RakNet::CONNECTION_ATTEMPT_STARTED)
 		{
-			std::cerr << "*** Failed to connect to server. Going to try later " << port << std::endl;
+			Debug::Warning("*** Failed to connect to server. Going to try later " + port);
 		}
 	}
-	else
+	else if(role == EngineRole::Server)
 	{
 		RakNet::SocketDescriptor sd(port, NULL);
 		if (rakInterface->Startup(8, &sd, 1) != RakNet::RAKNET_STARTED)
 		{
-			std::cerr << "*** Failed to start server on port " << port << std::endl;
+			Debug::Error("*** Failed to start server on port " + port);
 			exit(1);
 		}
 
@@ -85,9 +97,9 @@ void NetworkEngine::InitializeNetwork()
 
 void NetworkEngine::LoadSetting()
 {
-	std::ifstream inputStream("../Assets/NetworkSettings.json");
-	std::string str((std::istreambuf_iterator<char>(inputStream)), std::istreambuf_iterator<char>());
-	json::JSON document = json::JSON::Load(str);
+	//std::ifstream inputStream("../Assets/NetworkSettings.json");
+	//std::string str((std::istreambuf_iterator<char>(inputStream)), std::istreambuf_iterator<char>());
+	json::JSON document = FileManager::LoadJson(FileManager::GetConfigPath().string() + "//NetworkSettings.json");
 
 	THROW_RUNTIME_ERROR(document.hasKey("ipaddress") == false, "Unable to determine ip address");
 	ipAddress = document["ipaddress"].ToString();
@@ -98,7 +110,8 @@ void NetworkEngine::LoadSetting()
 
 void NetworkEngine::PreUpdate()
 {
-	if (!isServer && !isClient) return;
+	if (Engine::Instance().GetRole() == EngineRole::Standalone)
+		return;
 
 	switch (state)
 	{
@@ -136,7 +149,7 @@ void NetworkEngine::ReceivePackets()
 		{
 
 		case ID_CONNECTION_REQUEST_ACCEPTED:
-			if(isClient)
+			if(Engine::Instance().GetRole()==EngineRole::Client)
 			{
 				std::cout << "Connected to " << packet->systemAddress.ToString(true) << std::endl;
 				connections.push_back(packet->guid);

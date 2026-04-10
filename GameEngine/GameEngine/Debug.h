@@ -20,7 +20,7 @@ public:
 	static void Error(const std::string& msg)
 	{
 #ifdef _DEBUG
-		std::cout << "Error: " << msg << std::endl;
+		std::cerr << "Error: " << msg << std::endl;
 		std::abort();
 #endif
 	}

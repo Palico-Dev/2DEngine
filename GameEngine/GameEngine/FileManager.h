@@ -48,6 +48,7 @@ public:
 	static fs::path GetAssetFolderPath();
 	static fs::path GetEngineAssetFolderPath();
 	static fs::path GetGameSettingPath();
+	static fs::path GetConfigPath();
 	static fs::path GetAssetPath(json::JSON meta);
 	static fs::path GetSavePath();
 

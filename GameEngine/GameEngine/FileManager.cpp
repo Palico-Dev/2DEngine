@@ -249,3 +249,8 @@ fs::path FileManager::GetSavePath()
 
 	return saveDir;
 }
+
+fs::path FileManager::GetConfigPath()
+{
+	return GetAssetFolderPath() / "Config";
+}

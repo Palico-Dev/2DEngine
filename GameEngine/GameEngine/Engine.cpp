@@ -12,13 +12,16 @@
 
 extern void Engine_Register();
 
-void Engine::Initialize(bool isServer)
+void Engine::Initialize(EngineRole _role)
 {
+	role = _role;
+	LogRole();	
+
     Engine_Register();
 
 	LoadGameSettings();
 
-	NetworkEngine::Instance().Initialize(isServer);
+	NetworkEngine::Instance().Initialize();
 
 	RenderSystem::Instance().Initialize();
 	AssetManager::Instance().Initialize();
@@ -33,11 +36,7 @@ void Engine::Initialize(bool isServer)
     InputManager::Instance().Initialize();
     CollisionSystem::Instance().Initialize();
 
-
-
 	UISystem::Instance().Initialize();
-	
-
 
 }
 
@@ -100,4 +99,20 @@ void Engine::LoadGameSettings()
 	//}
 	//std::string startupScene = FileManager::JsonReadString(gameSettings, "StartupScene");
 	//SceneManager::Instance().LoadScene(AssetManager::Instance().GetAssetPath(startupScene.c_str()).c_str());
+}
+
+void Engine::LogRole()
+{
+	switch (role)
+	{
+	case EngineRole::Client:
+		Debug::Log("[Network]Run as Client");
+		break;
+	case EngineRole::Server:
+		Debug::Log("[Network]Run as Server");
+		break;
+	case EngineRole::Standalone:
+		Debug::Log("[Network]Run as Standalone");
+		break;
+	}
 }

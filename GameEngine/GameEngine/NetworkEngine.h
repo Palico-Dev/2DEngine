@@ -23,8 +23,6 @@ public:
 	};
 
 public:
-	inline bool IsClient() const { return isClient; }
-	inline bool IsServer() const { return isServer; }
 	inline NetworkState GetState() const { return state; }
 
 	void SendPacket(RakNet::BitStream& bs, RakNet::RakNetGUID* guid = nullptr);
@@ -37,7 +35,7 @@ public:
 
 
 private:
-	void Initialize(bool _isServer);
+	void Initialize();
 	void InitializeNetwork();
 	void LoadSetting();
 	void PreUpdate();
@@ -45,8 +43,6 @@ private:
 		 
 
 private:
-	bool isServer = false;
-	bool isClient = false;
 	NetworkState state = NetworkState::NONE;
 
 	int port = -1;
