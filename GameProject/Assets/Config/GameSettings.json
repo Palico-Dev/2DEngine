@@ -7,5 +7,9 @@
 	},	
 	"Scenes":[
 	],
-	"StartupScene" : "Scene01.scene"
+	"StartupScene" : "Scene01.scene",
+	"NetworkSetting" : {
+    	"ipaddress": "127.0.0.1",
+    	"port": 1234
+	} 
 }
