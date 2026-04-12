@@ -104,7 +104,7 @@ void Gameplay::SendRPC(Entity* targetEntity, const std::string& functionName, Ra
 {
 	if (targetEntity->HasComponent<NetworkComponent>())
 	{
-		uint32_t netId = targetEntity->GetComponent<NetworkComponent>()->networkId;
+		unsigned int netId = targetEntity->GetComponent<NetworkComponent>()->networkId;
 
 		RakNet::BitStream bs;
 

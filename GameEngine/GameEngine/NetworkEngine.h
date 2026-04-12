@@ -27,6 +27,8 @@ public:
 
 	void SendPacket(RakNet::BitStream& bs, RakNet::RakNetGUID* guid = nullptr);
 
+	void SendMessage(const std::string& message, RakNet::RakNetGUID* guid = nullptr);
+
 	void RegisterPacketCallback(int packetId,
 		std::function<void(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid)>* callback);
 
@@ -37,6 +39,8 @@ public:
 	{
 		return nextAvailableNetworkId++;
 	}
+
+	void KickAllClients();
 
 private:
 	void Initialize();

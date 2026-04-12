@@ -17,6 +17,7 @@ enum NetworkPacketIds
 	ID_RPC,
 	ID_SPAWN_PREFAB,
 	ID_ALLOCATE_AUTHORITY,
+	ID_MSG,
 };
 
 template<typename T>

@@ -19,7 +19,18 @@ void NetworkEngine::SendPacket(RakNet::BitStream& bs, RakNet::RakNetGUID* guid /
 		{
 			rakInterface->Send(&bs, MEDIUM_PRIORITY, RELIABLE_ORDERED, 0, connections[i], false);
 		}
-	}	
+	}
+}
+
+void NetworkEngine::SendMessage(const std::string& message, RakNet::RakNetGUID* guid /*= nullptr*/)
+{
+	RakNet::BitStream bs;
+	bs.Write((unsigned char)NetworkPacketIds::ID_MSG);
+
+	RakNet::RakString rakString(message.c_str());
+	bs.Write(rakString);
+
+	SendPacket(bs, guid);
 }
 
 void NetworkEngine::RegisterPacketCallback(int packetId, std::function<void(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid)>* callback)
@@ -39,6 +50,17 @@ void NetworkEngine::UnRegisterPacketCallback(int packetId, const std::function<v
 			),
 			NetworkPacketCallbacks[packetId].end()
 		);
+	}
+}
+
+void NetworkEngine::KickAllClients()
+{
+	if(Engine::Instance().GetRole() != EngineRole::Server)
+		return;
+
+	for (auto& guid : connections)
+	{
+		rakInterface->CloseConnection(guid, true);
 	}
 }
 
@@ -80,7 +102,7 @@ void NetworkEngine::InitializeNetwork()
 			Debug::Warning("*** Failed to connect to server. Going to try later " + port);
 		}
 	}
-	else if(role == EngineRole::Server)
+	else if (role == EngineRole::Server)
 	{
 		RakNet::SocketDescriptor sd(port, NULL);
 		if (rakInterface->Startup(8, &sd, 1) != RakNet::RAKNET_STARTED)
@@ -150,7 +172,7 @@ void NetworkEngine::ReceivePackets()
 		{
 
 		case ID_CONNECTION_REQUEST_ACCEPTED:
-			if(Engine::Instance().GetRole()==EngineRole::Client)
+			if (Engine::Instance().GetRole() == EngineRole::Client)
 			{
 				std::cout << "Connected to " << packet->systemAddress.ToString(true) << std::endl;
 				connections.push_back(packet->guid);
