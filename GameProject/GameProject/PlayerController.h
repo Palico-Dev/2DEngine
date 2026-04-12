@@ -33,9 +33,13 @@ private:
 	void MovementBounds(glm::vec2& dir);
 	void OnAllocateAuthority(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid);
 
+	void RPC_Move(RakNet::BitStream& _bStream);
+
 private:
 	bool hasAuthority = false;
 	std::function<void(RakNet::BitStream& _bitStream, RakNet::RakNetGUID& guid)> allocateAuthorityCallback;
+
+	glm::vec2 movement = glm::vec2(0, 0);
 
 
 

@@ -291,25 +291,33 @@ void Scene::NetworkDeserializeSnapShot(RakNet::BitStream& _bStream)
 
 void Scene::InvokeRPC(RakNet::BitStream& bitStream)
 {
-	//	STRCODE entityID;
-	//	bitStream.Read(entityID);
-	//
-	//	for(const auto entity : entities)
-	//	{
-	//		if(entity->GetUid() == entityID)
-	//		{
-	//			STRCODE componentID;
-	//			bitStream.Read(componentID);
-	//#if _DEBUG
-	//			NetworkRPC* networkRPC = dynamic_cast<NetworkRPC*>(entity->GetComponentByUiD(componentID));
-	//#else
-	//			NetworkRPC* networkRPC = static_cast<NetworkRPC*>(entity->GetComponentByUiD(componentID));
-	//#endif
-	//			ASSERT(networkRPC != nullptr, "Conponent is not a NetworkRPC");
-	//			networkRPC->InvokeRPC(bitStream);
-	//			break;
-	//		}
-	//	}
+	unsigned int netId = 0;
+	STRCODE rpcHash = 0;
+
+	bitStream.Read(netId);
+	bitStream.Read(rpcHash);
+
+	auto it = networkEntities.find(netId);
+	if (it != networkEntities.end())
+	{
+		Entity* targetEntity = it->second;
+		NetworkComponent* netComp = targetEntity->GetComponent<NetworkComponent>();
+
+		auto rpcIterator = netComp->rpcRegistry.find(rpcHash);
+
+		if (rpcIterator != netComp->rpcRegistry.end())
+		{
+			rpcIterator->second(bitStream);
+		}
+		else
+		{
+			Debug::Warning("[Network] RPC Hash not registered on Entity: " + targetEntity->name);
+		}
+	}
+	else
+	{
+		Debug::Warning("[Network] Received RPC for unknown NetworkID: " + std::to_string(netId));
+	}
 }
 
 Entity* Scene::CreateEntity(const std::vector<std::string>& component_list)

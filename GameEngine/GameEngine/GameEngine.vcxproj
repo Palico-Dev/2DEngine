@@ -204,7 +204,6 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="NetworkComponent.cpp" />
     <ClCompile Include="NetworkEngine.cpp" />
-    <ClCompile Include="NetworkRPC.cpp" />
     <ClCompile Include="PrefabAsset.cpp" />
     <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="json.cpp" />
@@ -258,7 +257,6 @@
     <ClInclude Include="NetworkCommon.h" />
     <ClInclude Include="NetworkComponent.h" />
     <ClInclude Include="NetworkEngine.h" />
-    <ClInclude Include="NetworkRPC.h" />
     <ClInclude Include="PrefabAsset.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="json.hpp" />

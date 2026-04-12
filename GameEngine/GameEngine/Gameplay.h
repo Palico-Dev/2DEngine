@@ -4,6 +4,10 @@
 
 class Entity;
 class PrefabAsset;
+namespace RakNet
+{
+	class BitStream;
+}
 
 namespace Gameplay
 {
@@ -15,6 +19,8 @@ namespace Gameplay
 
 	Entity* FindEntityWithName(const std::string& name);
 	std::vector<Entity*> FindAllEntitiesWithTag(const std::string& tag);
+
+	void SendRPC(Entity* targetEntity, const std::string& functionName, RakNet::BitStream& customData);
 
 }
 

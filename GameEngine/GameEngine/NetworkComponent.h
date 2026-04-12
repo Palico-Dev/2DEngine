@@ -11,16 +11,13 @@ class NetworkComponent : public Component
 public:
 	void Load(json::JSON& data) override;
 
-	//void RegisterRPC(STRCODE rpcHash, std::function<void(RakNet::BitStream&)> callback)
-	//{
-	//	rpcRegistry[rpcHash] = callback;
-	//}
+	void RegisterRPC(const std::string& functionName, std::function<void(RakNet::BitStream&)> callback);
 	
 public:
 	unsigned int networkId = 0;
 	std::string prefabName = "";
 
-	//std::unordered_map<STRCODE, std::function<void(RakNet::BitStream&)>> rpcRegistry;
+	std::unordered_map<STRCODE, std::function<void(RakNet::BitStream&)>> rpcRegistry;
 
 };
 

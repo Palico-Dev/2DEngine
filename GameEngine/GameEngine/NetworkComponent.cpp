@@ -12,3 +12,8 @@ void NetworkComponent::Load(json::JSON& data)
 	Debug::Log("[Network] Loaded network component from: " + prefabName);
 }
 
+void NetworkComponent::RegisterRPC(const std::string& functionName, std::function<void(RakNet::BitStream&)> callback)
+{
+	rpcRegistry.emplace(GetHashCode(functionName.c_str()), callback);
+}
+

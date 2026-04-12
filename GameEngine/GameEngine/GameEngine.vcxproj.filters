@@ -192,9 +192,6 @@
     <ClCompile Include="NetworkEngine.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkRPC.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h">
@@ -348,9 +345,6 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="NetworkCommon.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkRPC.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="NetworkEngine.h">

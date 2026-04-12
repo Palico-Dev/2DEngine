@@ -38,6 +38,11 @@ void PlayerController::Initialize()
 			std::placeholders::_1, std::placeholders::_2);
 		NetworkEngine::Instance().RegisterPacketCallback(ID_ALLOCATE_AUTHORITY, &allocateAuthorityCallback);
 	}
+
+	owner->GetComponent<NetworkComponent>()->RegisterRPC("RPC_Move", [this](RakNet::BitStream& bs)
+		{
+			this->RPC_Move(bs);
+		});
 }
 
 Component* PlayerController::Clone()
@@ -90,6 +95,15 @@ void PlayerController::OnAllocateAuthority(RakNet::BitStream& _bStream, RakNet::
 	}
 }
 
+void PlayerController::RPC_Move(RakNet::BitStream& _bStream)
+{
+	float value = 0.0f;
+	_bStream.Read(value);
+	movement.x += value;
+	_bStream.Read(value);
+	movement.y += value;
+}
+
 void PlayerController::GetDamage()
 {
 	health--;
@@ -103,34 +117,43 @@ void PlayerController::Update()
 {
 	Component::Update();
 
-	if(!hasAuthority)
-		return;
-
-	glm::vec2 direction = { 0, 0 };
-
-	if (InputManager::Instance().GetKeyPressed(SDLK_SPACE))
+	if (Engine::Instance().GetRole() == EngineRole::Client)
 	{
-		Entity* e = Gameplay::Spawn(bulletAsset, owner->transform->GetPosition()+glm::vec2(0,-20));
+		if (!hasAuthority)
+			return;
+
+		movement = glm::vec2(0, 0);
+
+		if (InputManager::Instance().GetKeyPressed(SDLK_SPACE))
+		{
+			//Entity* e = Gameplay::Spawn(bulletAsset, owner->transform->GetPosition()+glm::vec2(0,-20));
+
+		}
+
+		movement.x = InputManager::Instance().GetAxis("walk_left", "walk_right");
+		movement.y = InputManager::Instance().GetAxis("walk_up", "walk_down");
+
+		MovementBounds(movement);
+
+
+		if (glm::length(movement) != 0.0f)
+		{
+			movement = glm::normalize(movement);
+			movement = movement * speed * Time::Instance().DeltaTime();
+
+			RakNet::BitStream bs;
+			bs.Write(movement.x);
+			bs.Write(movement.y);
+			Gameplay::SendRPC(owner, "RPC_Move", bs);
+		}
 	}
-	if (InputManager::Instance().GetKeyPressed(SDLK_BACKQUOTE))
+
+	if (glm::length(movement) != 0.0f)
 	{
-		SaveManager::Instance().SaveGame();
-	}
-	if (InputManager::Instance().GetKeyPressed(SDLK_l))
-	{
-		SceneManager::Instance().GetCurrentScene()->CleanScene();
-		SaveManager::Instance().LoadGame();
+		owner->transform->Translate(movement);
+		movement = glm::vec2(0, 0);
 	}
 
-	
-	direction.x = InputManager::Instance().GetAxis("walk_left", "walk_right");
-	direction.y = InputManager::Instance().GetAxis("walk_up", "walk_down");
-
-	
-
-	MovementBounds(direction);
-	//Debug::Log(glm::to_string(direction));
-	owner->transform->Translate(direction * speed * Time::Instance().DeltaTime());
 }
 
 void PlayerController::Start()

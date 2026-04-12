@@ -100,5 +100,24 @@ std::vector<Entity*> Gameplay::FindAllEntitiesWithTag(const std::string& tag)
 	return SceneManager::Instance().GetCurrentScene()->FindAllEntitiesByTag(tag);
 }
 
+void Gameplay::SendRPC(Entity* targetEntity, const std::string& functionName, RakNet::BitStream& customData)
+{
+	if (targetEntity->HasComponent<NetworkComponent>())
+	{
+		uint32_t netId = targetEntity->GetComponent<NetworkComponent>()->networkId;
+
+		RakNet::BitStream bs;
+
+		bs.Write((unsigned char)NetworkPacketIds::ID_SCENE_MANAGER);
+		bs.Write((unsigned char)NetworkPacketIds::ID_RPC);
+
+		bs.Write(netId);
+		bs.Write(GetHashCode(functionName.c_str()));
+
+		bs.Write(&customData, customData.GetNumberOfBitsUsed());
+
+		NetworkEngine::Instance().SendPacket(bs);
+	}
+}
 
 
