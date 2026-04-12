@@ -15,6 +15,7 @@ namespace Gameplay
 
 	Entity* FindEntityWithName(const std::string& name);
 	std::vector<Entity*> FindAllEntitiesWithTag(const std::string& tag);
+
 }
 
 #endif

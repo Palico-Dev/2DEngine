@@ -62,10 +62,13 @@ public:
 	}
 	float GetZIndex() const { return zIndex; }
 
-	void Load(json::JSON& data);
+	void Load(json::JSON& data) override;
 	Component* Clone() override;
 	void Serialize(json::JSON& j) override;
 	void Deserialize(json::JSON& j) override;
+
+	void NetworkSerialize(RakNet::BitStream& _bStream)const override;
+	void NetworkDeserialize(RakNet::BitStream& _bStream) override;
 
 private:
 	glm::vec2 position = glm::vec2(0.0f, 0.0f);

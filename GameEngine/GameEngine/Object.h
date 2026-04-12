@@ -5,8 +5,9 @@
 
 #include <iostream>
 #include "json.hpp"
+#include "INetworkSerializable.h"
 
-class Object
+class Object : public INetworkSerializable
 {
 	DECLARE_ABSTRACT_BASE_CLASS(Object)
 
@@ -18,6 +19,14 @@ public:
 
 	STRCODE GetId() { return uid; }
 	void SetId(int _uid) { uid = _uid; }
+
+protected:
+	void NetworkSerialize(RakNet::BitStream& _bStream)const override
+	{
+	};
+	void NetworkDeserialize(RakNet::BitStream& _bStream) override
+	{
+	};
 
 protected:
 	bool initialized = false;

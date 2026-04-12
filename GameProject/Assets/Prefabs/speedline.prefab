@@ -1,5 +1,5 @@
 {
-	"name": "BackgroundItem",
+	"name": "SpeedLine",
 	"id": "0000-0000-0002",
 	"tags": [
 		
@@ -20,11 +20,11 @@
 		{
 			"type": "Sprite",
 			"name": "Sprite01",
-			"asset": "player.png",
+			"asset": "speedLine.png",
 			"layer": -1,
 			"size": {
-				"x": 100.0,
-				"y": 100.0
+				"x": 7.0,
+				"y": 186.0
 			},
 			"offset": {
 				"x": 0.0,
@@ -40,11 +40,12 @@
 			}
 		},
 		{
-			"type" : "BackgroundItem"
+			"type" : "BackgroundItem",
+			"speed" : 400.0
 		},
 		{
 			"type": "NetworkComponent",
-			"prefabName": "backgroundItem.prefab"
+			"prefabName": "speedline.prefab"
 		}
 	]
 }

@@ -9,13 +9,6 @@
 IMPLEMENT_DYNAMIC_CLASS(BackgroundItem)
 CLONEABLE_IMPLEMENT(BackgroundItem)
 
-void BackgroundItem::Init(TextureAsset* texture, glm::vec2 size, float newSpeed)
-{
-	owner->GetComponent<Sprite>()->SetTexture(texture);
-	owner->GetComponent<Sprite>()->SetSize(size);
-	speed = newSpeed;
-}
-
 void BackgroundItem::Serialize(json::JSON& j)
 {
 	FileManager::JsonWriteFloat(j, "speed", speed);
@@ -24,6 +17,11 @@ void BackgroundItem::Serialize(json::JSON& j)
 void BackgroundItem::Deserialize(json::JSON& j)
 {
 	speed = FileManager::JsonReadFloat(j, "speed");
+}
+
+void BackgroundItem::Load(json::JSON& jsonData)
+{
+	speed = FileManager::JsonReadFloat(jsonData, "speed");
 }
 
 void BackgroundItem::Update()

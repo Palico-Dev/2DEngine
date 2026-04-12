@@ -38,6 +38,8 @@ public:
 
 protected:
 	void Render() override;
+	bool IsServerOnly() const override{ return true;}
+
 protected:
 	glm::vec2 center = { 0,0 };
 

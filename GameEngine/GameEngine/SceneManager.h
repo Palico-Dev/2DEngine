@@ -21,6 +21,15 @@ public:
 	void LoadScene(const char* path);
 	Scene* GetCurrentScene() { return currentScene; }
 
+protected:
+	void NetworkUpdate();
+	void SerializeSnapshot(RakNet::RakNetGUID* guid = nullptr) const;
+	void ProcessPacket(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid);
+	void NetworkConnection(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid);
+
+	std::function<void(RakNet::BitStream& _bitStream, RakNet::RakNetGUID& guid)> IncommingConnectionCallback;
+	std::function<void(RakNet::BitStream& _bitStream, RakNet::RakNetGUID& guid)> ProcessPacketCallback;
+
 private:
 	void Initialize();
 	void Update();

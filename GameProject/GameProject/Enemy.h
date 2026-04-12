@@ -25,6 +25,11 @@ protected:
 	virtual void Shoot();
 	void OnTriggerEnter(Collider* other);
 
+	bool IsServerOnly() const override
+	{
+		return true;
+	}
+
 protected:
 	int maxHealth = 5;
 	int health = maxHealth;

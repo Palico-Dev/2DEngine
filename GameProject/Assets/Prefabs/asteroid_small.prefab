@@ -1,5 +1,5 @@
 {
-	"name": "Meteor_Big",
+	"name": "Meteor_Small",
 	"id": "0000-0000-0002",
 	"tags": [
 		"Meteor"
@@ -60,6 +60,10 @@
 			"name": "Meteor",
 			"health": 3,
 			"speed" : 150.0
+		},
+		{
+			"type": "NetworkComponent",
+			"prefabName": "asteroid_small.prefab"
 		}
 	]
 }

@@ -68,6 +68,10 @@
 				"Meteor",
 				"Enemy"
 			]
+		},
+		{
+			"type": "NetworkComponent",
+			"prefabName": "bullet.prefab"
 		}
 	]
 }

@@ -16,6 +16,12 @@ private:
 
 	void CreateEnemy();
 
+protected:
+	bool IsServerOnly() const override
+	{
+		return true;
+	}
+
 private:
 	float createTimer = 0.0f;
 	std::vector<PrefabAsset*> enemyPrefabs;

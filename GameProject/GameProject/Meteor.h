@@ -20,6 +20,12 @@ public:
 	void OnTriggerEnter(Collider* other);
 
 	void SetSpeed(float _speed) { speed = _speed; }
+
+protected:
+	bool IsServerOnly() const override
+	{
+		return true;
+	}
 private:
 	int maxHealth = 3;
 	int health = maxHealth;

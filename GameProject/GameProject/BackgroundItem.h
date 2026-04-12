@@ -12,10 +12,17 @@ class BackgroundItem : public Component
 	CLONEABLE(BackgroundItem);
 
 public:
-	void Init(TextureAsset* texture,glm::vec2 size,float newSpeed);
 
 	void Serialize(json::JSON& j) override;
 	void Deserialize(json::JSON& j) override;
+
+protected:
+	bool IsServerOnly() const override
+	{
+		return true;
+	}
+
+	void Load(json::JSON& jsonData) override;
 
 private:
 	void Update();

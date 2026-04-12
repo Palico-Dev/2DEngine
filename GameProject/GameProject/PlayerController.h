@@ -20,6 +20,12 @@ public:
 	Component* Clone() override;
 	void OnTriggerEnter(Collider* other) override;
 
+protected:
+	//bool IsClientOnly() const override
+	//{
+	//	return true;
+	//}
+
 public:
 	float speed = 200.0f;
 

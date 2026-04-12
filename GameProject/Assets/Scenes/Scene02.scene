@@ -1,0 +1,114 @@
+{
+	"assets": [
+		"Taco.jpg",
+		"Button.png",
+		"player.png",
+		"life.png",
+		"enemyShip.png",
+		"enemyUFO.png",
+		"cour.ttf",
+		"testPrefab.prefab",
+		"player.prefab",
+		"laserGreen.png",
+		"bullet.prefab",
+		"meteorBig.png",
+		"meteorSmall.png",
+		"enemyShip.png",
+		"laserRed.png",
+		"backgroundColor.png",
+		"nebula.png",
+		"speedLine.png",
+		"starBig.png",
+		"starSmall.png",
+		"bullet_enemy.prefab",
+		"asteroid_big.prefab",
+		"asteroid_small.prefab",
+		"enemy.prefab",
+		"enemy_02.prefab",
+		"enemy_03.prefab",
+		"backgroundItem.prefab",
+		"speedline.prefab",
+		"star_big.prefab",
+		"star_small.prefab",
+		"nebula.prefab"
+	],
+	"scene": {
+		"name": "Level1",
+		"id": "0000-0000-0000",
+		"entities": [
+			{
+				"type": "Prefab",
+				"asset": "player.prefab",
+				"position": {
+					"x": 350.0,
+					"y": 750.0
+				}
+			},
+			{
+				"type": "Entity",
+				"name": "GameController",
+				"tags": [
+					"DontDestroyOnLoad"
+				],
+				"components": [
+					{
+						"type": "MeteorFactory",
+						"small": "asteroid_small.prefab",
+						"big": "asteroid_big.prefab"
+					}
+				]
+			},
+			{
+				"type": "Entity",
+				"name": "Background",
+				"tags": [
+					"DontDestroyOnLoad"
+				],
+				"components": [
+					{
+						"type": "Transform",
+						"position": {
+							"x": 0.0,
+							"y": 0.0
+						},
+						"scale": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"rotation": 0.0
+					},
+					{
+						"type": "Sprite",
+						"name": "Sprite01",
+						"asset": "backgroundColor.png",
+						"layer": -2,
+						"size": {
+							"x": 750.0,
+							"y": 1000.0
+						},
+						"offset": {
+							"x": 375.0,
+							"y": 500.0
+						},
+						"rotation": 0.0,
+						"flip": "SDL_FLIP_NONE",
+						"color": {
+							"r": 1.0,
+							"g": 1.0,
+							"b": 1.0,
+							"a": 1.0
+						}
+					},
+					{
+						"type": "Background",
+						"starBig": "star_big.prefab",
+						"starSmall": "star_small.prefab",
+						"nebula": "nebula.prefab",
+						"speedline": "speedline.prefab"
+					}
+				]
+			}
+		]
+	}
+	
+}

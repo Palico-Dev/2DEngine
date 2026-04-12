@@ -29,14 +29,5 @@ void EnemyFactory::Load(json::JSON& jsonData)
 
 void EnemyFactory::CreateEnemy()
 {
-	int index = Random::Int(0, 2);
-	if (index == 2)
-	{
-		Gameplay::Spawn(enemyPrefabs[index], { 0,Random::Float(50.0f,700.0f) });
-	}
-	else
-	{
-		Gameplay::Spawn(enemyPrefabs[index], {Random::Float(50.0f,700.0f),0});
-	}
-
+	Gameplay::Spawn(enemyPrefabs[0], {0, Random::Float(50.0f, 700.0f)});
 }

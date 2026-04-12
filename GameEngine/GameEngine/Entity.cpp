@@ -4,6 +4,8 @@
 #include "Transform.h"
 #include "FileManager.h"
 #include "Collider.h"
+#include "Engine.h"
+#include "NetworkComponent.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Entity)
 
@@ -45,6 +47,16 @@ Component* Entity::CreateComponent(const std::string& componentType)
 	Component* component = (Component*)CreateObject(componentType.c_str());
 	if (component)
 	{
+		if(component->IsServerOnly() && Engine::Instance().GetRole() == EngineRole::Client)
+		{
+			delete component;
+			return nullptr;
+		}
+		if(component->IsClientOnly() && Engine::Instance().GetRole() == EngineRole::Server)
+		{
+			delete component;
+			return nullptr;
+		}
 		component->owner = this;
 		components.push_back(component);
 		if (componentType == "Transform")
@@ -80,6 +92,16 @@ void Entity::Destroy()
 	components.clear();
 }
 
+void Entity::NetworkSerialize(RakNet::BitStream& _bStream) const
+{
+	transform->NetworkSerialize(_bStream);
+}
+
+void Entity::NetworkDeserialize(RakNet::BitStream& _bStream)
+{
+	transform->NetworkDeserialize(_bStream);
+}
+
 Component* const Entity::GetComponentByType(const std::string& comp_type)
 {
 	for(auto component: components)
@@ -89,8 +111,20 @@ Component* const Entity::GetComponentByType(const std::string& comp_type)
 			return component;
 		}
 	}
-	Debug::Error("Cannot find Component: " + comp_type);
+	Debug::Warning("Cannot find Component: " + comp_type);
 	return nullptr;
+}
+
+bool Entity::HasComponent(const std::string& comp_type)
+{
+	for(auto component : components)
+	{
+		if(component->IsA(GetHashCode(comp_type.c_str())))
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 std::vector<Component*> Entity::GetAllComponentsByType(const std::string& comp_type)
@@ -135,7 +169,8 @@ void Entity::Load(json::JSON& jsonData)
 	for (auto& comp : componentsJson.ArrayRange()) {
 		std::string compType = FileManager::JsonReadString(comp,"type");
 		Component* component = CreateComponent(compType);
-		component->Load(comp);
+		if(component!=nullptr)
+			component->Load(comp);
 	}
 }
 
@@ -144,6 +179,15 @@ Entity* Entity::Clone()
 	Entity* cloneEntity = (Entity*)CreateObject("Entity");
 	for (auto& c : components)
 	{
+		if(c->IsServerOnly() && Engine::Instance().GetRole() == EngineRole::Client)
+		{
+			continue;
+		}
+		if(c->IsClientOnly() && Engine::Instance().GetRole() == EngineRole::Server)
+		{
+			continue;
+		}
+
 		Component* cloneComponent = c->Clone();
 		cloneEntity->components.push_back(cloneComponent);
 		cloneComponent->owner = cloneEntity;

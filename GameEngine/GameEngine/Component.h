@@ -37,6 +37,10 @@ protected:
 	virtual void OnTriggerStay(Collider* other) {}
 	virtual void OnTriggerExit(Collider* other) {}
 
+protected:
+	virtual bool IsServerOnly() const{ return false;}
+	virtual bool IsClientOnly() const{ return false;}
+
 private:
 
 	friend class Entity;

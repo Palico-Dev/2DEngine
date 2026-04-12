@@ -15,6 +15,7 @@ enum NetworkPacketIds
 	ID_CREATE_COMPONENT,
 	ID_DESTROY_ENTITY,
 	ID_RPC,
+	ID_SPAWN_PREFAB,
 };
 
 template<typename T>

@@ -16,7 +16,7 @@ void Background::Update()
 	starTimer -= time.DeltaTime();
 	speedlineTimer -= time.DeltaTime();
 	nebulaTimer -= time.DeltaTime();
-	
+
 	if (starTimer <= 0)
 	{
 		CreateStar();
@@ -37,33 +37,36 @@ void Background::Update()
 
 void Background::Load(json::JSON& jsonData)
 {
-	itemName = FileManager::JsonReadString(jsonData, "backgroundItem");
-	backgroundItem = AssetManager::Instance().GetAsset<PrefabAsset>(itemName);
+	starSmallName = FileManager::JsonReadString(jsonData, "starSmall");
+	starBigName = FileManager::JsonReadString(jsonData, "starBig");
+	nebulaName = FileManager::JsonReadString(jsonData, "nebula");
+	speedlineName = FileManager::JsonReadString(jsonData, "speedline");
+
+	starSmall = AssetManager::Instance().GetAsset<PrefabAsset>(starSmallName);
+	starBig = AssetManager::Instance().GetAsset<PrefabAsset>(starBigName);
+	nebula = AssetManager::Instance().GetAsset<PrefabAsset>(nebulaName);
+	speedline = AssetManager::Instance().GetAsset<PrefabAsset>(speedlineName);
 }
 
 void Background::CreateNebula()
 {
-	Entity* e = Gameplay::Spawn(backgroundItem, { Random::Float(150.0f,600.0f),-100 });
-	e->GetComponent<BackgroundItem>()->Init(AssetManager::Instance().GetAsset<TextureAsset>("nebula.png"), { 241,168 }, 50.0f);
+	Entity* e = Gameplay::Spawn(nebula, { Random::Float(150.0f,600.0f),-100 });
 }
 
 void Background::CreateSpeedline()
 {
-	Entity* e = Gameplay::Spawn(backgroundItem, { Random::Float(10.0f,740.0f),-100 });
-	e->GetComponent<BackgroundItem>()->Init(AssetManager::Instance().GetAsset<TextureAsset>("speedLine.png"), { 7,186 }, 400.0f);
+	Entity* e = Gameplay::Spawn(speedline, { Random::Float(10.0f,740.0f),-100 });
 }
 
 void Background::CreateStar()
 {
 	if (Random::Bool())
 	{
-		Entity* e = Gameplay::Spawn(backgroundItem, { Random::Float(10.0f,740.0f),-100 });
-		e->GetComponent<BackgroundItem>()->Init(AssetManager::Instance().GetAsset<TextureAsset>("starBig.png"), { 23,21 }, Random::Float(50.0f,100.0f));
+		Entity* e = Gameplay::Spawn(starBig, { Random::Float(10.0f,740.0f),-100 });
 	}
 	else
 	{
-		Entity* e = Gameplay::Spawn(backgroundItem, { Random::Float(10.0f,740.0f),-100 });
-		e->GetComponent<BackgroundItem>()->Init(AssetManager::Instance().GetAsset<TextureAsset>("starSmall.png"), { 11,11 }, Random::Float(80.0f, 130.0f));
+		Entity* e = Gameplay::Spawn(starSmall, { Random::Float(10.0f,740.0f),-100 });
 	}
 
 }

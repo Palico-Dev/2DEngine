@@ -1,5 +1,5 @@
 {
-	"name": "BackgroundItem",
+	"name": "Nebula",
 	"id": "0000-0000-0002",
 	"tags": [
 		
@@ -20,11 +20,11 @@
 		{
 			"type": "Sprite",
 			"name": "Sprite01",
-			"asset": "player.png",
+			"asset": "nebula.png",
 			"layer": -1,
 			"size": {
-				"x": 100.0,
-				"y": 100.0
+				"x": 241.0,
+				"y": 168.0
 			},
 			"offset": {
 				"x": 0.0,
@@ -40,11 +40,12 @@
 			}
 		},
 		{
-			"type" : "BackgroundItem"
+			"type" : "BackgroundItem",
+			"speed" : 50.0
 		},
 		{
 			"type": "NetworkComponent",
-			"prefabName": "backgroundItem.prefab"
+			"prefabName": "nebula.prefab"
 		}
 	]
 }

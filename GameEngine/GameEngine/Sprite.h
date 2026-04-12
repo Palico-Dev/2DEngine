@@ -29,6 +29,8 @@ protected:
 	int GetLayer() { return layer; }
 	void SetLayer(int _layer) { layer = _layer; }
 
+	bool IsClientOnly() const override{ return true;}
+
 private:
 	std::string spriteName = "";
 

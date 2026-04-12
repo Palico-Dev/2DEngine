@@ -73,3 +73,33 @@ void Transform::Deserialize(json::JSON& j)
 	scale = FileManager::JsonReadVec2(j, "scale");
 	rotation = FileManager::JsonReadFloat(j, "rotation");
 }
+
+void Transform::NetworkSerialize(RakNet::BitStream& _bStream) const
+{
+	_bStream.Write(position.x);
+	_bStream.Write(position.y);
+
+	_bStream.Write(rotation);
+
+	_bStream.Write(scale.x);
+	_bStream.Write(scale.y);
+}
+
+void Transform::NetworkDeserialize(RakNet::BitStream& _bStream)
+{
+	glm::vec2 pos(0, 0);
+	glm::vec2 scl(1, 1);
+	float rot = 0.0f;
+
+	_bStream.Read(pos.x);
+	_bStream.Read(pos.y);
+
+	_bStream.Read(rot);
+
+	_bStream.Read(scl.x);
+	_bStream.Read(scl.y);
+
+	SetPosition(pos);
+	SetRotation(rot);
+	SetScale(scl);
+}

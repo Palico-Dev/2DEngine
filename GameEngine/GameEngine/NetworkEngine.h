@@ -33,6 +33,10 @@ public:
 	void UnRegisterPacketCallback(int packetId,
 		const std::function<void(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid)>* callback);
 
+	unsigned int GenerateNetworkId()
+	{
+		return nextAvailableNetworkId++;
+	}
 
 private:
 	void Initialize();
@@ -51,6 +55,8 @@ private:
 	std::vector<RakNet::RakNetGUID> connections;
 
 	std::map<int, std::vector<std::function<void(RakNet::BitStream& _bitStream, RakNet::RakNetGUID& guid)>*>> NetworkPacketCallbacks;
+
+	unsigned int nextAvailableNetworkId = 1000;
 };
 
 #endif

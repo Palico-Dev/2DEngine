@@ -126,14 +126,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\GameEngine\GameEngine\;$(SolutionDir)..\GameEngine\External-Libs\SDL\include\;$(SolutionDir)..\GameEngine\External-Libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\GameEngine\GameEngine\;$(SolutionDir)..\GameEngine\External-Libs\SDL\include\;$(SolutionDir)..\GameEngine\External-Libs\glm;$(SolutionDir)..\GameEngine\External-Libs\RakNet\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\GameEngine\Engine-Libs\GameEngine\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)..\GameEngine\External-Libs\SDL\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GameEngine.lib;SDL2.lib;SDL2_ttf.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\GameEngine\Engine-Libs\GameEngine\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)..\GameEngine\External-Libs\SDL\lib\$(PlatformTarget);$(SolutionDir)..\GameEngine\External-Libs\RakNet\Lib\$(PlatformTarget)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_ttf.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;GameEngine.lib;ws2_32.lib;RakNet.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -60,6 +60,10 @@
 			"name": "Meteor",
 			"health": 5,
 			"speed" : 100.0
+		},
+		{
+			"type": "NetworkComponent",
+			"prefabName": "asteroid_big.prefab"
 		}
 	]
 }

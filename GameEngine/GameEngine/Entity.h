@@ -20,7 +20,7 @@ public:
 	void Start();
 	void Destroy() override;
 
-	#pragma region Component
+#pragma region Component
 	Component* CreateComponent(const std::string& componentType);
 	bool RemoveComponent(Component* component);
 
@@ -36,21 +36,28 @@ public:
 		std::vector<Component*> rawList = GetAllComponentsByType(T::GetTypeClassName());
 		std::vector<T*> typedList;
 
-		for (Component* c : rawList)
+		for(Component* c : rawList)
 		{
 			typedList.push_back((T*)c);
 		}
 
 		return typedList;
 	}
-	#pragma endregion
+
+	template <typename T>
+	bool HasComponent()
+	{
+		return HasComponent(T::GetTypeClassName());
+	}
+
+#pragma endregion
 
 	bool HasTag(const std::string& tag);
 
 	void Load(json::JSON& jsonData) override;
 	Entity* Clone();
 
-	#pragma region Collision Event
+#pragma region Collision Event
 public:
 	void DispatchCollisionEnter(Collider* other);
 	void DispatchCollisionStay(Collider* other);
@@ -58,7 +65,7 @@ public:
 	void DispatchTriggerEnter(Collider* other);
 	void DispatchTriggerStay(Collider* other);
 	void DispatchTriggerExit(Collider* other);
-	#pragma endregion
+#pragma endregion
 
 	json::JSON Serialize();
 	void Deserialize(json::JSON& j);
@@ -69,8 +76,13 @@ public:
 	std::string name = "";
 	Transform* transform = nullptr;
 
+protected:
+	void NetworkSerialize(RakNet::BitStream& _bStream)const override;
+	void NetworkDeserialize(RakNet::BitStream& _bStream) override;
+
 private:
 	Component* const GetComponentByType(const std::string& comp_type);
+	bool HasComponent(const std::string& comp_type);
 	std::vector<Component*> GetAllComponentsByType(const std::string& comp_type);
 
 private:

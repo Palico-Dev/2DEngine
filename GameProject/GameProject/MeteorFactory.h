@@ -15,6 +15,12 @@ public:
 	void Update() override;
 	void Load(json::JSON& j) override;
 
+protected:
+	bool IsServerOnly() const override
+	{
+		return true;
+	}
+
 private:
 	void CreateMeteor();
 

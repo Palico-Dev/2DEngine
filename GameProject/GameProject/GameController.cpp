@@ -10,29 +10,6 @@
 void GameController::Init()
 {
 	auto& registry = DataBindingRegistry::Instance();
-
-	registry.RegisterString(GetHashCode("PLAYER_SCORE"), [this]() {
-		return "Score: " + std::to_string(this->score);
-		});
-
-	registry.RegisterString(GetHashCode("PLAYER_HIGHESTSCORE"), [this]() {
-		return "Highest Score: " + std::to_string(this->highestScore);
-		});
-
-	registry.RegisterString(GetHashCode("FPS"), []() {
-		return std::to_string(Time::Instance().FPS());
-		});
-
-	registry.RegisterInt(GetHashCode("GAME_HEALTH"), [this]() {
-		return this->gameHealth;
-		});
-
-	registry.RegisterAction(GetHashCode("BUTTON_TEST"), [this]() {
-		this->ButtonTest();
-		});
-	registry.RegisterAction(GetHashCode("BUTTON_PAUSE"), [this]() {
-		this->PauseGame();
-		});
 }
 
 void GameController::LoseHealth()

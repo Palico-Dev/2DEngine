@@ -202,6 +202,7 @@
     <ClCompile Include="FontAsset.cpp" />
     <ClCompile Include="Gameplay.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="NetworkComponent.cpp" />
     <ClCompile Include="NetworkEngine.cpp" />
     <ClCompile Include="NetworkRPC.cpp" />
     <ClCompile Include="PrefabAsset.cpp" />
@@ -252,9 +253,10 @@
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="FontAsset.h" />
     <ClInclude Include="Gameplay.h" />
+    <ClInclude Include="INetworkSerializable.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="ISerializable.h" />
     <ClInclude Include="NetworkCommon.h" />
+    <ClInclude Include="NetworkComponent.h" />
     <ClInclude Include="NetworkEngine.h" />
     <ClInclude Include="NetworkRPC.h" />
     <ClInclude Include="PrefabAsset.h" />
