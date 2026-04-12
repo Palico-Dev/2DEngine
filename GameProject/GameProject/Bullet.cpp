@@ -72,15 +72,5 @@ void Bullet::OnTriggerEnter(Collider* other)
 		other->owner->GetComponent<Meteor>()->GetDamage();
 		Gameplay::Destroy(owner);
 	}
-	if (other->owner->HasTag("Enemy") && Utility::VectorContains<std::string>(targetTags, "Enemy"))
-	{
-		other->owner->GetComponent<Enemy>()->GetDamage();
-		Gameplay::Destroy(owner);
-	}
-	if (other->owner->HasTag("Player") && Utility::VectorContains<std::string>(targetTags, "Player"))
-	{
-		other->owner->GetComponent<PlayerController>()->GetDamage();
-		Gameplay::Destroy(owner);
-	}
 
 }

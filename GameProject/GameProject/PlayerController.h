@@ -34,6 +34,7 @@ private:
 	void OnAllocateAuthority(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid);
 
 	void RPC_Move(RakNet::BitStream& _bStream);
+	void RPC_Shoot(RakNet::BitStream& _bStream);
 
 private:
 	bool hasAuthority = false;

@@ -23,6 +23,13 @@ void GameController::Init()
 		NetworkEngine::Instance().RegisterPacketCallback(ID_NEW_INCOMING_CONNECTION, &playerJoinedCallback);
 	}
 
+	if (Engine::Instance().GetRole() == EngineRole::Client)
+	{
+		msgCallback = std::bind(&GameController::OnReceiveMsg, this,
+			std::placeholders::_1, std::placeholders::_2);
+		NetworkEngine::Instance().RegisterPacketCallback(ID_MSG, &msgCallback);
+	}
+
 	playerPrefab = AssetManager::Instance().GetAsset<PrefabAsset>("player.prefab");
 
 }
@@ -42,16 +49,23 @@ void GameController::Deserialize(json::JSON& j)
 
 }
 
+void GameController::GameOver()
+{
+	NetworkEngine::Instance().SendMessage("GameOver");
+	NetworkEngine::Instance().KickAllClients();
+}
+
 void GameController::OnPlayerJoined(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid)
 {
 	Debug::Log("[Game Controller] Player joined");
-	Entity* newPlayer = Gameplay::Spawn(playerPrefab,Random::Vec2(50.0f,300.0f,300.0f,600.0f));
+	Entity* newPlayer = Gameplay::Spawn(playerPrefab,Random::Vec2(50.0f,700.0f,750.0f,751.0f));
 	players.push_back(newPlayer);
 	AllocateAuthority(newPlayer, guid);
 
 	if (!isGameStarted && players.size() >= 2)
 	{
-		//isGameStarted = true;
+		isGameStarted = true;
+		NetworkEngine::Instance().SendMessage("GameStart");
 		Debug::Log("[Gameplay] Game Start!!!");
 	}
 }
@@ -63,5 +77,34 @@ void GameController::AllocateAuthority(Entity* player, RakNet::RakNetGUID& guid)
 	bStream.Write((unsigned char)NetworkPacketIds::ID_ALLOCATE_AUTHORITY);
 	bStream.Write(networkId);
 	NetworkEngine::Instance().SendPacket(bStream, &guid);
+}
+
+void GameController::OnReceiveMsg(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid)
+{
+	RakNet::RakString rakString;
+	_bStream.Read(rakString);
+	
+	std::string msg = rakString.C_String();
+	
+	if (msg == "GameOver")
+	{
+		OnReceiveGameOver();
+	}
+	else if(msg == "GameStart")
+	{
+		OnReceiveGameStart();
+	}
+}
+
+void GameController::OnReceiveGameOver()
+{
+	Debug::Log("GAME OVER!!!");
+	isGameStarted = false;
+}
+
+void GameController::OnReceiveGameStart()
+{
+	Debug::Log("GAME START!!!");
+	isGameStarted = true;
 }
 

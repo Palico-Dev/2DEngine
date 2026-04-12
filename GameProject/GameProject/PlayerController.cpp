@@ -13,6 +13,7 @@
 #include "Scene.h"
 #include "NetworkEngine.h"
 #include "NetworkComponent.h"
+#include "Bullet.h"
 
 IMPLEMENT_DYNAMIC_CLASS(PlayerController)
 
@@ -42,6 +43,11 @@ void PlayerController::Initialize()
 	owner->GetComponent<NetworkComponent>()->RegisterRPC("RPC_Move", [this](RakNet::BitStream& bs)
 		{
 			this->RPC_Move(bs);
+		});
+
+	owner->GetComponent<NetworkComponent>()->RegisterRPC("RPC_Shoot", [this](RakNet::BitStream& bs)
+		{
+			this->RPC_Shoot(bs);
 		});
 }
 
@@ -104,6 +110,19 @@ void PlayerController::RPC_Move(RakNet::BitStream& _bStream)
 	movement.y += value;
 }
 
+void PlayerController::RPC_Shoot(RakNet::BitStream& _bStream)
+{
+	glm::vec2 playerPos;
+	glm::vec2 dir;
+	_bStream.Read(playerPos.x);
+	_bStream.Read(playerPos.y);
+	_bStream.Read(dir.x);
+	_bStream.Read(dir.y);
+
+	Entity* bullet = Gameplay::Spawn(bulletAsset, playerPos);
+	bullet->GetComponent<Bullet>()->SetDirection(dir);
+}
+
 void PlayerController::GetDamage()
 {
 	health--;
@@ -116,6 +135,8 @@ void PlayerController::GetDamage()
 void PlayerController::Update()
 {
 	Component::Update();
+	if (!GameController::Instance().isGameStarted)
+		return;
 
 	if (Engine::Instance().GetRole() == EngineRole::Client)
 	{
@@ -126,8 +147,21 @@ void PlayerController::Update()
 
 		if (InputManager::Instance().GetKeyPressed(SDLK_SPACE))
 		{
-			//Entity* e = Gameplay::Spawn(bulletAsset, owner->transform->GetPosition()+glm::vec2(0,-20));
+			Debug::Log("Space");
+		}
+		if (InputManager::Instance().GetMousePressed(SDL_BUTTON_LEFT))
+		{
+			glm::vec2 mousePos = CollisionMath::PointToVector2(InputManager::Instance().GetMousePosition());
+			glm::vec2 playerPos = owner->transform->GetPosition();
+			glm::vec2 dir = mousePos - playerPos;
+			dir = normalize(dir);
 
+			RakNet::BitStream bs;
+			bs.Write(playerPos.x);
+			bs.Write(playerPos.y);
+			bs.Write(dir.x);
+			bs.Write(dir.y);
+			Gameplay::SendRPC(owner, "RPC_Shoot", bs);
 		}
 
 		movement.x = InputManager::Instance().GetAxis("walk_left", "walk_right");

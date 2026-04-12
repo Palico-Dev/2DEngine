@@ -56,14 +56,9 @@ void Meteor::GetDamage()
 
 void Meteor::OnTriggerEnter(Collider* other)
 {
-	if (other->owner->HasTag("Enemy"))
-	{
-		other->owner->GetComponent<Enemy>()->GetDamage();
-		Gameplay::Destroy(owner);
-	}
 	if (other->owner->HasTag("Player"))
 	{
-		other->owner->GetComponent<PlayerController>()->GetDamage();
+		GameController::Instance().GameOver();
 		Gameplay::Destroy(owner);
 	}
 }
