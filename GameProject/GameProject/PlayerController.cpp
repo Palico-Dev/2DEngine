@@ -11,6 +11,8 @@
 #include "SaveManager.h"
 #include "SceneManager.h"
 #include "Scene.h"
+#include "NetworkEngine.h"
+#include "NetworkComponent.h"
 
 IMPLEMENT_DYNAMIC_CLASS(PlayerController)
 
@@ -29,6 +31,13 @@ void PlayerController::Initialize()
 
 	InputManager::Instance().BindAction("walk_right", SDLK_d);
 	InputManager::Instance().BindAction("walk_right", SDLK_RIGHT);
+
+	if (Engine::Instance().GetRole() == EngineRole::Client)
+	{
+		allocateAuthorityCallback = std::bind(&PlayerController::OnAllocateAuthority, this,
+			std::placeholders::_1, std::placeholders::_2);
+		NetworkEngine::Instance().RegisterPacketCallback(ID_ALLOCATE_AUTHORITY, &allocateAuthorityCallback);
+	}
 }
 
 Component* PlayerController::Clone()
@@ -66,12 +75,26 @@ void PlayerController::MovementBounds(glm::vec2& dir)
 	dir = { x,y };
 }
 
+void PlayerController::OnAllocateAuthority(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid)
+{
+	unsigned int networkId = 0;
+	networkId = PeakBitStream<unsigned int>(_bStream);
+
+	if (owner->GetComponent<NetworkComponent>()->networkId == networkId)
+	{
+		Debug::Log("[PlayerController] Authority allocated for networkId: " + std::to_string(networkId));
+		hasAuthority = true;
+	}
+	else{
+		Debug::Log("[PlayerController] Authority NOT allocated for networkId: " + std::to_string(networkId));
+	}
+}
+
 void PlayerController::GetDamage()
 {
 	health--;
 	if (health <= 0)
 	{
-		GameController::Instance().LoseHealth();
 		health = maxHealth;
 	}
 }
@@ -79,6 +102,10 @@ void PlayerController::GetDamage()
 void PlayerController::Update()
 {
 	Component::Update();
+
+	if(!hasAuthority)
+		return;
+
 	glm::vec2 direction = { 0, 0 };
 
 	if (InputManager::Instance().GetKeyPressed(SDLK_SPACE))
@@ -110,6 +137,4 @@ void PlayerController::Start()
 {
 	Debug::Log("PlayerController Start");
 	bulletAsset = AssetManager::Instance().GetAsset<PrefabAsset>("bullet.prefab");
-
-
 }

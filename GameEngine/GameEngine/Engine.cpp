@@ -33,16 +33,16 @@ void Engine::Initialize(EngineRole _role)
 
 	AssetManager::Instance().Initialize();
 
-	if (gameInitCallback)
-	{
-		gameInitCallback();
-	}
-
     SceneManager::Instance().Initialize();
 
 	if (role != EngineRole::Client)
 	{
 		CollisionSystem::Instance().Initialize();
+	}
+
+	if (gameInitCallback)
+	{
+		gameInitCallback();
 	}
 }
 

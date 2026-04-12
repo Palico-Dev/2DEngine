@@ -24,6 +24,11 @@ float Random::Float()
 	return Float(0.0f, 1.0f);
 }
 
+glm::vec2 Random::Vec2(float minX, float maxX, float minY, float maxY)
+{
+	return glm::vec2(Float(minX, maxX), Float(minY, maxY));
+}
+
 std::mt19937& Random::GetEngine()
 {
 	static std::random_device rd; 

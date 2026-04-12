@@ -13,29 +13,28 @@ class GameController
 
 public:
 	void Init();
-	void LoseHealth();
 	void Start();
-	void RestartGame();
-	
-	void AddScore(int add);
-	int GetScore() { return score; }
-	int GetHighestScore() { return highestScore; }
 
 	void Serialize(json::JSON& j);
 	void Deserialize(json::JSON& j);
 
+public:
+	bool isGameStarted = false;
+
 private:
 	void ButtonTest();
-	void PauseGame();
 	void ResumeGame();
 
 private:
-	int highestScore = 0;
-	int score = 0;
+	void OnPlayerJoined(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid);
+	void AllocateAuthority(Entity* player, RakNet::RakNetGUID& guid);
 
-	int gameHealth = 3;
+private:
+	PrefabAsset* playerPrefab = nullptr;
 
-	Entity* player = nullptr;
+	std::function<void(RakNet::BitStream& _bitStream, RakNet::RakNetGUID& guid)> playerJoinedCallback;
+
+	std::vector<Entity*> players;
 };
 
 #endif

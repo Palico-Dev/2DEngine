@@ -6,71 +6,62 @@
 #include "Entity.h"
 #include "Transform.h"
 #include "FileManager.h"
+#include "NetworkEngine.h"
+#include "Engine.h"
+#include "AssetManager.h"
+#include "Random.h"
+#include "NetworkComponent.h"
 
 void GameController::Init()
 {
 	auto& registry = DataBindingRegistry::Instance();
-}
 
-void GameController::LoseHealth()
-{
-	SceneManager::Instance().GetCurrentScene()->CleanScene();
-	player->transform->SetPosition({ 375,700 });
-	gameHealth--;
+	if (Engine::Instance().GetRole() == EngineRole::Server)
+	{
+		playerJoinedCallback = std::bind(&GameController::OnPlayerJoined, this,
+			std::placeholders::_1, std::placeholders::_2);
+		NetworkEngine::Instance().RegisterPacketCallback(ID_NEW_INCOMING_CONNECTION, &playerJoinedCallback);
+	}
 
-	if (gameHealth <= 0)
-		RestartGame();
+	playerPrefab = AssetManager::Instance().GetAsset<PrefabAsset>("player.prefab");
+
 }
 
 void GameController::Start()
 {
-	player = Gameplay::FindAllEntitiesWithTag("Player")[0];
-}
 
-void GameController::RestartGame()
-{
-	score = 0;
-	gameHealth = 3;
-}
-
-void GameController::AddScore(int add)
-{
-	score += add;
-	if (score > highestScore)
-		highestScore = score;
 }
 
 void GameController::Serialize(json::JSON& j)
 {
-	json::JSON node;
-	FileManager::JsonWriteInt(node, "highestScore", highestScore);
-	FileManager::JsonWriteInt(node, "score", score);
-	FileManager::JsonWriteInt(node, "gameHealth", gameHealth);
-	FileManager::JsonWriteVec2(node, "playerPosition", player->transform->GetPosition());
 
-	j["gameController"] = node;
 }
 
 void GameController::Deserialize(json::JSON& j)
 {
-	json::JSON node = j["gameController"];
-	highestScore = FileManager::JsonReadInt(node, "highestScore");
-	score = FileManager::JsonReadInt(node, "score");
-	gameHealth = FileManager::JsonReadInt(node, "gameHealth");
-	player->transform->SetPosition(FileManager::JsonReadVec2(node, "playerPosition"));
+
 }
 
-void GameController::ButtonTest()
+void GameController::OnPlayerJoined(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid)
 {
-	Debug::Log("ButtonTest");
+	Debug::Log("[Game Controller] Player joined");
+	Entity* newPlayer = Gameplay::Spawn(playerPrefab,Random::Vec2(50.0f,300.0f,300.0f,600.0f));
+	players.push_back(newPlayer);
+	AllocateAuthority(newPlayer, guid);
+
+	if (!isGameStarted && players.size() >= 2)
+	{
+		//isGameStarted = true;
+		Debug::Log("[Gameplay] Game Start!!!");
+	}
 }
 
-void GameController::PauseGame()
+void GameController::AllocateAuthority(Entity* player, RakNet::RakNetGUID& guid)
 {
-	Engine::Instance().ToggleGamePause();
+	unsigned int networkId = player->GetComponent<NetworkComponent>()->networkId;
+	RakNet::BitStream bStream;
+	bStream.Write((unsigned char)NetworkPacketIds::ID_ALLOCATE_AUTHORITY);
+	bStream.Write(networkId);
+	NetworkEngine::Instance().SendPacket(bStream, &guid);
 }
 
-void GameController::ResumeGame()
-{
-
-}

@@ -6,6 +6,7 @@
 #include "Random.h"
 #include "Entity.h"
 #include "Meteor.h"
+#include "GameController.h"
 
 IMPLEMENT_DYNAMIC_CLASS(MeteorFactory)
 
@@ -16,6 +17,9 @@ void MeteorFactory::Start()
 
 void MeteorFactory::Update()
 {
+	if(!GameController::Instance().isGameStarted)
+		return;
+
 	createTimer -= Time::Instance().DeltaTime();
 	if (createTimer <= 0.0f)
 	{

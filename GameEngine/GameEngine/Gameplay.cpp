@@ -37,6 +37,10 @@ namespace
 				NetworkEngine::Instance().SendPacket(bitStream);
 				Debug::Log("[Network] Sent spawn packet for networkID: " + std::to_string(netComp->networkId) + " entity: " + e->name);
 			}
+			else
+			{
+				Debug::Warning("[Network] Spawned entity does not have NetworkComponent, it will not be replicated to clients: " + e->name);
+			}
 		}
 	}
 }

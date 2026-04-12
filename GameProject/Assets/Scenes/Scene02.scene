@@ -37,14 +37,6 @@
 		"id": "0000-0000-0000",
 		"entities": [
 			{
-				"type": "Prefab",
-				"asset": "player.prefab",
-				"position": {
-					"x": 350.0,
-					"y": 750.0
-				}
-			},
-			{
 				"type": "Entity",
 				"name": "GameController",
 				"tags": [

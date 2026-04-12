@@ -6,11 +6,15 @@
 #include "Random.h"
 #include "Entity.h"
 #include "BackgroundItem.h"
+#include "GameController.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Background)
 
 void Background::Update()
 {
+	if (!GameController::Instance().isGameStarted)
+		return;
+
 	Time& time = Time::Instance();
 
 	starTimer -= time.DeltaTime();

@@ -20,12 +20,6 @@ public:
 	Component* Clone() override;
 	void OnTriggerEnter(Collider* other) override;
 
-protected:
-	//bool IsClientOnly() const override
-	//{
-	//	return true;
-	//}
-
 public:
 	float speed = 200.0f;
 
@@ -37,6 +31,12 @@ public:
 
 private:
 	void MovementBounds(glm::vec2& dir);
+	void OnAllocateAuthority(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid);
+
+private:
+	bool hasAuthority = false;
+	std::function<void(RakNet::BitStream& _bitStream, RakNet::RakNetGUID& guid)> allocateAuthorityCallback;
+
 
 
 };

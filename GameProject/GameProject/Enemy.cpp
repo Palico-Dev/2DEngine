@@ -18,7 +18,6 @@ void Enemy::GetDamage()
 	if (health <= 0)
 	{
 		Gameplay::Destroy(owner);
-		GameController::Instance().AddScore(25);
 	}
 
 }
