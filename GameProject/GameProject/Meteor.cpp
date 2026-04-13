@@ -8,6 +8,7 @@
 #include "PlayerController.h"
 #include "Random.h"
 #include "GameController.h"
+#include "NetworkEngine.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Meteor)
 CLONEABLE_IMPLEMENT(Meteor)
@@ -34,7 +35,7 @@ void Meteor::Serialize(json::JSON& j)
 void Meteor::Deserialize(json::JSON& j)
 {
 	maxHealth = FileManager::JsonReadInt(j, "health");
-	speed = FileManager::JsonReadFloat(j,"speed");
+	speed = FileManager::JsonReadFloat(j, "speed");
 }
 
 void Meteor::Update()
@@ -61,4 +62,9 @@ void Meteor::OnTriggerEnter(Collider* other)
 		GameController::Instance().GameOver();
 		Gameplay::Destroy(owner);
 	}
+}
+
+bool Meteor::IsServerOnly() const
+{
+	return NetworkEngine::Instance().allowClientPrediction ? false : true;
 }

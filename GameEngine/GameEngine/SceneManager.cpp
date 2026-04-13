@@ -107,6 +107,14 @@ void SceneManager::LoadScene(const char* path)
 	UISystem::Instance().Load(sceneJson);
 }
 
+void SceneManager::RequestSnapshot()
+{
+	RakNet::BitStream bStream;
+	bStream.Write((unsigned char)NetworkPacketIds::ID_SCENE_MANAGER);
+	bStream.Write((unsigned char)NetworkPacketIds::ID_SCENE_REQUEST_SNAPSHOT);
+	NetworkEngine::Instance().SendPacket(bStream);
+}
+
 void SceneManager::NetworkUpdate()
 {
 	RakNet::BitStream bStream;
@@ -147,7 +155,6 @@ void SceneManager::ProcessPacket(RakNet::BitStream& _bStream, RakNet::RakNetGUID
 
 	case  NetworkPacketIds::ID_SPAWN_PREFAB:
 	{
-
 		currentScene->NetworkDeserializeSpawnPrefab(_bStream);
 		break;
 	}
@@ -159,6 +166,11 @@ void SceneManager::ProcessPacket(RakNet::BitStream& _bStream, RakNet::RakNetGUID
 	case NetworkPacketIds::ID_SCENE_SNAPSHOT:
 	{
 		currentScene->NetworkDeserializeSnapShot(_bStream);
+		break;
+	}
+	case NetworkPacketIds::ID_SCENE_REQUEST_SNAPSHOT:
+	{
+		SerializeSnapshot(&guid);
 		break;
 	}
 	case NetworkPacketIds::ID_RPC:
@@ -174,5 +186,5 @@ void SceneManager::ProcessPacket(RakNet::BitStream& _bStream, RakNet::RakNetGUID
 
 void SceneManager::NetworkConnection(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid)
 {
-	SceneManager::Instance().SerializeSnapshot(&guid);
+	SerializeSnapshot(&guid);
 }

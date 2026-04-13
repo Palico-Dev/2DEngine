@@ -42,6 +42,9 @@ public:
 
 	void KickAllClients();
 
+public:
+	bool allowClientPrediction = false;
+
 private:
 	void Initialize();
 	void InitializeNetwork();

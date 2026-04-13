@@ -3,8 +3,6 @@
 #ifndef _TIME_H_
 #define _TIME_H_
 
-#define FrameLimit 120
-
 #include <chrono>
 
 class Time
@@ -15,6 +13,9 @@ public:
 	long long TotalTimeMill();
 	unsigned int FrameCount() { return frameCount; }
 	unsigned int FPS() { return fps; }
+
+public:
+	int serverTickLimit = 120;
 
 private:
 	void Initialize();

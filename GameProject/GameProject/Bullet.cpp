@@ -7,6 +7,7 @@
 #include "Meteor.h"
 #include "Enemy.h"
 #include "PlayerController.h"
+#include "NetworkEngine.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Bullet);
 CLONEABLE_IMPLEMENT(Bullet)
@@ -73,4 +74,9 @@ void Bullet::OnTriggerEnter(Collider* other)
 		Gameplay::Destroy(owner);
 	}
 
+}
+
+bool Bullet::IsServerOnly() const
+{
+	return NetworkEngine::Instance().allowClientPrediction ? false : true;
 }

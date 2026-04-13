@@ -12,6 +12,7 @@ public:
 	Widget* GetRoot() { return root; }
 	void Render();
 	void Load(json::JSON j);
+	Widget* FindWidgetByName(const std::string& name);
 
 private:
 	void Initialize();

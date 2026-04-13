@@ -15,9 +15,9 @@ void Time::Update()
 		fpsTime = endTime;
 	}
 
-	if (Engine::Instance().GetRole()==EngineRole::Server && deltaTime.count() < 1.0f / FrameLimit)
+	if (Engine::Instance().GetRole()==EngineRole::Server && deltaTime.count() < 1.0f / serverTickLimit)
 	{
-		int sleepTime = (1.0f / FrameLimit - deltaTime.count()) * 1000;
+		int sleepTime = (1.0f / serverTickLimit - deltaTime.count()) * 1000;
 		std::this_thread::sleep_for(std::chrono::milliseconds(sleepTime));
 
 		endTime = std::chrono::system_clock().now();

@@ -20,6 +20,7 @@ class SceneManager final
 public:
 	void LoadScene(const char* path);
 	Scene* GetCurrentScene() { return currentScene; }
+	void RequestSnapshot();
 
 protected:
 	void NetworkUpdate();

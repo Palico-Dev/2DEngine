@@ -129,6 +129,9 @@ void NetworkEngine::LoadSetting()
 
 	THROW_RUNTIME_ERROR(document.hasKey("port") == false, "Unable to determine ip address");
 	port = document["port"].ToInt();
+
+	allowClientPrediction = FileManager::JsonReadBool(document, "allowClientPrediction");
+	Time::Instance().serverTickLimit = FileManager::JsonReadInt(document, "serverTickLimit");
 }
 
 void NetworkEngine::PreUpdate()

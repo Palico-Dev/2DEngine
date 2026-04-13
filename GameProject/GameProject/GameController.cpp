@@ -11,10 +11,17 @@
 #include "AssetManager.h"
 #include "Random.h"
 #include "NetworkComponent.h"
+#include "UISystem.h"
+#include "Widget.h"
 
 void GameController::Init()
 {
 	auto& registry = DataBindingRegistry::Instance();
+
+	//registry.RegisterString(GetHashCode("FPS"), []()
+	//	{
+	//		return std::to_string(Time::Instance().FPS());
+	//	});
 
 	if (Engine::Instance().GetRole() == EngineRole::Server)
 	{
@@ -53,6 +60,7 @@ void GameController::GameOver()
 {
 	NetworkEngine::Instance().SendMessage("GameOver");
 	NetworkEngine::Instance().KickAllClients();
+	Engine::Instance().SetGamePause(true);
 }
 
 void GameController::OnPlayerJoined(RakNet::BitStream& _bStream, RakNet::RakNetGUID& guid)
@@ -62,11 +70,12 @@ void GameController::OnPlayerJoined(RakNet::BitStream& _bStream, RakNet::RakNetG
 	players.push_back(newPlayer);
 	AllocateAuthority(newPlayer, guid);
 
-	if (!isGameStarted && players.size() >= 2)
+	//SceneManager::Instance().RequestSnapshot();
+
+	if (players.size() >= 2)
 	{
 		isGameStarted = true;
 		NetworkEngine::Instance().SendMessage("GameStart");
-		Debug::Log("[Gameplay] Game Start!!!");
 	}
 }
 
@@ -100,11 +109,13 @@ void GameController::OnReceiveGameOver()
 {
 	Debug::Log("GAME OVER!!!");
 	isGameStarted = false;
+	Widget* w = UISystem::Instance().FindWidgetByName("GameOverWidget");
+	w->SetVisibility(WidgetVisibility::Visable);
+	Engine::Instance().SetGamePause(true);
 }
 
 void GameController::OnReceiveGameStart()
 {
-	Debug::Log("GAME START!!!");
 	isGameStarted = true;
 }
 

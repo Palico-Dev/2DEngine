@@ -73,11 +73,10 @@ Entity* Gameplay::Spawn(PrefabAsset* prefab, glm::vec2 pos)
 
 void Gameplay::Destroy(Entity* e)
 {
-	Debug::Log("[Gameplay] Destroy entity:"+ e->name);
-	SceneManager::Instance().GetCurrentScene()->RemoveEntity(e);
-
 	if (Engine::Instance().GetRole() == EngineRole::Server)
 	{
+		Debug::Log("[Gameplay] Destroy entity:" + e->name);
+		SceneManager::Instance().GetCurrentScene()->RemoveEntity(e);
 		if (e->HasComponent<NetworkComponent>())
 		{
 			RakNet::BitStream bitStream;

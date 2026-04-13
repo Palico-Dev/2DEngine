@@ -32,7 +32,7 @@ void UIImage::Load(json::JSON& j)
 	color = FileManager::JsonReadColor(j, "color");
 
 	std::string flipString = FileManager::JsonReadString(j, "flip");
-	if (flipString == "SDL_FLIP_NONE")
+	if (flipString == "" || flipString == "SDL_FLIP_NONE")
 		flip = SDL_FLIP_NONE;
 	else if (flipString == "SDL_FLIP_VERTICAL")
 		flip = SDL_FLIP_VERTICAL;

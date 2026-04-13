@@ -5,6 +5,7 @@
 #include "TextureAsset.h"
 #include "Sprite.h"
 #include "FileManager.h"
+#include "NetworkEngine.h"
 
 IMPLEMENT_DYNAMIC_CLASS(BackgroundItem)
 CLONEABLE_IMPLEMENT(BackgroundItem)
@@ -17,6 +18,11 @@ void BackgroundItem::Serialize(json::JSON& j)
 void BackgroundItem::Deserialize(json::JSON& j)
 {
 	speed = FileManager::JsonReadFloat(j, "speed");
+}
+
+bool BackgroundItem::IsServerOnly() const
+{
+	return NetworkEngine::Instance().allowClientPrediction ? false : true;
 }
 
 void BackgroundItem::Load(json::JSON& jsonData)

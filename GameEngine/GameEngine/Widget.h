@@ -27,6 +27,11 @@ public:
 	glm::vec2 GetPosition();
 	float GetRotation();
 
+	void SetVisibility(WidgetVisibility v)
+	{
+		visibility = v;
+	}
+
 public:
 	Widget* parent = nullptr;
 
@@ -45,6 +50,7 @@ protected:
 	WidgetVisibility visibility = WidgetVisibility::Visable;
 
 	friend class RenderSystem;
+	friend class UISystem;
 
 
 private:

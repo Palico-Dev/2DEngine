@@ -280,6 +280,9 @@ void Scene::NetworkDeserializeSnapShot(RakNet::BitStream& _bStream)
 			Debug::Error("Prefab not found: " + prefabName);
 		}
 
+		if (networkEntities.find(netId) != networkEntities.end())
+			continue;
+
 		Entity* newEntity = Gameplay::Spawn(prefab);
 
 		newEntity->GetComponent<NetworkComponent>()->networkId = netId;

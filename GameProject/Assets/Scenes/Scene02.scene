@@ -101,6 +101,63 @@
 				]
 			}
 		]
+	},
+	"ui": {
+		"type": "Widget",
+		"name": "root",
+		"localPosition": {
+			"x": 0.0,
+			"y": 0.0
+		},
+		"layer": 0,
+		"rotation": 0.0,
+		"visibility": "Visible",
+		"children": [
+			{
+				"type": "UIImage",
+				"name": "GameOverWidget",
+				"localPosition": {
+					"x": 375.0,
+					"y": 500.0
+				},
+				"layer": 0,
+				"rotation": 0.0,
+				"visibility": "Collapse",
+				"size": {
+					"x": 1000.0,
+					"y": 1000.0
+				},
+				"color": {
+					"r": 1.0,
+					"g": 1.0,
+					"b": 1.0,
+					"a": 0.5
+				},
+				"children":[
+					{
+						"type": "UILabel",
+						"name": "UILabel",
+						"localPosition": {
+							"x": 0.0,
+							"y": 0.0
+						},
+						"layer": 0,
+						"rotation": 0.0,
+						"visibility": "Visible",
+						"font": "cour.ttf",
+						"size": 40,
+						"text": "Game Over!",
+						"color": {
+							"r": 0.0,
+							"g": 0.0,
+							"b": 0.0,
+							"a": 1.0
+						}
+					}
+				],
+				"asset": "Button.png"
+			}
+		]
 	}
 	
 }

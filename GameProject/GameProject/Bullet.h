@@ -22,10 +22,9 @@ public:
 
 protected:
 	void OnTriggerEnter(Collider* other) override;
-	bool IsServerOnly() const override
-	{
-		return true;
-	}
+
+	bool IsServerOnly() const override;
+
 
 private:
 	float speed = 0.0f;

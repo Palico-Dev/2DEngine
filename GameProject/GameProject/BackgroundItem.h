@@ -17,10 +17,7 @@ public:
 	void Deserialize(json::JSON& j) override;
 
 protected:
-	bool IsServerOnly() const override
-	{
-		return true;
-	}
+	bool IsServerOnly() const override;
 
 	void Load(json::JSON& jsonData) override;
 
