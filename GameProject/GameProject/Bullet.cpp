@@ -8,6 +8,7 @@
 #include "Enemy.h"
 #include "PlayerController.h"
 #include "NetworkEngine.h"
+#include "NetworkComponent.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Bullet);
 CLONEABLE_IMPLEMENT(Bullet)
@@ -23,7 +24,11 @@ void Bullet::Update()
 
 void Bullet::Start()
 {
+	//if (owner->HasComponent<NetworkComponent>())
+	//{
+	//	owner->GetComponent<NetworkComponent>()->syncTransformContinously = false;
 
+	//}
 }
 
 void Bullet::Load(json::JSON& jsonData)

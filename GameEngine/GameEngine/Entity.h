@@ -25,13 +25,13 @@ public:
 	bool RemoveComponent(Component* component);
 
 	template <typename T>
-	T* GetComponent()
+	T* GetComponent() const
 	{
 		return (T*)GetComponentByType(T::GetTypeClassName());;
 	}
 
 	template <typename T>
-	std::vector < T*> GetAllComponents()
+	std::vector < T*> GetAllComponents() const
 	{
 		std::vector<Component*> rawList = GetAllComponentsByType(T::GetTypeClassName());
 		std::vector<T*> typedList;
@@ -45,7 +45,7 @@ public:
 	}
 
 	template <typename T>
-	bool HasComponent()
+	bool HasComponent() const
 	{
 		return HasComponent(T::GetTypeClassName());
 	}
@@ -81,9 +81,9 @@ protected:
 	void NetworkDeserialize(RakNet::BitStream& _bStream) override;
 
 private:
-	Component* const GetComponentByType(const std::string& comp_type);
-	bool HasComponent(const std::string& comp_type);
-	std::vector<Component*> GetAllComponentsByType(const std::string& comp_type);
+	Component* const GetComponentByType(const std::string& comp_type) const;
+	bool HasComponent(const std::string& comp_type) const;
+	std::vector<Component*> GetAllComponentsByType(const std::string& comp_type) const;
 
 private:
 	std::list<Component*> components;

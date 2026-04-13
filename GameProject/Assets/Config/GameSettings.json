@@ -11,7 +11,7 @@
 	"NetworkSetting" : {
     	"ipaddress": "127.0.0.1",
     	"port": 1234,
-		"allowClientPrediction": true,
-		"serverTickLimit": 60
+		"allowClientPrediction": false,
+		"serverTickLimit": 120
 	} 
 }

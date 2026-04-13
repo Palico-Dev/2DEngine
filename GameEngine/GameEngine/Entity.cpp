@@ -94,7 +94,9 @@ void Entity::Destroy()
 
 void Entity::NetworkSerialize(RakNet::BitStream& _bStream) const
 {
-	transform->NetworkSerialize(_bStream);
+	bool syncTransform = GetComponent<NetworkComponent>()->syncTransformContinously;
+	if(syncTransform)
+		transform->NetworkSerialize(_bStream);
 }
 
 void Entity::NetworkDeserialize(RakNet::BitStream& _bStream)
@@ -102,7 +104,7 @@ void Entity::NetworkDeserialize(RakNet::BitStream& _bStream)
 	transform->NetworkDeserialize(_bStream);
 }
 
-Component* const Entity::GetComponentByType(const std::string& comp_type)
+Component* const Entity::GetComponentByType(const std::string& comp_type) const
 {
 	for(auto component: components)
 	{
@@ -115,7 +117,7 @@ Component* const Entity::GetComponentByType(const std::string& comp_type)
 	return nullptr;
 }
 
-bool Entity::HasComponent(const std::string& comp_type)
+bool Entity::HasComponent(const std::string& comp_type) const
 {
 	for(auto component : components)
 	{
@@ -127,7 +129,7 @@ bool Entity::HasComponent(const std::string& comp_type)
 	return false;
 }
 
-std::vector<Component*> Entity::GetAllComponentsByType(const std::string& comp_type)
+std::vector<Component*> Entity::GetAllComponentsByType(const std::string& comp_type) const
 {
 	std::vector<Component*> result;
 	result.reserve(components.size());

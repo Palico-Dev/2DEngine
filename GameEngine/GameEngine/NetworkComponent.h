@@ -17,6 +17,8 @@ public:
 	unsigned int networkId = 0;
 	std::string prefabName = "";
 
+	bool syncTransformContinously = true;
+
 	std::unordered_map<STRCODE, std::function<void(RakNet::BitStream&)>> rpcRegistry;
 
 };
