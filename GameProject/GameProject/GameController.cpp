@@ -70,8 +70,6 @@ void GameController::OnPlayerJoined(RakNet::BitStream& _bStream, RakNet::RakNetG
 	players.push_back(newPlayer);
 	AllocateAuthority(newPlayer, guid);
 
-	//SceneManager::Instance().RequestSnapshot();
-
 	if (players.size() >= 2)
 	{
 		isGameStarted = true;

@@ -39,7 +39,7 @@ void Entity::Start()
 
 Component* Entity::CreateComponent(const std::string& componentType)
 {
-	if(componentType == "Transform" && transform != nullptr)
+	if (componentType == "Transform" && transform != nullptr)
 	{
 		return nullptr;
 	}
@@ -47,12 +47,12 @@ Component* Entity::CreateComponent(const std::string& componentType)
 	Component* component = (Component*)CreateObject(componentType.c_str());
 	if (component)
 	{
-		if(component->IsServerOnly() && Engine::Instance().GetRole() == EngineRole::Client)
+		if (component->IsServerOnly() && Engine::Instance().GetRole() == EngineRole::Client)
 		{
 			delete component;
 			return nullptr;
 		}
-		if(component->IsClientOnly() && Engine::Instance().GetRole() == EngineRole::Server)
+		if (component->IsClientOnly() && Engine::Instance().GetRole() == EngineRole::Server)
 		{
 			delete component;
 			return nullptr;
@@ -63,7 +63,7 @@ Component* Entity::CreateComponent(const std::string& componentType)
 		{
 			transform = (Transform*)component;
 		}
-		
+
 		return component;
 	}
 	return nullptr;
@@ -73,7 +73,7 @@ bool Entity::RemoveComponent(Component* component)
 {
 	//if(component == nullptr || component == transform)
 	//{
-		return false;
+	return false;
 	//}
 
 	//component->MarkForDestroy();
@@ -94,9 +94,7 @@ void Entity::Destroy()
 
 void Entity::NetworkSerialize(RakNet::BitStream& _bStream) const
 {
-	bool syncTransform = GetComponent<NetworkComponent>()->syncTransformContinously;
-	if(syncTransform)
-		transform->NetworkSerialize(_bStream);
+	transform->NetworkSerialize(_bStream);
 }
 
 void Entity::NetworkDeserialize(RakNet::BitStream& _bStream)
@@ -106,9 +104,9 @@ void Entity::NetworkDeserialize(RakNet::BitStream& _bStream)
 
 Component* const Entity::GetComponentByType(const std::string& comp_type) const
 {
-	for(auto component: components)
+	for (auto component : components)
 	{
-		if (component->IsA(GetHashCode(comp_type.c_str())) )
+		if (component->IsA(GetHashCode(comp_type.c_str())))
 		{
 			return component;
 		}
@@ -119,9 +117,9 @@ Component* const Entity::GetComponentByType(const std::string& comp_type) const
 
 bool Entity::HasComponent(const std::string& comp_type) const
 {
-	for(auto component : components)
+	for (auto component : components)
 	{
-		if(component->IsA(GetHashCode(comp_type.c_str())))
+		if (component->IsA(GetHashCode(comp_type.c_str())))
 		{
 			return true;
 		}
@@ -168,10 +166,11 @@ void Entity::Load(json::JSON& jsonData)
 	}
 
 	json::JSON componentsJson = jsonData.at("components");
-	for (auto& comp : componentsJson.ArrayRange()) {
-		std::string compType = FileManager::JsonReadString(comp,"type");
+	for (auto& comp : componentsJson.ArrayRange())
+	{
+		std::string compType = FileManager::JsonReadString(comp, "type");
 		Component* component = CreateComponent(compType);
-		if(component!=nullptr)
+		if (component != nullptr)
 			component->Load(comp);
 	}
 }
@@ -181,11 +180,11 @@ Entity* Entity::Clone()
 	Entity* cloneEntity = (Entity*)CreateObject("Entity");
 	for (auto& c : components)
 	{
-		if(c->IsServerOnly() && Engine::Instance().GetRole() == EngineRole::Client)
+		if (c->IsServerOnly() && Engine::Instance().GetRole() != EngineRole::Server)
 		{
 			continue;
 		}
-		if(c->IsClientOnly() && Engine::Instance().GetRole() == EngineRole::Server)
+		if (c->IsClientOnly() && Engine::Instance().GetRole() != EngineRole::Client)
 		{
 			continue;
 		}
@@ -279,7 +278,7 @@ void Entity::Deserialize(json::JSON& j)
 	name = FileManager::JsonReadString(j, "name");
 
 	auto tagNodes = FileManager::JsonReadArray(j, "tags");
-	for (auto& t:tagNodes)
+	for (auto& t : tagNodes)
 	{
 		tags.push_back((STRCODE)t.ToInt());
 	}
