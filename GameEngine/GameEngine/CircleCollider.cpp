@@ -3,6 +3,7 @@
 #include "FileManager.h"
 
 IMPLEMENT_DYNAMIC_CLASS(CircleCollider);
+CLONEABLE_IMPLEMENT(CircleCollider)
 
 float CircleCollider::GetRadiusWorld() const
 {
@@ -40,16 +41,6 @@ void CircleCollider::Load(json::JSON& _jsonData)
 	Collider::Load(_jsonData);
 
 	radius = FileManager::JsonReadFloat(_jsonData, "radius");
-}
-
-Component* CircleCollider::Clone()
-{
-	CircleCollider* clone = (CircleCollider*)CreateObject("CircleCollider");
-
-	*clone = *this;
-
-	clone->owner = nullptr;
-	return clone;
 }
 
 void CircleCollider::Serialize(json::JSON& j)

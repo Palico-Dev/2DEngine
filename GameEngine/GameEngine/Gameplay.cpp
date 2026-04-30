@@ -8,7 +8,6 @@
 
 Entity* Gameplay::Spawn(PrefabAsset* prefab)
 {
-	
 	Entity* e = prefab->GetPrefab();
 	Entity* res = e->Clone();
 	SceneManager::Instance().GetCurrentScene()->AddEntity(res);

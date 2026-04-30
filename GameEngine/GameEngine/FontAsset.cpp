@@ -11,6 +11,7 @@ void FontAsset::Destroy()
 
         pair.second = nullptr;
     }
+	fontMap.clear();
     TTF_Quit();
 
 }
@@ -49,6 +50,4 @@ void FontAsset::SetFontSize(int _size)
     
     LoadFont(path,_size);
     fontSize = _size;
-
-    //LoadFont(fontSize);
 }

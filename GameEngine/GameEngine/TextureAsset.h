@@ -11,7 +11,7 @@ public:
 	SDL_Texture* GetTexture() { return texture; }
 
 private:
-	SDL_Texture* texture{};
+	SDL_Texture* texture = nullptr;
 	void Load(json::JSON j, std::string& _fileName) override;
 	void Destroy() override;
 };

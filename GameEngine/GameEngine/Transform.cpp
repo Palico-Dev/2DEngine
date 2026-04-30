@@ -3,6 +3,7 @@
 #include "FileManager.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Transform);
+CLONEABLE_IMPLEMENT(Transform)
 
 const glm::mat3& Transform::GetMatrix() const
 {
@@ -48,16 +49,6 @@ void Transform::Load(json::JSON& data)
 	position = FileManager::JsonReadVec2(data, "position");
 	scale = FileManager::JsonReadVec2(data, "scale");
 	rotation = FileManager::JsonReadFloat(data, "rotation");
-}
-
-Component* Transform::Clone()
-{
-	Transform* clone = (Transform*)CreateObject("Transform");
-
-	*clone = *this;
-
-	clone->owner = nullptr;
-	return clone;
 }
 
 void Transform::Serialize(json::JSON& j)

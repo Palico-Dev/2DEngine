@@ -9,6 +9,7 @@
 class BoxCollider:public Collider
 {
 	DECLARE_DYNAMIC_DERIVED_CLASS(BoxCollider, Collider);
+	CLONEABLE(BoxCollider);
 
 public:
 	ColliderType GetType() const override { return ColliderType::Box; }
@@ -22,7 +23,6 @@ public:
 	void Destroy() override;
 
 	void Load(json::JSON& _jsonData) override;
-	Component* Clone() override;
 
 	virtual void Serialize(json::JSON& j) override;
 	virtual void Deserialize(json::JSON& j) override;

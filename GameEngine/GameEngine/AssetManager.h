@@ -15,7 +15,7 @@ class AssetManager final
 
 public:
 	void Load(json::JSON& _json);
-	void Unload(std::string& _scene);
+	void Unload(json::JSON& _json);
 	
 	template <typename T>
 	T* GetAsset(const std::string& fileName)

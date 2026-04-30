@@ -10,6 +10,7 @@
 class Sprite : public Component, public IRenderable
 {
 	DECLARE_DYNAMIC_DERIVED_CLASS(Sprite, Component);
+	CLONEABLE(Sprite);
 public:
 	void SetColor(glm::vec4 c);
 	void SetTexture(TextureAsset* newTexture) { textureAsset = newTexture; }
@@ -23,7 +24,6 @@ protected:
 	void Destroy() final;
 	void Update() final;
 	void Load(json::JSON& _document) final;
-	Component* Clone() override;
 	void Render() final;
 
 	int GetLayer() { return layer; }

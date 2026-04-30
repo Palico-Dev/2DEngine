@@ -10,13 +10,13 @@
 class AnimatedSprite : public Component,public IRenderable
 {
 	DECLARE_DYNAMIC_DERIVED_CLASS(AnimatedSprite, Component);
+	CLONEABLE(AnimatedSprite);
 
 public:
 	void Initialize() final;
 	void Destroy() final;
 	void Update() final;
 	void Load(json::JSON& _document) final;
-	Component* Clone() override;
 	void Render() final;
 private:
 	std::string spriteName = "";

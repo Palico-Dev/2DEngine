@@ -3,6 +3,7 @@
 #include "FileManager.h"
 
 IMPLEMENT_DYNAMIC_CLASS(BoxCollider);
+CLONEABLE_IMPLEMENT(BoxCollider)
 
 AABB BoxCollider::GetAABB()
 {
@@ -84,16 +85,6 @@ void BoxCollider::Load(json::JSON& _jsonData)
 	Collider::Load(_jsonData);
 
 	size = FileManager::JsonReadVec2(_jsonData, "size");
-}
-
-Component* BoxCollider::Clone()
-{
-	BoxCollider* clone = (BoxCollider*)CreateObject("BoxCollider");
-
-	*clone = *this;
-
-	clone->owner = nullptr; 
-	return clone;
 }
 
 void BoxCollider::Serialize(json::JSON& j)

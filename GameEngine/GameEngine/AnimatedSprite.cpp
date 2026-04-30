@@ -8,6 +8,7 @@
 static SDL_Rect tempClip;
 
 IMPLEMENT_DYNAMIC_CLASS(AnimatedSprite);
+CLONEABLE_IMPLEMENT(AnimatedSprite)
 
 void AnimatedSprite::Initialize()
 {
@@ -49,16 +50,6 @@ void AnimatedSprite::Load(json::JSON& _document)
 
 		RenderSystem::Instance().AddRenderable(this);
 	}
-}
-
-Component* AnimatedSprite::Clone()
-{
-	AnimatedSprite* clone = (AnimatedSprite*)CreateObject("AnimatedSprite");
-
-	*clone = *this;
-
-	clone->owner = nullptr;
-	return clone;
 }
 
 void AnimatedSprite::Render()

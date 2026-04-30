@@ -13,7 +13,6 @@ void PrefabAsset::Load(json::JSON j, std::string& _fileName)
     json::JSON prefabJson = FileManager::LoadJson(path.generic_string().c_str());
     prefab = (Entity*)CreateObject("Entity");
     prefab->Load(prefabJson);
-
 }
 
 void PrefabAsset::Destroy()

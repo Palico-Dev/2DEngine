@@ -27,44 +27,43 @@ void AssetManager::Load(json::JSON& _json)
 			json::JSON j = FileManager::LoadJson(path.c_str());
 			Asset* newAsset = (Asset*)CreateObject(FileManager::JsonReadString(j, "Type").c_str());
 			newAsset->Load(j, fileName);
-
+			newAsset->refCount = 1;
 			assets.emplace(GetHashCode(fileName.c_str()), newAsset);
 		}
 	}
 }
 
-void AssetManager::Unload(std::string& _scene)
+void AssetManager::Unload(json::JSON& _json)
 {
-	//try
-	//{
-	//	if (!assetMeta.count(_scene))
-	//	{
-	//		std::cout << "No asset detected for scene: " + _scene + ". Asset unload process is skipped.\n";
-	//		return;
-	//	}
+	if (!_json.hasKey("assets"))
+	{
+		return; 
+	}
 
-	//	for (auto& _strcode : assetMeta.at(_scene))
-	//	{
-	//		Asset* asset_to_unload = assets.at(_strcode);
-	//		int& count = asset_to_unload->refCount;
+	json::JSON metaArray = _json["assets"];
 
-	//		if (!count) std::cout << "WARNING! Attempting to unload an asset with no instance.\n";
-	//		else count--;
+	for (auto& meta : metaArray.ArrayRange())
+	{
+		std::string fileName = meta.ToString();
 
-	//		if (!count)
-	//		{
-	//			asset_to_unload->Destroy();
-	//			delete asset_to_unload;
-	//			assets.erase(_strcode);
-	//		}
-	//	}
-	//	assetMeta.at(_scene).clear();
-	//	assetMeta.erase(_scene);
-	//}
-	//catch (const std::out_of_range& e)
-	//{
-	//	std::cerr << "Error: " << e.what() << std::endl;
-	//}
+		unsigned int hash = GetHashCode(fileName.c_str());
+
+		auto it = assets.find(hash);
+		if (it != assets.end())
+		{
+			it->second->refCount--;
+
+			if (it->second->refCount <= 0)
+			{
+				delete it->second; 
+				assets.erase(it);  
+			}
+		}
+		else
+		{
+			Debug::Warning("Attempting to unload an asset that isn't loaded: " + fileName);
+		}
+	}
 }
 
 Asset* AssetManager::GetAssetInternal(const std::string& fileName)

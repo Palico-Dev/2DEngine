@@ -7,6 +7,7 @@
 class Transform : public Component
 {
 	DECLARE_DYNAMIC_DERIVED_CLASS(Transform, Component);
+	CLONEABLE(Transform);
 
 public:
 	const glm::mat3& GetMatrix() const;
@@ -63,7 +64,6 @@ public:
 	float GetZIndex() const { return zIndex; }
 
 	void Load(json::JSON& data);
-	Component* Clone() override;
 	void Serialize(json::JSON& j) override;
 	void Deserialize(json::JSON& j) override;
 

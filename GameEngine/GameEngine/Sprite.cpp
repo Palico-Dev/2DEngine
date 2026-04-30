@@ -7,6 +7,7 @@
 #include "FileManager.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Sprite);
+CLONEABLE_IMPLEMENT(Sprite)
 
 void Sprite::SetColor(glm::vec4 c)
 {
